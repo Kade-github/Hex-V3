@@ -1,7 +1,7 @@
 {
  "version": "2.0.0",
  "scrollSpeed": {
-  "easy": 2.9,
+  "easy": 2.5,
   "normal": 2.9,
   "hard": 2.9
  },

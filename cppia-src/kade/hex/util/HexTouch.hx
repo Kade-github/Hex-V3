@@ -10,6 +10,7 @@ import flixel.util.FlxColor;
 import funkin.Assets;
 import funkin.Paths;
 import funkin.graphics.FunkinCamera;
+import funkin.mobile.input.ControlsHandler;
 import funkin.mobile.ui.FunkinBackButton;
 import funkin.ui.MusicBeatState;
 import funkin.util.ReflectUtil;
@@ -56,9 +57,16 @@ class HexTouch
   static var startX:Float = 0;
   static var startY:Float = 0;
   static var lastPinch:Float = -1;
+  static var seeded:Bool = false;
 
   public static function update(?state:FlxState, ?onBack:Void->Void):Void
   {
+    if (!seeded)
+    {
+      seeded = true;
+      if (mobile && !ControlsHandler.hasExternalInputDevice) active = true;
+    }
+
     if (FlxG.touches.list.length > 0) active = true;
     else if (FlxG.keys.justPressed.ANY) active = false;
 
