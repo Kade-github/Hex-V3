@@ -713,7 +713,6 @@ class HexFreeplay extends MusicBeatState
     capsuleLeft.validDiffs = getValidDiffs(currentSong);
     capsuleLeft.setDifficulty(savedDiff);
     set_capsule_song(false);
-    isTransitioning = true;
   }
 
   function circleInAnim():Void

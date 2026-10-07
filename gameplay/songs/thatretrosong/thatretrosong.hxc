@@ -34,6 +34,8 @@ class ThatRetroSong extends Song {
     public override function onSongRetry(event) {
         super.onSongRetry(event);
         didSwitch = false;
+        if (hexTrans == null || hexTWO == null || hexOg == null)
+            return;
         hexTrans.animation.onFinish.remove(animationFinished);
         hexTrans.animation.stop();
         hexTrans.visible = false;
@@ -53,6 +55,7 @@ class ThatRetroSong extends Song {
     }
 
 	public override function onSongLoaded(event) {
+        didSwitch = false;
 		hexOg = PlayState.instance.currentStage.getBoyfriend();
         hexTrans = CharacterDataParser.fetchCharacter("hexretrotrans");
         hexTrans.characterType = CharacterType.BF;

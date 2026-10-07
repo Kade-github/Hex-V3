@@ -190,6 +190,7 @@ class HResultsScreen extends Module
 
         isLeaving = false;
         exiting = false;
+        ownSwitch = false;
         hexResultsOpen = PlayState.instance != null && isHexSong();
 
         // Technically it doesn't matter, HScript doesn't care about access modifiers.
@@ -253,6 +254,7 @@ class HResultsScreen extends Module
             || name == "funkin.ui.charSelect.CharacterUnlockState";
     }
     var exiting:Bool = false;
+    var ownSwitch:Bool = false;
     var trans:HexTransitional = null;
 
     public override function onUpdate(event:UpdateScriptEvent):Void
@@ -359,6 +361,8 @@ class HResultsScreen extends Module
         if (FlxG.sound.music != null)
             FlxG.sound.music.stop();
 
+        ownSwitch = true;
+
         if (PlayStatePlaylist.isStoryMode)
             FlxG.switchState(new HexStoryMenu());
         else
@@ -368,32 +372,23 @@ class HResultsScreen extends Module
     public override function onStateChangeBegin(event:StateChangeScriptEvent):Void {
 
         var state = FlxG.state.subState;
+        var onResults:Bool = state != null && Std.is(state, ResultState);
 
-        if (hexResultsOpen && !isLeaving && isBaseMenu(event.targetState))
-        {
-            event.cancelEvent();
-
-            if (state != null && Std.is(state, ResultState))
-                beginExit(state);
-            else
-                leaveResults();
-            return;
-        }
-
-        if (!Std.is(state, ResultState) || isLeaving)
+        // The event carries no target here, so any switch that is not ours is the stock exit.
+        if (ownSwitch || !hexResultsOpen || !(exiting || onResults))
         {
             super.onStateChangeBegin(event);
             return;
         }
 
-        if (PlayState.instance != null && isHexSong())
-        {
-            event.cancelEvent();
+        event.cancelEvent();
+
+        if (exiting)
+            return;
+
+        if (onResults)
             beginExit(state);
-        }
         else
-        {
-            super.onStateChangeBegin(event);
-        }
+            leaveResults();
     }
 }
