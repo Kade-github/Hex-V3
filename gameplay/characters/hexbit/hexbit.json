@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "name": "Hex (Bit)",
+  "assetPath": "gameplay/characters/hexbit/hexbit",
+  "singTime": 3.5,
+  "healthIcon": {
+    "offsets": [
+      0,
+      0
+    ],
+    "isPixel": false,
+    "scale": 1,
+    "flipX": false,
+    "id": "hex"
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "Hex-idle",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "idle-hold",
+      "prefix": "Hex-idle",
+      "looped": true,
+      "frameIndices": [
+        11,
+        12
+      ],
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "Hex-left",
+      "offsets": [
+        -10,
+        10
+      ]
+    },
+    {
+      "name": "singLEFT-hold",
+      "prefix": "Hex-left",
+      "looped": true,
+      "offsets": [
+        -10,
+        10
+      ]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "Hex-down",
+      "offsets": [
+        0,
+        -30
+      ]
+    },
+    {
+      "name": "singDOWN-hold",
+      "prefix": "Hex-down",
+      "looped": true,
+      "offsets": [
+        0,
+        -30
+      ]
+    },
+    {
+      "name": "singUP",
+      "prefix": "Hex-Up",
+      "offsets": [
+        -6,
+        50
+      ]
+    },
+    {
+      "name": "singUP-hold",
+      "prefix": "Hex-Up",
+      "looped": true,
+      "offsets": [
+        -6,
+        50
+      ]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "Hex-right",
+      "offsets": [
+        0,
+        27
+      ]
+    },
+    {
+      "name": "singRIGHT-hold",
+      "prefix": "Hex-right",
+      "looped": true,
+      "offsets": [
+        0,
+        27
+      ]
+    }
+  ]
+}

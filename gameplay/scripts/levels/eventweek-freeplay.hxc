@@ -1,0 +1,21 @@
+package kade.hex.levels;
+
+import funkin.ui.story.Level;
+
+class EventFreeplay extends Level
+{
+  function new()
+  {
+    super('Event Week Freeplay');
+  }
+
+  override function isUnlocked():Bool
+  {
+    return false;
+  }
+
+  override function getSongDisplayNames(difficultyId:String):Array<String>
+  {
+    return [];
+  }
+}

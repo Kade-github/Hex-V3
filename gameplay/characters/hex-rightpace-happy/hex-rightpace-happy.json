@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "name": "Hex (Right Pace 9)",
+  "assetPath": "gameplay/characters/hex-rightpace-happy/hex-rightpace-happy",
+  "flipX": true,
+  "singTime": 3.5,
+  "healthIcon": {
+    "id": "hex",
+    "flipX": false
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "looped": true,
+      "prefix": "hexLoop",
+      "offsets": [
+        0,
+        0
+      ]
+    }
+  ]
+}

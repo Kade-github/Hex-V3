@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="hex-bit.png">
+	
+	
+	<SubTexture name="Hex-Up0000" x="786" y="2" width="378" height="662" frameX="-4" frameY="-14" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0001" x="786" y="2" width="378" height="662" frameX="-4" frameY="-14" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0002" x="1166" y="2" width="390" height="655" frameX="0" frameY="-21" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0003" x="1166" y="2" width="390" height="655" frameX="0" frameY="-21" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0004" x="2" y="2" width="390" height="676" frameX="0" frameY="0" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0005" x="2" y="2" width="390" height="676" frameX="0" frameY="0" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0006" x="394" y="2" width="390" height="676" frameX="0" frameY="0" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0007" x="394" y="2" width="390" height="676" frameX="0" frameY="0" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0008" x="394" y="2" width="390" height="676" frameX="0" frameY="0" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-Up0009" x="394" y="2" width="390" height="676" frameX="0" frameY="0" frameWidth="390" frameHeight="676" />
+	<SubTexture name="Hex-down0000" x="1881" y="1315" width="398" height="577" frameX="-6" frameY="-19" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0001" x="1881" y="1315" width="398" height="577" frameX="-6" frameY="-19" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0002" x="1470" y="1315" width="409" height="583" frameX="0" frameY="-13" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0003" x="1470" y="1315" width="409" height="583" frameX="0" frameY="-13" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0004" x="1059" y="1315" width="409" height="594" frameX="0" frameY="-2" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0005" x="1059" y="1315" width="409" height="594" frameX="0" frameY="-2" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0006" x="648" y="1315" width="409" height="596" frameX="0" frameY="0" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0007" x="648" y="1315" width="409" height="596" frameX="0" frameY="0" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0008" x="648" y="1315" width="409" height="596" frameX="0" frameY="0" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-down0009" x="648" y="1315" width="409" height="596" frameX="0" frameY="0" frameWidth="409" frameHeight="597" />
+	<SubTexture name="Hex-idle0000" x="324" y="1315" width="322" height="609" frameX="0" frameY="-19" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0001" x="324" y="1315" width="322" height="609" frameX="0" frameY="-19" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0002" x="2" y="1315" width="320" height="612" frameX="-2" frameY="-16" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0003" x="2" y="1315" width="320" height="612" frameX="-2" frameY="-16" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0004" x="2589" y="680" width="320" height="623" frameX="-2" frameY="-4" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0005" x="2589" y="680" width="320" height="623" frameX="-2" frameY="-4" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0006" x="1298" y="680" width="322" height="628" frameX="0" frameY="0" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0007" x="1298" y="680" width="322" height="628" frameX="0" frameY="0" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0008" x="973" y="680" width="323" height="628" frameX="0" frameY="0" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0009" x="973" y="680" width="323" height="628" frameX="0" frameY="0" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0010" x="1622" y="680" width="322" height="627" frameX="0" frameY="-1" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0011" x="1622" y="680" width="322" height="627" frameX="0" frameY="-1" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0012" x="2265" y="680" width="322" height="626" frameX="0" frameY="-2" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-idle0013" x="2265" y="680" width="322" height="626" frameX="0" frameY="-2" frameWidth="323" frameHeight="628" />
+	<SubTexture name="Hex-left0000" x="1866" y="2" width="299" height="645" frameX="0" frameY="-4" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0001" x="1866" y="2" width="299" height="645" frameX="0" frameY="-4" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0002" x="1558" y="2" width="306" height="648" frameX="-2" frameY="0" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0003" x="1558" y="2" width="306" height="648" frameX="-2" frameY="0" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0004" x="2509" y="2" width="306" height="635" frameX="-2" frameY="-13" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0005" x="2509" y="2" width="306" height="635" frameX="-2" frameY="-13" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0006" x="665" y="680" width="306" height="631" frameX="-2" frameY="-17" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0007" x="665" y="680" width="306" height="631" frameX="-2" frameY="-17" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0008" x="665" y="680" width="306" height="631" frameX="-2" frameY="-17" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-left0009" x="665" y="680" width="306" height="631" frameX="-2" frameY="-17" frameWidth="308" frameHeight="649" />
+	<SubTexture name="Hex-right0000" x="2" y="680" width="342" height="633" frameX="-6" frameY="-2" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0001" x="2" y="680" width="342" height="633" frameX="-6" frameY="-2" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0002" x="2167" y="2" width="340" height="635" frameX="0" frameY="0" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0003" x="2167" y="2" width="340" height="635" frameX="0" frameY="0" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0004" x="346" y="680" width="317" height="631" frameX="0" frameY="-4" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0005" x="346" y="680" width="317" height="631" frameX="0" frameY="-4" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0006" x="1946" y="680" width="317" height="627" frameX="0" frameY="-8" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0007" x="1946" y="680" width="317" height="627" frameX="0" frameY="-8" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0008" x="1946" y="680" width="317" height="627" frameX="0" frameY="-8" frameWidth="349" frameHeight="635" />
+	<SubTexture name="Hex-right0009" x="1946" y="680" width="317" height="627" frameX="0" frameY="-8" frameWidth="349" frameHeight="635" />
+</TextureAtlas>

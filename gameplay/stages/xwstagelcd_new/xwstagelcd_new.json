@@ -1,0 +1,309 @@
+{
+  "version": "1.0.1",
+  "name": "WeekendX LCD (2026)",
+  "cameraZoom": 0.82,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexBack",
+      "assetPath": "gameplay/stages/xwstagelcd/au_lcd_back_1",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexFront",
+      "assetPath": "gameplay/stages/xwstagelcd_new/au_lcd_front_1",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -25,
+        -8
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "lights",
+      "danceEvery": 2,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstagelcd/au_lcd_lights_1",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 25,
+      "position": [
+        42,
+        -150
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "crowd",
+      "danceEvery": 2,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstagelcd_new/au_lcd_audience_1",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexBack2",
+      "assetPath": "gameplay/stages/xwstagelcd/au_lcd_back_2",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexFront2",
+      "assetPath": "gameplay/stages/xwstagelcd_new/au_lcd_front_2",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -25,
+        -8
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "lights2",
+      "danceEvery": 1,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstagelcd/au_lcd_lights_2",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 25,
+      "position": [
+        42,
+        -150
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "crowd2",
+      "danceEvery": 1,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstagelcd_new/au_lcd_audience_2",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexBack3",
+      "assetPath": "gameplay/stages/xwstagelcd/au_lcd_back_3",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexFront3",
+      "assetPath": "gameplay/stages/xwstagelcd_new/au_lcd_front_3",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -25,
+        -8
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "lights3",
+      "danceEvery": 4,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstagelcd/au_lcd_lights_3",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 25,
+      "position": [
+        42,
+        -150
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "crowd3",
+      "danceEvery": 4,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstagelcd_new/au_lcd_audience_3",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 24,
+      "position": [
+        1300,
+        755
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        -200,
+        -50
+      ]
+    },
+    "dad": {
+      "zIndex": 24,
+      "position": [
+        650,
+        760
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        200,
+        -45
+      ]
+    },
+    "gf": {
+      "zIndex": 22,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "position": [
+        950,
+        690
+      ]
+    }
+  }
+}

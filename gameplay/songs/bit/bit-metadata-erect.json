@@ -1,0 +1,27 @@
+{
+  "version": "2.2.4",
+  "songName": "B.I.T.",
+  "artist": "YingYang48",
+  "charter": "YingYang48",
+  "offsets": {},
+  "playData": {
+    "difficulties": ["erect"],
+    "characters": {
+      "player": "bfbit",
+      "girlfriend": "gf",
+      "opponent": "hexbit",
+      "instrumental": "erect",
+      "altInstrumentals": [],
+      "opponentVocals": ["hexbit"],
+      "playerVocals": ["bfbit"]
+    },
+    "stage": "train-erect",
+    "noteStyle": "hex",
+    "ratings": { "erect": 11 },
+    "album": "volume1",
+    "previewStart": 0,
+    "previewEnd": 15000
+  },
+  "generatedBy": "Friday Night Funkin' - v0.8.5",
+  "timeChanges": [{ "t": 0, "b": 0, "bpm": 140, "bt": [4, 4, 4, 4] }]
+}

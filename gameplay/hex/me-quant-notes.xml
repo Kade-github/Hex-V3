@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="me-quant-notes.png">
+	
+	
+	<SubTexture name="12th0000" x="799" y="2" width="158" height="156" frameX="0" frameY="0" frameWidth="158" frameHeight="156" />
+	<SubTexture name="12th hold end0000" x="482" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="12th hold piece0000" x="950" y="161" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="16th0000" x="2" y="2" width="158" height="157" frameX="0" frameY="0" frameWidth="158" frameHeight="157" />
+	<SubTexture name="16th hold end0000" x="534" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="16th hold piece0000" x="2" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="24th0000" x="2" y="161" width="158" height="156" frameX="0" frameY="0" frameWidth="158" frameHeight="156" />
+	<SubTexture name="24th hold end0000" x="586" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="24th hold piece0000" x="54" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="32th0000" x="162" y="161" width="158" height="156" frameX="0" frameY="0" frameWidth="158" frameHeight="156" />
+	<SubTexture name="32th hold end 0000" x="638" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="32th hold piece0000" x="106" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="48th0000" x="162" y="2" width="158" height="157" frameX="0" frameY="0" frameWidth="158" frameHeight="157" />
+	<SubTexture name="48th hold end0000" x="690" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="48th hold piece0000" x="158" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="4th0000" x="322" y="2" width="157" height="157" frameX="0" frameY="0" frameWidth="157" frameHeight="157" />
+	<SubTexture name="4th hold end0000" x="742" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="4th hold piece0000" x="210" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="64th0000" x="481" y="2" width="157" height="157" frameX="-1" frameY="0" frameWidth="158" frameHeight="157" />
+	<SubTexture name="64th hold end0000" x="794" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="64th hold piece0000" x="262" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="8th0000" x="322" y="161" width="158" height="156" frameX="0" frameY="0" frameWidth="158" frameHeight="156" />
+	<SubTexture name="8th hold end0000" x="846" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="8th hold piece0000" x="314" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+	<SubTexture name="96th0000" x="640" y="2" width="157" height="157" frameX="0" frameY="0" frameWidth="157" frameHeight="157" />
+	<SubTexture name="96th hold end0000" x="898" y="161" width="50" height="64" frameX="0" frameY="0" frameWidth="50" frameHeight="64" />
+	<SubTexture name="96th hold piece0000" x="366" y="319" width="50" height="44" frameX="0" frameY="0" frameWidth="50" frameHeight="44" />
+</TextureAtlas>

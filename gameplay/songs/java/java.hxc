@@ -1,0 +1,91 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.modding.module.ModuleHandler;
+import funkin.play.PlayStatePlaylist;
+import funkin.modding.base.ScriptedFlxSpriteGroup;
+import openfl.utils.Assets;
+import funkin.graphics.FunkinSprite;
+import StringTools;
+import flixel.FlxG;
+import funkin.save.Save;
+import funkin.Conductor;
+
+import Math;
+import flixel.math.FlxMath;
+import kade.hex.util.ReactiveSpotlights;
+
+import funkin.Paths;
+
+
+class JavaSong extends Song {
+
+  var spots:ReactiveSpotlights;
+  var spotsOwner:Dynamic = null;
+
+	public function new() {
+  	super("java");
+	}
+
+  public override function onSongLoaded(event) { // spotlights only!
+		super.onSongLoaded(event);
+		rimOn();
+
+    var variation:String = PlayState.instance.currentVariation;
+
+    trace("loading spotlights for variation " + variation);
+
+    // Fresh group per PlayState, the Song object outlives it and the old one is destroyed.
+    placeHex();
+
+    if (spots != null && spotsOwner == PlayState.instance.currentStage)
+      PlayState.instance.currentStage.remove(spots);
+
+    spots = new ReactiveSpotlights();
+    spots.load(getDifficulty('erect', variation));
+
+    spotsOwner = PlayState.instance.currentStage;
+    PlayState.instance.currentStage.add(spots);
+    PlayState.instance.currentStage.refresh();
+	}
+
+
+  function placeHex()
+  {
+    var dad = PlayState.instance.currentStage.getDad();
+    if (dad != null)
+      dad.y = 160;
+  }
+
+  public override function onCountdownStart(event)
+  {
+    placeHex();
+
+    if (spots != null)
+      spots.hide();
+
+    super.onCountdownStart(event);
+  }
+
+  public override function onSongRetry(event)
+  {
+    if (spots != null)
+      spots.reset();
+
+    super.onSongRetry(event);
+    rimOn();
+  }
+
+  public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+  // BF and GF are the old sheets in the weekend look, through CharacterRim.
+  function rimOn() {
+    var rim = ModuleHandler.getModule("CharacterRim");
+    if (rim != null)
+      rim.enable("weekend");
+  }
+}

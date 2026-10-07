@@ -1,0 +1,147 @@
+cutscenes: eventX_CUT
+playMusic: none
+
+- Sprite Mode - [bg_normal_9]
+
+HX: Did we... just murder someone on national TV? [HX_STARTLED1]
+playMusic: glitcherInterlude
+IR: Murdered? Oh please, you should know how things go by now. [IR_DESTROYED_STATIC]
+BF: S-Slasher?! No... it's that other guy. [BF_BASKETBALL_DISCOURAGED3]
+HX: Iris... [HX_AGITATED1]
+IR: Hello you two. [IR_DESTROYED_NEUTRAL]
+IR: It's interesting to finally speak to you, machine. [IR_DESTROYED_CLOSED]
+IR: Hacking you never let me do that it seems. [IR_DESTROYED_LOWERED1]
+BF: What do you want?! You've lost again! [BF_BASKETBALL_ANGRY]
+BF: Go crawl back to the hole down below where you've came from! [BF_BASKETBALL_DISCOURAGED3]
+IR: A tempting suggestion, I'll have to decline however. [IR_DESTROYED_AMUSED]
+IR: Being petty is one of my favorite past times lately. [IR_DESTROYED_LOWERED2]
+HX: Sending a killer to a charity event?! You're a monster! [HX_ANGRY2]
+HX: Where's the pride you've bragged about last time you've lost?! [HX_AGITATED2]
+IR: Pride, huh? [IR_DESTROYED_CLOSED]
+IR: Ever since that loss at Funkin' Awards and nearly losing my business... [IR_DESTROYED_LOWERED1]
+IR: Pride has been nothing but a superficial concept to me. [IR_DESTROYED_WONDERING]
+IR: A deadly sin revered in the Underworld... [IR_DESTROYED_LOWERED3]
+IR: And yet, it limited me so much. [IR_DESTROYED_LOWERED1]
+IR: I've learned a virtue or two from people on the surface. [IR_DESTROYED_CLOSED]
+IR: Patience... really pays off. [IR_DESTROYED_NEUTRAL]
+IR: Patience is what helped rebuild my conglomerate after that loss. [IR_DESTROYED_CLOSED]
+IR: And patience, will be the tool I use to settle score with you one day. [IR_DESTROYED_NEUTRAL]
+BF: Well too bad! It's 0 to 3 for us already, you can't do this forever! [BF_BASKETBALL_SHRUG3]
+IR: Sure, it's frustrating that Slasher couldn't lay a finger on you. [IR_DESTROYED_CLOSED]
+IR: But it's not like he can't be copied and rebuilt. [IR_DESTROYED_WONDERING]
+IR: Besides, the data we've gathered from this encounter will be VERY useful. [IR_DESTROYED_CLOSED]
+IR: I'll just do this again, and again, and again, until I catch you offguard. [IR_DESTROYED_LOWERED2]
+IR: Like I said, patience pays off. [IR_DESTROYED_AMUSED]
+HX: Ugh! I can't listen to this guy, he's such a sore loser! [HX_SHY5]
+IR: Hmm? The machine's got a bit of a bite to him, huh? That's new. [IR_DESTROYED_WONDERING]
+HX: Huh, Boyfriend, I think your influence is wearing off on me. [HX_THINK1]
+BF: That's a good thing Hex! Tell this guy off! [BF_BASKETBALL_POINT1]
+musicEffect: fadeout
+HX: Right... right! [HX_AGITATED3]
+playMusic: glitcherSuspense
+HX: Iris, I can assure you, you will never defeat me, or him. [HX_HIP4]
+HX: You've said you'll try again and again to catch us offguard... [HX_ANGRY1]
+HX: Well, here's my answer. [HX_SHY1]
+HX: Keep it coming! I'll gladly contribute to your loss of revenue.~ [HX_HIP2]
+IR: Pff, heh, hahaha! Oh, that's rich! [IR_DESTROYED_AMUSED]
+IR: You really think you're at the center of it all? [IR_DESTROYED_LOWERED1]
+IR: Heh, NO. The Dearests have always been my target. [IR_DESTROYED_NEUTRAL]
+IR: Yet you keep showing up like a parasite, like collateral damage! [IR_DESTROYED_LOWERED3]
+IR: Your stupid monitor and your stupid claw hands-! [IR_DESTROYED_LOWERED2]
+IR: YOU THINK I CARE ABOUT YOU?! [IR_DESTROYED_AMUSED]
+HX: Huh? Well, it sounds like you do. [HX_THINK2]
+HX: Why collect my data then? This isn't privacy breach, it's an obsession. [HX_EXPLAIN1]
+HX: You have a media empire, and yet all you do is try to hurt us? [HX_HIP4]
+HX: Your pride is still there! If it wasn't you wouldn't hold grudges. [HX_COOL1]
+IR: You rusty, defunct, little-! [IR_DESTROYED_STATIC]
+HX: Okay, that's enough out of you. [HX_AGITATED2]
+
+- Cutscene Mode -
+
+playerControls: disabled
+IR: H-Hey! OW! I'm not finished! [CUT22]
+musicLoop: false
+playMusic: glitcherEnd
+HX: Well, I AM!
+musicLoop: true
+wait: 1.1
+
+[CUT23]
+
+wait: 4.5
+
+screenEffect: fadeout
+
+- Sprite Mode - [bg_normal_9]
+
+clearSprites
+playMusic: rom
+screenEffect: fadein
+playerControls: enabled
+HX: *sigh* What an awful bunch these guys are. [HX_HIP1]
+BF: Hex, you were awesome out there! [BF_BASKETBALL_SHRUG2]
+BF: You've really got under Iris' skin... metal? [BF_BASKETBALL_WONDER2]
+BF: Whatever, you were freaking cool! [BF_BASKETBALL_POINT1]
+HX: Was I? I just... thought of what you would say... [HX_EXPLAIN3]
+HX: Still, the event's a mess now... [HX_SHY2]
+GF: Guys! The donation goal monitor reconnected after Iris left and... [GF_PHONE1]
+GF: We've reached the goal 5 times over! [GF_PHONE2]
+GF: People donated during the fight as a show of support it seems! [GF_REASSURE1]
+BF: 5 times over?! Wow, I'm getting deja vu from last time... [BF_BASKETBALL_NEUTRAL2]
+HX: 5 times?... We did it... We did it guys! WE DID IT! [HX_SAD3]
+HX: This money is gonna help so many people... [HX_THINK2]
+HX: You know what, dear viewers! [HX_COOL1]
+HX: I will personally be donating the same amount you've managed to accomplish! [HX_HIP2]
+HX: Now we're ten times over the goal! [HX_EXCITED]
+BF: Man, that guy sure has a lot of money. [BF_BASKETBALL_SHRUG2]
+BF: But there's no money that could ever buy my biggest treasure, huh GF?~ [BF_BASKETBALL_WELCOME]
+GF: Aww, Boyfriend! Not while we're live, haha... [GF_EXCITED]
+
+wait: 1.1
+
+screenEffect: fadeout
+musicEffect: fadeout
+
+[bg_normal_6]
+
+clearSprites
+playMusic: glitcherInterlude
+screenEffect: fadein
+IR: He didn't even let me finish, can you believe it?! [IR_SUIT_IRRITATED] 
+CL: *sigh* Yes sir, what a tragedy that is. [CL_HIP2] 
+CL: Can we focus on current matters already... [CL_ANNOYED]
+IF: Ciliar... shut... up. [IN_ECCENTRIC]
+IF: Boss, I also was tempted on another go at revenge on Dearest and his associates, but... [IN_BEHIND2] 
+IF: We're wasting way too many resources every time we interact with the Overworld... [IN_CROSS3] 
+IF: It's not sustainable at this point to-! [IN_HIP]
+
+- Cutscene Mode -
+
+(slasher grabs infernus) [CUT24]
+IF: Hnghh-!
+IR: Infernus, when I've assigned you as a COO, I thought you knew what that entailed.
+IR: Getting our hands dirty isn't uncommon for us.
+IR: I was not joking when I've talked about patience.
+IR: We can thrive in this market AND get rid off those pests at the same time.
+IR: Do. You. Understand?
+IF: GAH-! Yes! Yes, I do...
+IR: Slasher, down.
+SL: Bummer. 
+
+- Sprite Mode - [bg_normal_6]
+
+IR: Good. You know, Slasher was certainly a good idea. [IR_SUIT_ECCENTRIC1] 
+IR: You have a lot of those, even though sometimes you're dumb. [IR_SUIT_HIP1] 
+IF: Ngh... asshole. [IN_CHOKED] 
+IR: What was that? [IR_SUIT_BEHIND1] 
+IF: Nothing! Nothing, boss. [IN_BEHIND3] 
+IR: Uhuh, it better be. [IR_SUIT_EXPLAIN1] 
+IR: Because I am not letting this go. [IR_SUIT_CROSS2] 
+
+- Cutscene Mode -
+
+IR: I will make sure our presence follows these people wherever they go. [CUT25]
+IR: Wherever that machine or that blue thing goes, our logo will be there to greet them.
+IR: I will not let them be at ease ever again.
+IR: Our eye will haunt their nightmares, and appear at places they expect least.
+IR: THEY. WILL. PAY!

@@ -1,0 +1,108 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"scale": 0.9,
+	"name": "Boyfriend (Headbasher 2)",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "bf"
+	},
+	"flipX": true,
+	"assetPath": "gameplay/characters/bf-hb-2/Headbasher_BF2",
+	"animations": [
+		{
+			"prefix": "idle0",
+			"name": "idle"
+		},
+		{
+			"prefix": "idle afraid",
+			"name": "idle_scared"
+		},
+		{
+			"prefix": "idle mad",
+			"name": "idle_mad"
+		},
+		{
+			"prefix": "transition to idle",
+			"name": "idle_transition"
+		},
+		{
+			"prefix": "transition-to-glance",
+			"name": "glance_transition"
+		},
+		{
+			"offsets": [
+				63,
+				-4
+			],
+			"prefix": "left0",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-35,
+				-70
+			],
+			"prefix": "down0",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-48,
+				15
+			],
+			"prefix": "up0",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-90,
+				4
+			],
+			"prefix": "right0",
+			"name": "singRIGHT"
+		},
+		{
+			"offsets": [
+				50,
+				2
+			],
+			"prefix": "left miss",
+			"name": "singLEFTmiss"
+		},
+		{
+			"offsets": [
+				-3,
+				-12
+			],
+			"prefix": "down miss",
+			"name": "singDOWNmiss"
+		},
+		{
+			"offsets": [
+				-35,
+				81
+			],
+			"prefix": "up miss",
+			"name": "singUPmiss"
+		},
+		{
+			"offsets": [
+				-94,
+				64
+			],
+			"prefix": "right miss",
+			"name": "singRIGHTmiss"
+		}
+	]
+}

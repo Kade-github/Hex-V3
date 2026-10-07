@@ -1,0 +1,246 @@
+{
+  "version": "1.0.1",
+  "name": "Headbasher",
+  "cameraZoom": 0.73,
+  "props": [
+    {
+      "zIndex": 21,
+      "position": [
+        -272,
+        -700
+      ],
+      "scale": [
+        1.25,
+        1.25
+      ],
+      "name": "bg1_left",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG1Left",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 15,
+      "position": [
+        -350,
+        -850
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "bg1_center",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG1Middle&2Left",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+        {
+      "zIndex": 15,
+      "position": [
+        -300,
+        -850
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "bg3_center",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG3",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 15,
+      "position": [
+        -300,
+        -850
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "bg3_overlay",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG3Overlay",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 21,
+      "position": [
+        -15,
+        -700
+      ],
+      "scale": [
+        1.25,
+        1.25
+      ],
+      "name": "bg1_right",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG1Right",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 21,
+      "position": [
+        -272,
+        -700
+      ],
+      "scale": [
+        1.25,
+        1.25
+      ],
+      "name": "bg1w_left",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG1WLeft",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 15,
+      "position": [
+        -350,
+        -850
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "bg1w_center",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG1WMiddle",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 21,
+      "position": [
+        -15,
+        -700
+      ],
+      "scale": [
+        1.25,
+        1.25
+      ],
+      "name": "bg1w_right",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG1WRight",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 400,
+      "position": [
+        -300,
+        -700
+      ],
+      "scale": [
+        1.25,
+        1.25
+      ],
+      "name": "bg2_left_overlay",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG2LeftOverlay",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 400,
+      "position": [
+        -20,
+        -700
+      ],
+      "scale": [
+        1.25,
+        1.25
+      ],
+      "name": "bg2_right_overlay",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG2RightOverlay",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 400,
+      "position": [
+        -200,
+        -700
+      ],
+      "scale": [
+        1.3,
+        1.3
+      ],
+      "name": "bg3_right_overlay",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG3RightOverlay",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 15,
+      "position": [
+        -200,
+        -750
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "bg2_right",
+      "assetPath": "gameplay/stages/headbasher/Headbasher_BG2Right",
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        1260,
+        280
+      ],
+      "cameraOffsets": [
+        0,
+        0
+      ]
+    },
+    "dad": {
+      "zIndex": 19,
+      "position": [
+        730,
+        350
+      ],
+      "cameraOffsets": [
+        -70,
+        -80
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        100,
+        280
+      ]
+    }
+  }
+}

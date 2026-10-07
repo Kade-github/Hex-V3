@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="taskbarLayer.png">
+	
+	
+	<SubTexture name="1" x="2" y="2" width="968" height="30" frameX="0" frameY="0" frameWidth="968" frameHeight="30" />
+	<SubTexture name="2" x="2" y="34" width="968" height="30" frameX="0" frameY="0" frameWidth="968" frameHeight="30" />
+	<SubTexture name="3" x="2" y="66" width="968" height="30" frameX="0" frameY="0" frameWidth="968" frameHeight="30" />
+	<SubTexture name="4" x="2" y="98" width="968" height="30" frameX="0" frameY="0" frameWidth="968" frameHeight="30" />
+	<SubTexture name="5" x="2" y="130" width="968" height="30" frameX="0" frameY="0" frameWidth="968" frameHeight="30" />
+</TextureAtlas>

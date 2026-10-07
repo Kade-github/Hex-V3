@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "name": "Hex (Glitcher)",
+  "assetPath": "gameplay/characters/glitcherhex/glitcherhex",
+  "healthIcon": {
+    "id": "wirehex",
+    "flipX": false
+  },
+  "singTime": 3.5,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "Hex crazy idle",
+      "looped": true,
+      "offsets": [
+        3,
+        14
+      ]
+    },
+    {
+      "name": "idle-hold",
+      "prefix": "Hex crazy idle",
+      "looped": true,
+      "offsets": [
+        3,
+        14
+      ]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "Hex crazy left",
+      "offsets": [
+        151,
+        83
+      ]
+    },
+    {
+      "name": "singLEFT-hold",
+      "prefix": "Hex crazy left",
+      "offsets": [
+        151,
+        83
+      ]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "Hex crazy down",
+      "offsets": [
+        61,
+        -44
+      ]
+    },
+    {
+      "name": "singDOWN-hold",
+      "prefix": "Hex crazy down",
+      "offsets": [
+        61,
+        -44
+      ]
+    },
+    {
+      "name": "singUP",
+      "prefix": "Hex crazy up",
+      "offsets": [
+        80,
+        130
+      ]
+    },
+    {
+      "name": "singUP-hold",
+      "prefix": "Hex crazy up",
+      "offsets": [
+        80,
+        130
+      ]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "Hex crazy right",
+      "offsets": [
+        19,
+        -5
+      ]
+    },
+    {
+      "name": "singRIGHT-hold",
+      "prefix": "Hex crazy right",
+      "offsets": [
+        19,
+        -5
+      ]
+    }
+  ]
+}

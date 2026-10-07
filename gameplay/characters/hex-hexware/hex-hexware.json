@@ -1,0 +1,54 @@
+{
+	"version": "1.0.0",
+	"name": "Hex (Hexware)",
+	"assetPath": "gameplay/characters/hex-hexware/Hex_Hexware",
+    "healthIcon": {
+		"id": "hex"
+	},
+	"animations": [
+		{
+			"offsets": [
+				12,
+				53
+			],
+			"prefix": "hexIntro",
+			"name": "intro"
+		},
+		{
+			"prefix": "hexIdle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				60,
+				5
+			],
+			"prefix": "hexLeft",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-40,
+				-30
+			],
+			"prefix": "hexDown",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-26,
+				15
+			],
+			"prefix": "hexUp",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-5,
+				7
+			],
+			"prefix": "hexRight",
+			"name": "singRIGHT"
+		}
+	]
+}

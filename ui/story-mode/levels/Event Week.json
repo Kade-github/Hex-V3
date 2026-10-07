@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "(Hex) Event X",
+    "titleAsset": "storymenu/titles/weekX",
+    "background": "#3cfeff",
+    "songs": ["bit", "jumpin", "headbasher"],
+    "visible": false,
+    "props": [
+
+    ]
+  }

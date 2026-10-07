@@ -1,0 +1,40 @@
+{
+ "version": "2.2.8",
+ "songName": "That Ludacris Song",
+ "artist": "YingYang48, Ludacris",
+ "charter": "Kade",
+ "offsets": { },
+ "playData": {
+  "difficulties": [
+   "hard"
+  ],
+  "characters": {
+   "player": "hexretro",
+   "girlfriend": "gf",
+   "opponent": "rich",
+   "opponentVocals": [
+    "dad"
+   ],
+   "playerVocals": [
+    "bf"
+   ]
+  },
+  "stage": "retro",
+  "noteStyle": "hex",
+  "ratings": {
+   "hard": 7
+  },
+  "album": "volume1",
+  "stickerPack": "default",
+  "previewEnd": 0
+ },
+ "generatedBy": "Friday Night Funkin' - v0.9.0",
+ "timeChanges": [
+  {
+   "t": 0,
+   "b": 0,
+   "bpm": 120,
+   "bt": [4, 4, 4, 4]
+  }
+ ]
+}

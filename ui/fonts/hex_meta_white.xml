@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="hex_meta_white.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="#" x="3" y="3" width="19" height="22"/>
+	<SubTexture name="$" x="25" y="3" width="16" height="22"/>
+	<SubTexture name="%" x="44" y="3" width="13" height="22"/>
+	<SubTexture name="&" x="60" y="3" width="19" height="22"/>
+	<SubTexture name="(" x="82" y="3" width="12" height="27"/>
+	<SubTexture name=")" x="97" y="3" width="12" height="27"/>
+	<SubTexture name="*" x="112" y="3" width="8" height="9"/>
+	<SubTexture name="+" x="123" y="3" width="13" height="13"/>
+	<SubTexture name="-apostraphie-" x="139" y="3" width="5" height="9"/>
+	<SubTexture name="-back slash-" x="147" y="3" width="10" height="22"/>
+	<SubTexture name="-comma-" x="160" y="3" width="5" height="9"/>
+	<SubTexture name="-dash-" x="168" y="3" width="12" height="5"/>
+	<SubTexture name="-exclamation point-" x="183" y="3" width="5" height="21"/>
+	<SubTexture name="-forward slash-" x="191" y="3" width="10" height="22"/>
+	<SubTexture name="-period-" x="204" y="3" width="5" height="5"/>
+	<SubTexture name="-question mark-" x="212" y="3" width="14" height="22"/>
+	<SubTexture name="-quote-" x="229" y="3" width="11" height="10"/>
+	<SubTexture name="0" x="243" y="3" width="14" height="22"/>
+	<SubTexture name="1" x="3" y="33" width="15" height="22"/>
+	<SubTexture name="2" x="21" y="33" width="14" height="22"/>
+	<SubTexture name="3" x="38" y="33" width="14" height="22"/>
+	<SubTexture name="4" x="55" y="33" width="14" height="22"/>
+	<SubTexture name="5" x="72" y="33" width="15" height="22"/>
+	<SubTexture name="6" x="90" y="33" width="14" height="22"/>
+	<SubTexture name="7" x="107" y="33" width="14" height="22"/>
+	<SubTexture name="8" x="124" y="33" width="14" height="22"/>
+	<SubTexture name="9" x="141" y="33" width="14" height="22"/>
+	<SubTexture name=":" x="158" y="33" width="5" height="16"/>
+	<SubTexture name=";" x="166" y="33" width="5" height="20"/>
+	<SubTexture name="<" x="174" y="33" width="12" height="13"/>
+	<SubTexture name="=" x="189" y="33" width="13" height="11"/>
+	<SubTexture name=">" x="205" y="33" width="12" height="13"/>
+	<SubTexture name="@" x="220" y="33" width="24" height="24"/>
+	<SubTexture name="A" x="95" y="62" width="14" height="22"/>
+	<SubTexture name="B" x="112" y="62" width="14" height="22"/>
+	<SubTexture name="C" x="129" y="62" width="15" height="22"/>
+	<SubTexture name="D" x="147" y="62" width="15" height="22"/>
+	<SubTexture name="E" x="165" y="62" width="14" height="22"/>
+	<SubTexture name="F" x="182" y="62" width="14" height="22"/>
+	<SubTexture name="G" x="199" y="62" width="16" height="22"/>
+	<SubTexture name="H" x="218" y="62" width="15" height="22"/>
+	<SubTexture name="I" x="236" y="62" width="5" height="22"/>
+	<SubTexture name="J" x="244" y="62" width="10" height="22"/>
+	<SubTexture name="K" x="3" y="87" width="16" height="22"/>
+	<SubTexture name="L" x="22" y="87" width="13" height="21"/>
+	<SubTexture name="M" x="38" y="87" width="23" height="22"/>
+	<SubTexture name="N" x="64" y="87" width="16" height="22"/>
+	<SubTexture name="O" x="83" y="87" width="16" height="22"/>
+	<SubTexture name="P" x="102" y="87" width="16" height="22"/>
+	<SubTexture name="Q" x="121" y="87" width="16" height="22"/>
+	<SubTexture name="R" x="140" y="87" width="16" height="22"/>
+	<SubTexture name="S" x="159" y="87" width="16" height="22"/>
+	<SubTexture name="T" x="178" y="87" width="16" height="22"/>
+	<SubTexture name="U" x="197" y="87" width="16" height="22"/>
+	<SubTexture name="V" x="216" y="87" width="18" height="21"/>
+	<SubTexture name="W" x="237" y="87" width="23" height="22"/>
+	<SubTexture name="X" x="3" y="112" width="17" height="22"/>
+	<SubTexture name="Y" x="23" y="112" width="17" height="22"/>
+	<SubTexture name="Z" x="43" y="112" width="16" height="22"/>
+	<SubTexture name="[" x="247" y="33" width="8" height="26"/>
+	<SubTexture name="]" x="258" y="33" width="8" height="26"/>
+	<SubTexture name="^" x="3" y="62" width="13" height="12"/>
+	<SubTexture name="_" x="19" y="62" width="16" height="5"/>
+	<SubTexture name="a" x="38" y="62" width="17" height="17"/>
+	<SubTexture name="b" x="58" y="62" width="17" height="22"/>
+	<SubTexture name="c" x="78" y="62" width="14" height="16"/>
+	<SubTexture name="d" x="62" y="112" width="17" height="22"/>
+	<SubTexture name="e" x="82" y="112" width="17" height="17"/>
+	<SubTexture name="f" x="102" y="112" width="12" height="27"/>
+	<SubTexture name="g" x="117" y="112" width="17" height="22"/>
+	<SubTexture name="h" x="137" y="112" width="17" height="22"/>
+	<SubTexture name="i" x="157" y="112" width="5" height="21"/>
+	<SubTexture name="j" x="165" y="112" width="11" height="22"/>
+	<SubTexture name="k" x="179" y="112" width="14" height="22"/>
+	<SubTexture name="l" x="196" y="112" width="10" height="22"/>
+	<SubTexture name="m" x="209" y="112" width="20" height="17"/>
+	<SubTexture name="n" x="232" y="112" width="17" height="17"/>
+	<SubTexture name="o" x="3" y="142" width="17" height="17"/>
+	<SubTexture name="p" x="23" y="142" width="17" height="22"/>
+	<SubTexture name="q" x="43" y="142" width="17" height="22"/>
+	<SubTexture name="r" x="63" y="142" width="10" height="16"/>
+	<SubTexture name="s" x="76" y="142" width="14" height="17"/>
+	<SubTexture name="t" x="93" y="142" width="15" height="22"/>
+	<SubTexture name="u" x="111" y="142" width="17" height="16"/>
+	<SubTexture name="v" x="131" y="142" width="14" height="17"/>
+	<SubTexture name="w" x="148" y="142" width="19" height="16"/>
+	<SubTexture name="x" x="170" y="142" width="17" height="17"/>
+	<SubTexture name="y" x="190" y="142" width="17" height="22"/>
+	<SubTexture name="z" x="210" y="142" width="17" height="17"/>
+	<SubTexture name="|" x="230" y="142" width="5" height="26"/>
+	<SubTexture name="~" x="238" y="142" width="13" height="7"/>
+</TextureAtlas>

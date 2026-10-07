@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="hex_artist.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ampersand" x="5" y="5" width="27" height="34"/>
+	<SubTexture name="left parenthesis" x="37" y="5" width="19" height="39"/>
+	<SubTexture name="right parenthesis" x="61" y="5" width="19" height="39"/>
+	<SubTexture name="-apostraphie-" x="85" y="5" width="10" height="17"/>
+	<SubTexture name="-comma-" x="100" y="5" width="10" height="16"/>
+	<SubTexture name="-dash-" x="115" y="5" width="20" height="11"/>
+	<SubTexture name="-period-" x="140" y="5" width="10" height="12"/>
+	<SubTexture name="0" x="155" y="5" width="20" height="32"/>
+	<SubTexture name="1" x="180" y="5" width="22" height="32"/>
+	<SubTexture name="2" x="207" y="5" width="20" height="32"/>
+	<SubTexture name="3" x="232" y="5" width="20" height="32"/>
+	<SubTexture name="4" x="257" y="5" width="20" height="32"/>
+	<SubTexture name="5" x="282" y="5" width="22" height="32"/>
+	<SubTexture name="6" x="309" y="5" width="20" height="32"/>
+	<SubTexture name="7" x="5" y="49" width="20" height="32"/>
+	<SubTexture name="8" x="30" y="49" width="20" height="32"/>
+	<SubTexture name="9" x="55" y="49" width="20" height="32"/>
+	<SubTexture name="A" x="276" y="92" width="20" height="32"/>
+	<SubTexture name="B" x="301" y="92" width="20" height="32"/>
+	<SubTexture name="C" x="5" y="129" width="20" height="32"/>
+	<SubTexture name="D" x="30" y="129" width="22" height="32"/>
+	<SubTexture name="E" x="57" y="129" width="20" height="32"/>
+	<SubTexture name="F" x="82" y="129" width="21" height="32"/>
+	<SubTexture name="G" x="108" y="129" width="23" height="32"/>
+	<SubTexture name="H" x="136" y="129" width="22" height="32"/>
+	<SubTexture name="I" x="163" y="129" width="10" height="32"/>
+	<SubTexture name="J" x="178" y="129" width="16" height="31"/>
+	<SubTexture name="K" x="199" y="129" width="22" height="32"/>
+	<SubTexture name="L" x="226" y="129" width="20" height="32"/>
+	<SubTexture name="M" x="251" y="129" width="32" height="32"/>
+	<SubTexture name="N" x="288" y="129" width="23" height="32"/>
+	<SubTexture name="O" x="316" y="129" width="22" height="32"/>
+	<SubTexture name="P" x="5" y="166" width="22" height="32"/>
+	<SubTexture name="R" x="32" y="166" width="22" height="32"/>
+	<SubTexture name="S" x="59" y="166" width="22" height="32"/>
+	<SubTexture name="T" x="86" y="166" width="22" height="32"/>
+	<SubTexture name="U" x="113" y="166" width="22" height="32"/>
+	<SubTexture name="V" x="140" y="166" width="26" height="31"/>
+	<SubTexture name="W" x="171" y="166" width="32" height="33"/>
+	<SubTexture name="X" x="208" y="166" width="23" height="32"/>
+	<SubTexture name="Y" x="236" y="166" width="23" height="32"/>
+	<SubTexture name="Z" x="264" y="166" width="22" height="32"/>
+	<SubTexture name="a" x="80" y="49" width="24" height="26"/>
+	<SubTexture name="b" x="109" y="49" width="24" height="32"/>
+	<SubTexture name="c" x="138" y="49" width="21" height="25"/>
+	<SubTexture name="d" x="164" y="49" width="25" height="32"/>
+	<SubTexture name="e" x="194" y="49" width="24" height="27"/>
+	<SubTexture name="f" x="223" y="49" width="19" height="38"/>
+	<SubTexture name="g" x="247" y="49" width="24" height="32"/>
+	<SubTexture name="h" x="276" y="49" width="24" height="32"/>
+	<SubTexture name="i" x="305" y="49" width="10" height="32"/>
+	<SubTexture name="j" x="320" y="49" width="17" height="32"/>
+	<SubTexture name="k" x="5" y="92" width="21" height="32"/>
+	<SubTexture name="l" x="31" y="92" width="14" height="31"/>
+	<SubTexture name="m" x="50" y="92" width="28" height="26"/>
+	<SubTexture name="n" x="83" y="92" width="24" height="26"/>
+	<SubTexture name="o" x="112" y="92" width="24" height="27"/>
+	<SubTexture name="p" x="141" y="92" width="24" height="32"/>
+	<SubTexture name="r" x="170" y="92" width="17" height="26"/>
+	<SubTexture name="s" x="192" y="92" width="22" height="27"/>
+	<SubTexture name="t" x="219" y="92" width="22" height="32"/>
+	<SubTexture name="u" x="246" y="92" width="25" height="26"/>
+	<SubTexture name="v" x="291" y="166" width="21" height="25"/>
+	<SubTexture name="w" x="317" y="166" width="28" height="26"/>
+	<SubTexture name="x" x="5" y="204" width="24" height="27"/>
+	<SubTexture name="y" x="34" y="204" width="25" height="32"/>
+	<SubTexture name="z" x="64" y="204" width="25" height="27"/>
+</TextureAtlas>

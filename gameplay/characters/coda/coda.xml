@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="coda.png">
+	
+	
+	<SubTexture name="Coda Idle0000" x="2033" y="927" width="471" height="732" frameX="-13" frameY="-8" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0001" x="2033" y="927" width="471" height="732" frameX="-13" frameY="-8" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0002" x="504" y="1670" width="497" height="714" frameX="-5" frameY="-26" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0003" x="504" y="1670" width="497" height="714" frameX="-5" frameY="-26" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0004" x="1526" y="927" width="505" height="733" frameX="-4" frameY="-8" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0005" x="1526" y="927" width="505" height="733" frameX="-4" frameY="-8" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0006" x="1018" y="927" width="506" height="739" frameX="-1" frameY="-2" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0007" x="1018" y="927" width="506" height="739" frameX="-1" frameY="-2" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0008" x="2" y="927" width="506" height="741" frameX="0" frameY="0" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0009" x="2" y="927" width="506" height="741" frameX="0" frameY="0" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0010" x="510" y="927" width="506" height="741" frameX="0" frameY="0" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0011" x="510" y="927" width="506" height="741" frameX="0" frameY="0" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0012" x="510" y="927" width="506" height="741" frameX="0" frameY="0" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda Idle0013" x="510" y="927" width="506" height="741" frameX="0" frameY="0" frameWidth="509" frameHeight="742" />
+	<SubTexture name="Coda down0000" x="2310" y="1670" width="436" height="565" frameX="0" frameY="-24" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0001" x="1867" y="1670" width="441" height="568" frameX="-7" frameY="-19" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0002" x="1867" y="1670" width="441" height="568" frameX="-7" frameY="-19" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0003" x="1434" y="1670" width="431" height="580" frameX="-14" frameY="-4" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0004" x="1434" y="1670" width="431" height="580" frameX="-14" frameY="-4" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0005" x="1003" y="1670" width="429" height="583" frameX="-15" frameY="0" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0006" x="1003" y="1670" width="429" height="583" frameX="-15" frameY="0" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0007" x="1003" y="1670" width="429" height="583" frameX="-15" frameY="0" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda down0008" x="1003" y="1670" width="429" height="583" frameX="-15" frameY="0" frameWidth="448" frameHeight="589" />
+	<SubTexture name="Coda left0000" x="3409" y="2" width="543" height="764" frameX="0" frameY="-2" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0001" x="2867" y="2" width="540" height="765" frameX="-9" frameY="-1" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0002" x="2867" y="2" width="540" height="765" frameX="-9" frameY="-1" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0003" x="1778" y="2" width="543" height="766" frameX="-24" frameY="0" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0004" x="1778" y="2" width="543" height="766" frameX="-24" frameY="0" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0005" x="2323" y="2" width="542" height="766" frameX="-26" frameY="0" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0006" x="2323" y="2" width="542" height="766" frameX="-26" frameY="0" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0007" x="2323" y="2" width="542" height="766" frameX="-26" frameY="0" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda left0008" x="2323" y="2" width="542" height="766" frameX="-26" frameY="0" frameWidth="568" frameHeight="766" />
+	<SubTexture name="Coda right0000" x="2506" y="927" width="501" height="724" frameX="0" frameY="0" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0001" x="2" y="1670" width="500" height="720" frameX="0" frameY="-4" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0002" x="2" y="1670" width="500" height="720" frameX="0" frameY="-4" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0003" x="3503" y="927" width="496" height="723" frameX="0" frameY="-1" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0004" x="3503" y="927" width="496" height="723" frameX="0" frameY="-1" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0005" x="3009" y="927" width="492" height="724" frameX="0" frameY="0" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0006" x="3009" y="927" width="492" height="724" frameX="0" frameY="0" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0007" x="3009" y="927" width="492" height="724" frameX="0" frameY="0" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda right0008" x="3009" y="927" width="492" height="724" frameX="0" frameY="0" frameWidth="501" frameHeight="724" />
+	<SubTexture name="Coda up0000" x="2" y="2" width="453" height="923" frameX="0" frameY="0" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0001" x="457" y="2" width="452" height="906" frameX="-4" frameY="-16" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0002" x="457" y="2" width="452" height="906" frameX="-4" frameY="-16" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0003" x="911" y="2" width="435" height="896" frameX="-14" frameY="-27" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0004" x="911" y="2" width="435" height="896" frameX="-14" frameY="-27" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0005" x="1348" y="2" width="428" height="892" frameX="-18" frameY="-30" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0006" x="1348" y="2" width="428" height="892" frameX="-18" frameY="-30" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0007" x="1348" y="2" width="428" height="892" frameX="-18" frameY="-30" frameWidth="456" frameHeight="923" />
+	<SubTexture name="Coda up0008" x="1348" y="2" width="428" height="892" frameX="-18" frameY="-30" frameWidth="456" frameHeight="923" />
+</TextureAtlas>

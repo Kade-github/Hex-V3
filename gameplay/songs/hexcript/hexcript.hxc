@@ -1,0 +1,245 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.play.PlayStatePlaylist;
+import funkin.modding.base.ScriptedFlxSpriteGroup;
+import openfl.utils.Assets;
+import funkin.graphics.FunkinSprite;
+import StringTools;
+import flixel.FlxG;
+import funkin.save.Save;
+import funkin.Conductor;
+import funkin.modding.module.ModuleHandler;
+import Math;
+import flixel.math.FlxMath;
+import openfl.filters.ShaderFilter;
+import flixel.addons.display.FlxRuntimeShader;
+import funkin.util.FileUtil;
+import funkin.audio.FunkinSound;
+
+import funkin.Paths;
+
+class HexcriptSong extends Song {
+
+  var mouseFollowFrames = [];
+  var mouseFollowIndex = 0;
+  var mouseClickSounds = [];
+
+  var dad = null;
+  var bf = null;
+  var pixelShader = null;
+  var pixelValue = 1;
+  var pixelGoTo = 1;
+  var pixelTime = 0.1;
+
+  var notepadProp = null;
+  var taskbarProp = null;
+  var cursorProp = null;
+	public function new() {
+  	super("hexcript");
+	}
+
+  public function loadMouseFollowFrames() {
+    mouseFollowFrames = [];
+    mouseFollowIndex = 0;
+
+    var path = "mods/hex/gameplay/songs/hexcript/mouse-frames.txt"; // paths.txt doesn't work here lol
+    var data = FileUtil.readStringFromPath(path);
+    var lines = data.split("\n");
+    for (line in lines)
+    {
+      var parts = line.split(",");
+      if (parts.length == 4)
+      {
+        mouseFollowFrames.push({time: Std.parseFloat(parts[0]), x: Std.parseFloat(parts[1]), y: Std.parseFloat(parts[2]), click: Std.int(parts[3]) == 1, hasPlayed: false});
+      }
+    }
+  }
+
+  public override function onCreate(event) {
+		super.onCreate(event);
+    
+    pixelShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/pixel")));
+
+    var shf = new ShaderFilter(pixelShader);
+
+    FlxG.camera.filters = [shf];
+    PlayState.instance.camHUD.filters = [shf];
+
+    loadMouseFollowFrames();
+
+    mouseClickSounds = [];
+    for (i in 1...5)
+    {
+      var soundPath = Paths.sound("gameplay/stages/windows/sounds/mouse_" + i);
+      FunkinSound.load(soundPath);
+      mouseClickSounds.push(soundPath);
+    }
+
+    dad = PlayState.instance.currentStage.getDad();
+    bf = PlayState.instance.currentStage.getBoyfriend();
+
+    notepadProp = PlayState.instance.currentStage.getNamedProp("notepad");
+    taskbarProp = PlayState.instance.currentStage.getNamedProp("taskbar");
+    cursorProp = PlayState.instance.currentStage.getNamedProp("cursor");
+
+    notepadProp.visible = false;
+    taskbarNumber = 1;
+    taskbarProp.animation.play("1");
+
+    dad.visible = false;
+    bf.visible = false;
+
+    pixelGoTo = 1;
+    pixelValue = 1;
+    pixelShader.setFloat("pixelSize", pixelValue);
+	}
+
+  public override function onSongLoaded(event) {
+    super.onSongLoaded(event);
+    var hud = ModuleHandler.getModule("HEX-HUD");
+    hud.hideBars();
+    PlayState.instance.comboPopUps.offsets = [FlxG.width * .02, FlxG.height * .5];
+  }
+
+  public override function onSongRetry(event) {
+    super.onSongRetry(event);
+
+    mouseFollowIndex = 0;
+    taskbarNumber = 1;
+
+    notepadProp.visible = false;
+    taskbarProp.animation.play("1");
+    dad.offset.set(0, 0);
+
+    pixelGoTo = 1;
+    pixelValue = 1;
+    pixelShader.setFloat("pixelSize", pixelValue);
+
+    dad.visible = false;
+    bf.visible = false;
+  }
+
+  public override function onSongStart(event) {
+    super.onSongStart(event);
+    pixelGoTo = 1;
+    pixelValue = 1;
+    pixelShader.setFloat("pixelSize", pixelValue);
+  }
+
+  public override function onBeatHit(event) {
+    super.onBeatHit(event);
+
+    switch(event.beat)
+    {
+      case 220:
+        pixelGoTo = 5;
+        pixelTime = 0.005;
+      case 292:
+        pixelGoTo = 3;
+      case 318:
+        pixelGoTo = 1;
+      case 508:
+        pixelGoTo = 3;
+        pixelTime = 0.001;
+      case 518:
+        pixelGoTo = 5;
+      case 524:
+        pixelGoTo = 8;
+    }
+  }
+
+  var frameCount = 0;
+  var nextFrameShouldClick = false;
+  var taskbarNumber = 1;
+
+  public override function onUpdate(event)
+  {
+    super.onUpdate(event);
+
+    if (pixelGoTo != pixelValue)
+    {
+      pixelValue = FlxMath.lerp(pixelValue, pixelGoTo, pixelTime);
+      pixelShader.setFloat("pixelSize", pixelValue);
+    }
+
+    // follow mouse code
+    while (mouseFollowIndex < mouseFollowFrames.length)
+    {
+      var frame = mouseFollowFrames[mouseFollowIndex];
+
+      if (Conductor.instance.songPosition < frame.time)
+        break;
+
+      mouseFollowIndex++;
+
+      {
+        cursorProp.x = frame.x;
+        cursorProp.y = frame.y;
+        if (frame.click)
+        {
+          FunkinSound.playOnce(mouseClickSounds[FlxG.random.int(0, mouseClickSounds.length - 1)], 0.5);
+          taskbarNumber++;
+          taskbarProp.animation.play("" + taskbarNumber);
+
+          switch (taskbarNumber) {
+            case 2:
+              notepadProp.visible = true;
+              notepadProp.animation.play("open");
+            case 3:
+              dad.visible = true;
+              dad.offset.set(12,54);
+              dad.animation.finishCallback = function(name) {
+                if (name == "intro")
+                {
+                  dad.offset.set(0,0);
+                  dad.animation.play("idle");
+                }
+              };
+              dad.animation.play("intro");
+            case 4:
+              bf.visible = true;
+              bf.animation.play("intro");
+            case 5:
+              notepadProp.animation.play("close");
+          }
+        }
+      }
+    }
+
+    // original creation code
+    /*var mouseX = FlxG.mouse.x;
+    var mouseY = FlxG.mouse.y;
+    cursorProp.x = mouseX;
+    cursorProp.y = mouseY;
+
+    if (FlxG.mouse.justPressed) {
+      nextFrameShouldClick = true;
+    }
+    frameCount++;
+    if (frameCount % 5 == 0 && Conductor.instance.songPosition > 0) {
+      mouseFollowFrames.push({time: Conductor.instance.songPosition, x: mouseX, y: mouseY, click: nextFrameShouldClick ? 1 : 0});
+      nextFrameShouldClick = false;
+    }
+
+    if (FlxG.keys.justPressed.S)
+    {
+      // save mouseFollowFrames to a txt file in the same directory as the song
+      var data = "";
+      for (frame in mouseFollowFrames)
+      {
+        data += frame.time + "," + frame.x + "," + frame.y + "," + frame.click + "\n";
+      }
+
+      FileUtil.writeStringToPath("/output-frames/mouse-frames.txt",data, 2);
+      trace("Saved mouse follow frames to output-frames/mouse-frames.txt");
+
+    }*/
+  }
+
+  public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+}

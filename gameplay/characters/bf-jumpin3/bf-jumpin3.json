@@ -1,0 +1,29 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Boyfriend (Jumpin 3)",
+	"flipX": true,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"renderType": "animateatlas",
+	"assetPath": "gameplay/characters/bf-jumpin3/bfjumpin3",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],	
+		"id": "bf"
+	},
+	"animations": [
+		{
+			"prefix": "",
+			"name": "idle",
+			"looped": true
+		}	
+	]
+}

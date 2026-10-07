@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "name": "Iris",
+  "assetPath": "gameplay/characters/iris/iris",
+  "healthIcon": {
+    "id": "iris",
+    "flipX": false
+  },
+  "singTime": 3.5,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "IRIS_Idle",
+      "looped": true,
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "idle-hold",
+      "prefix": "IRIS_Idle",
+      "looped": true,
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "IRIS_Left",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singLEFT-hold",
+      "prefix": "IRIS_Left",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "IRIS_Down",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singDOWN-hold",
+      "prefix": "IRIS_Down",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singUP",
+      "prefix": "IRIS_Up",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singUP-hold",
+      "prefix": "IRIS_Up",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "IRIS_Right",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singRIGHT-hold",
+      "prefix": "IRIS_Right",
+      "offsets": [
+        0,
+        0
+      ]
+    }
+  ]
+}

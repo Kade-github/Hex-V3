@@ -1,0 +1,168 @@
+package kade.hex.util;
+
+/**
+ * ReactiveSpotlights
+ * A group of spotlights that react to the notes in a song's reactive difficulty.
+ */
+
+import flixel.math.FlxMath;
+import funkin.Conductor;
+import funkin.graphics.FunkinSprite;
+import funkin.group.FunkinGroup;
+import funkin.play.PlayState;
+import funkin.util.tools.FloatTools;
+import openfl.display.BlendMode;
+import openfl.utils.Assets;
+import funkin.play.song.Song.SongDifficulty;
+
+class ReactiveSpotlights extends FunkinGroup
+{
+    public static var MAX_ALPHA:Float = 0.7;
+
+    public var fadeRate:Float = 5.0;
+
+    public var spotX:Float = -24;
+    public var spotY:Float = 24;
+    public var spotScale:Float = 1.5;
+    public var spotScroll:Float = 0.9;
+    public var spotZIndex:Int = 23;
+
+    var spotlights:Array<Dynamic> = [];
+    var holdUntil:Array<Float> = [];
+    var level:Array<Float> = [];
+    var notes:Array<Dynamic> = null;
+    var index:Int = 0;
+
+    public function new()
+    {
+        super();
+    }
+
+    public function load(reactiveDiff:SongDifficulty):Void
+    {
+        notes = reactiveDiff == null ? null : reactiveDiff.notes;
+        index = 0;
+
+        if (notes == null)
+            trace("ERROR !!! no reactive diff found");
+
+        build();
+        reset();
+    }
+
+    function build():Void
+    {
+        spotlights = [];
+        holdUntil = [];
+        level = [];
+
+        if (PlayState.instance == null || PlayState.instance.currentStage == null)
+            return;
+
+        var stage:Dynamic = PlayState.instance.currentStage;
+
+        for (i in 1...5)
+        {
+            var key:String = "gameplay/stages/xwstage/spot" + i;
+            if (!Assets.exists(Paths.image(key)))
+                continue;
+
+            var spot:FunkinSprite = FunkinSprite.create(0, 0, key);
+            spot.antialiasing = true;
+            spot.blend = BlendMode.ADD;
+            spot.zIndex = spotZIndex;
+            spot.scrollFactor.set(spotScroll, spotScroll);
+            spot.vcamPoint = stage.vcamPoint;
+
+            spot.localScale.set(spotScale, spotScale);
+            spot.scale.set(spotScale, spotScale);
+            spot.updateHitbox();
+            spot.localX = spotX;
+            spot.localY = spotY;
+            spot.localAlpha = 0;
+            spot.localVisible = true;
+
+            add(spot);
+            spotlights.push(spot);
+            holdUntil.push(0);
+            level.push(0);
+        }
+
+        if (spotlights.length == 0)
+            return;
+
+        zIndex = spotZIndex;
+        vcamPoint = stage.vcamPoint;
+    }
+
+    public function reset():Void
+    {
+        index = 0;
+
+        for (i in 0...spotlights.length)
+            holdUntil[i] = 0;
+
+        hide();
+    }
+
+    public function hide():Void
+    {
+        visible = false;
+        for (i in 0...spotlights.length)
+        {
+            level[i] = 0;
+            spotlights[i].localAlpha = 0;
+        }
+    }
+
+    override public function update(elapsed:Float):Void
+    {
+        step(elapsed);
+        super.update(elapsed);
+    }
+
+    public function step(elapsed:Float):Void
+    {
+        if (spotlights.length == 0)
+            return;
+
+        var now:Float = Conductor.instance == null ? 0 : Conductor.instance.songPosition;
+
+        if (notes != null)
+        {
+            while (index < notes.length && notes[index].time <= now)
+            {
+                var note:Dynamic = notes[index];
+                var data:Int = note.data;
+
+                if (data > 3)
+                    data -= 4;
+
+                if (data >= 0 && data < spotlights.length)
+                {
+                    visible = true;
+                    level[data] = MAX_ALPHA;
+
+                    // A sustain holds its spotlight up for the whole note instead of blinking once.
+                    var until:Float = note.time + note.length;
+                    if (until > holdUntil[data])
+                        holdUntil[data] = until;
+                }
+
+                index++;
+            }
+        }
+
+        var lerpAmount:Float = elapsed * fadeRate;
+
+        for (i in 0...spotlights.length)
+        {
+            if (now < holdUntil[i])
+                level[i] = MAX_ALPHA;
+            else
+                level[i] = FloatTools.clamp(FlxMath.lerp(level[i], 0, lerpAmount), 0, MAX_ALPHA);
+
+            spotlights[i].localAlpha = level[i];
+        }
+    }
+}

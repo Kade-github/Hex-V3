@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="Iris_Iris.png">
+	
+	
+	<SubTexture name="IRIS_Iris0000" x="106" y="224" width="99" height="104" frameX="0" frameY="-5" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0001" x="106" y="224" width="99" height="104" frameX="0" frameY="-5" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0002" x="106" y="224" width="99" height="104" frameX="0" frameY="-5" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0003" x="106" y="224" width="99" height="104" frameX="0" frameY="-5" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0004" x="2" y="115" width="104" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0005" x="2" y="115" width="104" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0006" x="2" y="115" width="104" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0007" x="2" y="115" width="104" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0008" x="108" y="115" width="102" height="107" frameX="0" frameY="-3" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0009" x="108" y="115" width="102" height="107" frameX="0" frameY="-3" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0010" x="108" y="115" width="102" height="107" frameX="0" frameY="-3" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0011" x="108" y="115" width="102" height="107" frameX="0" frameY="-3" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0012" x="2" y="2" width="104" height="111" frameX="-1" frameY="0" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0013" x="2" y="2" width="104" height="111" frameX="-1" frameY="0" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0014" x="2" y="2" width="104" height="111" frameX="-1" frameY="0" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0015" x="2" y="2" width="104" height="111" frameX="-1" frameY="0" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0016" x="108" y="2" width="101" height="109" frameX="0" frameY="-1" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0017" x="108" y="2" width="101" height="109" frameX="0" frameY="-1" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0018" x="108" y="2" width="101" height="109" frameX="0" frameY="-1" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0019" x="108" y="2" width="101" height="109" frameX="0" frameY="-1" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0020" x="2" y="224" width="102" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0021" x="2" y="224" width="102" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0022" x="2" y="224" width="102" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+	<SubTexture name="IRIS_Iris0023" x="2" y="224" width="102" height="107" frameX="0" frameY="-2" frameWidth="105" frameHeight="111" />
+</TextureAtlas>

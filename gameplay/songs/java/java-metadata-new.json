@@ -1,0 +1,63 @@
+{
+  "version": "2.2.4",
+  "songName": "Java (2026)",
+  "artist": "YingYang48",
+  "charter": "YingYang48",
+  "divisions": 96,
+  "looped": false,
+  "offsets": {
+    "instrumental": 35,
+    "altInstrumentals": {    },
+    "vocals": {    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": [    ],
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "bf-old",
+      "girlfriend": "gf-old",
+      "opponent": "hex",
+      "instrumental": "new",
+      "altInstrumentals": [      ],
+      "opponentVocals": [
+        "hex"
+      ],
+      "playerVocals": [
+        "bf"
+      ]
+    },
+    "stage": "xwstagedef_new",
+    "noteStyle": "hex",
+    "ratings": {
+      "erect": 0,
+      "easy": 3,
+      "nightmare": 0,
+      "normal": 5,
+      "hard": 6
+    },
+    "previewStart": 0,
+    "previewEnd": 0
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 100,
+      "n": 4,
+      "d": 4,
+      "bt": [
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ]
+}

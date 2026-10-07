@@ -1,0 +1,91 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Boyfriend (Jumpin 1)",
+	"flipX": true,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"assetPath": "gameplay/characters/bf-jumpin1/Jumpin_BF",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "bf"
+	},
+	"animations": [
+		{
+			"prefix": "BFidle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				108,
+				-39
+			],
+			"prefix": "BFleft",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				30,
+				100
+			],
+			"prefix": "BFdown",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-58,
+				-5
+			],
+			"prefix": "BFup",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-135,
+				-1
+			],
+			"prefix": "BFright",
+			"name": "singRIGHT"
+		},
+		{
+			"offsets": [
+				90,
+				-33
+			],
+			"prefix": "leftMISS",
+			"name": "singLEFTmiss"
+		},
+		{
+			"offsets": [
+				42,
+				-32
+			],
+			"prefix": "downMISS",
+			"name": "singDOWNmiss"
+		},
+		{
+			"offsets": [
+				-85,
+				11
+			],
+			"prefix": "upMISS",
+			"name": "singUPmiss"
+		},
+		{
+			"offsets": [
+				-144,
+				-6
+			],
+			"prefix": "rightMISS",
+			"name": "singRIGHTmiss"
+		}
+	]
+}

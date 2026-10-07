@@ -1,0 +1,46 @@
+cutscenes: weekX_CUT
+playMusic: givinALittle
+
+- Cutscene Mode -
+
+BF: Huff.. Puff... Wow we spent a whole day on this... [CUT13]
+BF: Aren't you tired?
+HX: Nope! Not yet at least.
+HX: My battery is solar-based so I'm saving energy at nights!
+BF: Pff, lucky you then.
+GF: I'm tired though... I think we should go now. [CUT14]
+BF: I agree. [CUT15]
+BF: Well, see ya around, Hex!
+HX: Yes, it was very fun! Good night-! [CUT16]
+
+playSound: bzzt
+
+HX: BZZZZZZZZZZT- [CUT17]
+
+playMusic: glitcherInterlude
+
+BF: H-Huh? Hex? [CUT18]
+HX: Uh oh...
+HX: I think we might have a problem...
+BF: What problem?
+HX: I probably used too much processing power and let my guard down... [CUT19]
+HX: Something might have passed by my defenses, which means...
+HX: There might be a virus inside me! [CUT20]
+GF: Huh? Wait, isn't that like, dangerous to machines?
+HX: VERY dangerous... Oh no.
+HX: I think it wants to take control over the system. [CUT21]
+BF: Shoot... can't you do something to prevent that?
+HX: I... don't think I can... but.
+HX: Wait. Maybe you can!
+BF: Huh? [CUT22]
+HX: Grab my mic and fight that thing off!
+HX: If you order the system to input enough mic patterns it might crash.
+HX: Then I'll enter sleep mode and run a safety scan which will kill that thing.
+HX: Please! You're my only hope right now! [CUT23]
+BF: ...
+BF: ...Alright Hex, I'll try. I'm not leaving you behind. [CUT24]
+BF: Are you ready?
+HX: ... [CUT25]
+HX: ...I'm always ready. [CUT26]
+
+startSong

@@ -1,0 +1,91 @@
+{
+	"version": "1.0.0",
+	"name": "Boyfriend (Hexware)",
+	"flipX": true,
+	"assetPath": "gameplay/characters/bf-hexware/BF_Hexware",
+	"healthIcon": {
+		"id": "bf"
+	},
+	"animations": [
+		{
+			"offsets": [
+				8,
+				-6
+			],
+			"prefix": "intro",
+			"name": "intro"
+		},
+		{
+			"offsets": [
+				-5,
+				0
+			],
+			"prefix": "idle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				43,
+				-6
+			],
+			"prefix": "left",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-5,
+				-6
+			],
+			"prefix": "down",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-27,
+				30
+			],
+			"prefix": "up",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-27,
+				-7
+			],
+			"prefix": "right",
+			"name": "singRIGHT"
+		},
+		{
+			"offsets": [
+				107,
+				-5
+			],
+			"prefix": "missLEFT",
+			"name": "singLEFTmiss"
+		},
+		{
+			"offsets": [
+				79,
+				-4
+			],
+			"prefix": "missDOWN",
+			"name": "singDOWNmiss"
+		},
+		{
+			"offsets": [
+				8,
+				31
+			],
+			"prefix": "missUP",
+			"name": "singUPmiss"
+		},
+		{
+			"offsets": [
+				21,
+				-5
+			],
+			"prefix": "missRIGHT",
+			"name": "singRIGHTmiss"
+		}
+	]
+}

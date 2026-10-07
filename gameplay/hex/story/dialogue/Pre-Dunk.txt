@@ -1,0 +1,32 @@
+cutscenes: weekX_CUT
+playMusic: givinALittle
+
+- Cutscene Mode -
+
+GF: Geez... That was intense. Have you seen his face? [CUT1]
+BF: Yea, it was very uh.... "ballistic".
+GF: At least now we can go to the park like we originally intended!
+BF: Mhm!
+GF: You know, every week spent with you is so exciting! [CUT2]
+BF: Well, I'm glad you're having fun...
+GF: Can't wait to see who will battle with you next, pff.
+BF: Hopefully no one anytime soon, I'm tired...
+HX: Hello!
+BF: Hmm? [CUT3]
+
+playMusic: dunkInterlude
+
+HX: Are you perhaps up for a game or two? [CUT4]
+BF: Uhh... sorry dude, I'm not really good at basketball.
+HX: Oh, no no, I meant like, you know, the microphone.
+BF: Oh! Maybe then- Wait a minute.
+BF: Are you another guy that's not cool with me dating her?
+HX: Huh? No, where did that come from? [CUT5]
+HX: I just thought it would be fun to use my microphone after a long time!
+GF: Hmm... He does seem chill, what do you think?
+BF: If it's gonna be just for fun then I'm up for it!
+BF: Are you ready then... uh... what's your name?
+HX: Hex! I'm always ready! [CUT6]
+BF: Alright Hex, let's funk!
+
+startSong

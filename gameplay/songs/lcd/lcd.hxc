@@ -1,0 +1,155 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.save.Save;
+
+import funkin.play.character.BaseCharacter;
+import funkin.data.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+
+import funkin.play.PlayState;
+import funkin.modding.module.ModuleHandler;
+import flixel.FlxG;
+
+class LCDSong extends Song {
+
+	var hex:BaseCharacter;
+	var bf:BaseCharacter;
+	var gf:BaseCharacter;
+
+
+
+	var back = null;
+	var front = null;
+	var crowd = null;
+	var lights = null;
+
+	var back2 = null;
+	var front2 = null;
+	var crowd2 = null;
+	var lights2 = null;
+
+	var back3 = null;
+	var front3 = null;
+	var crowd3 = null;
+	var lights3 = null;
+
+	public function new() {
+  	    super("lcd");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+	public override function onSongRetry(event) {
+		super.onSongRetry(event);
+		rimOn();
+		switchTo(1);
+	}
+
+	var warmFrames:Int = 0;
+
+	function allProps():Array<Dynamic> {
+		return [back, front, crowd, lights, back2, front2, crowd2, lights2, back3, front3, crowd3, lights3];
+	}
+
+	// this shit doesn't even work bro. I fucking hate it here
+	function warmUp():Void {
+		for (p in allProps()) {
+			if (p == null) continue;
+			p.visible = true;
+			p.alpha = 0.004;
+		}
+		warmFrames = 2;
+	}
+
+	public override function onUpdate(event) {
+		super.onUpdate(event);
+
+		if (warmFrames <= 0) return;
+
+		warmFrames--;
+		if (warmFrames > 0) return;
+
+		for (p in allProps()) {
+			if (p != null) p.alpha = 1;
+		}
+		setStage(1);
+	}
+
+	public function switchTo(stageNum:Int) {
+		setStage(stageNum);
+
+		// Flash white
+		FlxG.camera.flash(0xFFFFFFFF, 1.85);
+	}
+
+	function setStage(stageNum:Int):Void {
+		back.visible = stageNum == 1;
+		front.visible = stageNum == 1;
+		crowd.visible = stageNum == 1;
+		lights.visible = stageNum == 1;
+
+		back2.visible = stageNum == 2;
+		front2.visible = stageNum == 2;
+		crowd2.visible = stageNum == 2;
+		lights2.visible = stageNum == 2;
+
+		back3.visible = stageNum == 3;
+		front3.visible = stageNum == 3;
+		crowd3.visible = stageNum == 3;
+		lights3.visible = stageNum == 3;
+	}
+
+	public override function onBeatHit(event) {
+		switch(event.beat)
+		{
+			case 128:
+				switchTo(2);
+			case 196:
+				switchTo(3);
+			case 260:
+				switchTo(1);
+			case 388:
+				switchTo(2);
+			case 452:
+				switchTo(1);
+		}
+	}
+
+	public override function onSongLoaded(event)
+	{
+	    super.onSongLoaded(event);
+	    rimOn();
+
+		hex = PlayState.instance.currentStage.getDad();
+		bf = PlayState.instance.currentStage.getBoyfriend();
+		gf = PlayState.instance.currentStage.getGirlfriend();
+
+		back = PlayState.instance.currentStage.getNamedProp("hexBack");
+		front = PlayState.instance.currentStage.getNamedProp("hexFront");
+		crowd = PlayState.instance.currentStage.getNamedProp("crowd");
+		lights = PlayState.instance.currentStage.getNamedProp("lights");
+
+		back2 = PlayState.instance.currentStage.getNamedProp("hexBack2");
+		front2 = PlayState.instance.currentStage.getNamedProp("hexFront2");
+		crowd2 = PlayState.instance.currentStage.getNamedProp("crowd2");
+		lights2 = PlayState.instance.currentStage.getNamedProp("lights2");
+
+		back3 = PlayState.instance.currentStage.getNamedProp("hexBack3");
+		front3 = PlayState.instance.currentStage.getNamedProp("hexFront3");
+		crowd3 = PlayState.instance.currentStage.getNamedProp("crowd3");
+		lights3 = PlayState.instance.currentStage.getNamedProp("lights3");
+
+		warmUp();
+	}
+
+	// BF and GF are the old sheets in the weekend look, through CharacterRim.
+	function rimOn() {
+		var rim = ModuleHandler.getModule("CharacterRim");
+		if (rim != null)
+			rim.enable("weekend");
+	}
+}

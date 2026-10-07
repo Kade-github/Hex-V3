@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="score-digital-numbers.png">
+	
+	
+	<SubTexture name="numba empty0000" x="246" y="221" width="59" height="87" frameX="0" frameY="0" frameWidth="59" frameHeight="88" />
+	<SubTexture name="numba00000" x="162" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba00001" x="162" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba00002" x="290" y="114" width="59" height="89" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba00003" x="290" y="114" width="59" height="89" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba00004" x="307" y="221" width="59" height="87" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba10000" x="80" y="114" width="67" height="104" frameX="0" frameY="-2" frameWidth="77" frameHeight="112" />
+	<SubTexture name="numba10001" x="80" y="114" width="67" height="104" frameX="0" frameY="-2" frameWidth="77" frameHeight="112" />
+	<SubTexture name="numba10002" x="63" y="221" width="59" height="88" frameX="0" frameY="-7" frameWidth="77" frameHeight="112" />
+	<SubTexture name="numba10003" x="63" y="221" width="59" height="88" frameX="0" frameY="-7" frameWidth="77" frameHeight="112" />
+	<SubTexture name="numba10004" x="368" y="221" width="59" height="87" frameX="0" frameY="-7" frameWidth="77" frameHeight="112" />
+	<SubTexture name="numba20000" x="82" y="2" width="78" height="109" frameX="-1" frameY="0" frameWidth="83" frameHeight="114" />
+	<SubTexture name="numba20001" x="82" y="2" width="78" height="109" frameX="-1" frameY="0" frameWidth="83" frameHeight="114" />
+	<SubTexture name="numba20002" x="351" y="114" width="59" height="89" frameX="-11" frameY="-8" frameWidth="83" frameHeight="114" />
+	<SubTexture name="numba20003" x="351" y="114" width="59" height="89" frameX="-11" frameY="-8" frameWidth="83" frameHeight="114" />
+	<SubTexture name="numba20004" x="429" y="221" width="59" height="87" frameX="-11" frameY="-8" frameWidth="83" frameHeight="114" />
+	<SubTexture name="numba30000" x="242" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="83" frameHeight="113" />
+	<SubTexture name="numba30001" x="242" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="83" frameHeight="113" />
+	<SubTexture name="numba30002" x="412" y="114" width="59" height="89" frameX="-10" frameY="-7" frameWidth="83" frameHeight="113" />
+	<SubTexture name="numba30003" x="412" y="114" width="59" height="89" frameX="-10" frameY="-7" frameWidth="83" frameHeight="113" />
+	<SubTexture name="numba30004" x="490" y="221" width="59" height="87" frameX="-10" frameY="-7" frameWidth="83" frameHeight="113" />
+	<SubTexture name="numba40000" x="149" y="114" width="78" height="103" frameX="0" frameY="-1" frameWidth="82" frameHeight="110" />
+	<SubTexture name="numba40001" x="149" y="114" width="78" height="103" frameX="0" frameY="-1" frameWidth="82" frameHeight="110" />
+	<SubTexture name="numba40002" x="2" y="312" width="59" height="87" frameX="-10" frameY="-6" frameWidth="82" frameHeight="110" />
+	<SubTexture name="numba40003" x="2" y="312" width="59" height="87" frameX="-10" frameY="-6" frameWidth="82" frameHeight="110" />
+	<SubTexture name="numba40004" x="63" y="312" width="59" height="87" frameX="-10" frameY="-6" frameWidth="82" frameHeight="110" />
+	<SubTexture name="numba50000" x="482" y="2" width="78" height="107" frameX="0" frameY="0" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba50001" x="482" y="2" width="78" height="107" frameX="0" frameY="0" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba50002" x="124" y="221" width="59" height="88" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba50003" x="124" y="221" width="59" height="88" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba50004" x="124" y="312" width="59" height="87" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba60000" x="322" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba60001" x="322" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba60002" x="473" y="114" width="59" height="89" frameX="-10" frameY="-7" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba60003" x="473" y="114" width="59" height="89" frameX="-10" frameY="-7" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba60004" x="185" y="312" width="59" height="87" frameX="-10" frameY="-7" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba70000" x="2" y="114" width="76" height="105" frameX="-1" frameY="-1" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba70001" x="2" y="114" width="76" height="105" frameX="-1" frameY="-1" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba70002" x="185" y="221" width="59" height="88" frameX="-10" frameY="-8" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba70003" x="185" y="221" width="59" height="88" frameX="-10" frameY="-8" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba70004" x="246" y="312" width="59" height="87" frameX="-10" frameY="-8" frameWidth="82" frameHeight="113" />
+	<SubTexture name="numba80000" x="2" y="2" width="78" height="110" frameX="0" frameY="0" frameWidth="82" frameHeight="114" />
+	<SubTexture name="numba80001" x="2" y="2" width="78" height="110" frameX="0" frameY="0" frameWidth="82" frameHeight="114" />
+	<SubTexture name="numba80002" x="229" y="114" width="59" height="90" frameX="-10" frameY="-8" frameWidth="82" frameHeight="114" />
+	<SubTexture name="numba80003" x="229" y="114" width="59" height="90" frameX="-10" frameY="-8" frameWidth="82" frameHeight="114" />
+	<SubTexture name="numba80004" x="307" y="312" width="59" height="87" frameX="-10" frameY="-8" frameWidth="82" frameHeight="114" />
+	<SubTexture name="numba90000" x="402" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba90001" x="402" y="2" width="78" height="108" frameX="0" frameY="0" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba90002" x="2" y="221" width="59" height="89" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba90003" x="2" y="221" width="59" height="89" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+	<SubTexture name="numba90004" x="368" y="312" width="59" height="87" frameX="-10" frameY="-7" frameWidth="82" frameHeight="112" />
+</TextureAtlas>

@@ -1,0 +1,58 @@
+{
+ "version": "2.2.4",
+ "songName": "Bombs N Combs",
+ "artist": "YingYang48",
+ "divisions": 96,
+ "looped": false,
+ "offsets": {
+  "instrumental": 0,
+  "altInstrumentals": {  },
+  "vocals": {  },
+  "altVocals": {  }
+ },
+ "playData": {
+  "songVariations": [],
+  "difficulties": [
+   "easy",
+   "normal",
+   "hard",
+   "easy (carol)",
+   "hard (carol)",
+   "normal (carol)"
+  ],
+  "characters": {
+   "player": "hex-bombs",
+   "girlfriend": "carol",
+   "opponent": "whitty",
+   "instrumental": "",
+   "altInstrumentals": [],
+   "opponentVocals": [
+    "whitty"
+   ],
+   "playerVocals": [
+    "hex-bombs"
+   ]
+  },
+  "stage": "bombsncombs",
+  "noteStyle": "hex",
+  "ratings": {
+   "easy": 4,
+   "normal": 5,
+   "hard": 7
+  },
+  "previewStart": 0,
+  "previewEnd": 0
+ },
+ "generatedBy": "Friday Night Funkin' - v0.8.1 (master : 15e213c) PROTOTYPE",
+ "timeFormat": "ms",
+ "timeChanges": [
+  {
+   "t": 0,
+   "b": 0,
+   "bpm": 110,
+   "n": 4,
+   "d": 4,
+   "bt": [4, 4, 4, 4]
+  }
+ ]
+}

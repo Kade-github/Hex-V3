@@ -1,0 +1,41 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.play.PlayStatePlaylist;
+import funkin.modding.base.ScriptedFlxSpriteGroup;
+import openfl.utils.Assets;
+import funkin.graphics.FunkinSprite;
+import funkin.save.Save;
+import StringTools;
+
+import funkin.Paths;
+import funkin.modding.module.ModuleHandler;
+
+class RamSong extends Song {
+
+	public function new() {
+  		super("ram");
+	}
+
+	public override function onSongLoaded(event) {
+		super.onSongLoaded(event);
+		lookOn();
+	}
+
+	public override function onSongRetry(event) {
+		super.onSongRetry(event);
+		lookOn();
+	}
+
+	function lookOn() {
+		var shaded = ModuleHandler.getModule("CharacterRim");
+		if (shaded != null)
+			shaded.enable("sunset");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+}

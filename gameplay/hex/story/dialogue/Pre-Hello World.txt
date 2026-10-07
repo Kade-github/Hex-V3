@@ -1,0 +1,17 @@
+cutscenes: weekX_CUT
+playMusic: helloworldInterlude
+
+- Cutscene Mode -
+
+HX: Another great round! The vibing levels are off the charts! [CUT10]
+BF: Yea, too bad the sun is gone now, and it's getting late.
+BF: Should we get going?
+GF: Eh, probably. Maybe I should call my parents that I'll be home soon. [CUT11]
+BF: Aren't you an adult already?
+GF: You should know more than anyone my parents worry too much.
+HX: Sorry to bust in but are you up for another one? [CUT12]
+BF: Hmm, I dunno, like I said it will be night soon so...
+HX: Pretty please? I will be a very happy bot if you say yes!
+BF: Mmmmmmmm, fine. Just this once.
+
+startSong

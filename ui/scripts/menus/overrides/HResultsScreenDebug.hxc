@@ -1,0 +1,34 @@
+/**
+package kade.hex.overrides;
+
+import kade.hex.overrides.HResultsScreen;
+import funkin.modding.module.Module;
+import funkin.ui.debug.results.ResultsDebugSubState;
+
+import flixel.FlxG;
+
+class HResultsScreenDebug extends Module
+{
+    public function new()
+    {
+        // Scoped module to ResultState
+        super("HResultsScreenDebug", 1, {
+            state: ResultsDebugSubState 
+        });
+    }
+
+    public override function onSubStateOpenEnd(event:SubStateScriptEvent):Void {
+        super.onSubStateOpenEnd(event);
+
+        var state = FlxG.state.subState;
+
+        // Technically it doesn't matter, HScript doesn't care about access modifiers.
+        @:privateAccess
+        {
+            var isHex:Bool = state.playerCharacterId == "hex";
+            trace("Is Hex: " + isHex);
+            if (isHex) HResultsScreen.changeStuff(state);
+            else trace('Not playing as Hex');
+        }
+    }
+}**/

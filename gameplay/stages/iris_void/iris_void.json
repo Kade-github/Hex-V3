@@ -1,0 +1,107 @@
+{
+  "version": "1.0.1",
+  "name": "Iris Void",
+  "cameraZoom": 0.9,
+  "props": [
+    {
+      "zIndex": 20,
+      "position": [
+        0,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75
+      ],
+      "name": "text1",
+      "assetPath": "gameplay/stages/iris_void/text1"
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        0,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75
+      ],
+      "name": "text2",
+      "assetPath": "gameplay/stages/iris_void/text2"
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "name": "text3",
+      "assetPath": "gameplay/stages/iris_void/text3"
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "name": "text4",
+      "assetPath": "gameplay/stages/iris_void/text4"
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "name": "text5",
+      "assetPath": "gameplay/stages/iris_void/text5"
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 24,
+      "position": [
+        -9000,
+        -9000
+      ],
+      "cameraOffsets": [
+        9000,
+        9000
+      ]
+    },
+    "dad": {
+      "zIndex": 24,
+      "position": [
+        0,
+        0
+      ],
+      "cameraOffsets": [
+        0,
+        0
+      ]
+    },
+    "gf": {
+      "zIndex": 22,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        -9000,
+        -9000
+      ]
+    }
+  }
+}

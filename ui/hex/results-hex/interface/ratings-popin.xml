@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="ratings-popin.png">
+	
+	
+	<SubTexture name="Categories0000" x="1344" y="370" width="399" height="32" frameX="0" frameY="-29" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0001" x="1071" y="370" width="271" height="74" frameX="-182" frameY="0" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0002" x="670" y="370" width="399" height="115" frameX="-54" frameY="0" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0003" x="341" y="370" width="327" height="158" frameX="-128" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0004" x="2" y="370" width="337" height="206" frameX="-118" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0005" x="1573" y="2" width="315" height="255" frameX="-138" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0006" x="1246" y="2" width="325" height="308" frameX="-128" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0007" x="881" y="2" width="363" height="352" frameX="-89" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0008" x="2" y="2" width="291" height="366" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0009" x="295" y="2" width="291" height="366" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0010" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0011" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0012" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0013" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0014" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0015" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0016" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0017" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0018" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0019" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0020" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0021" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0022" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0023" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0024" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0025" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0026" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0027" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0028" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0029" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0030" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0031" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0032" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+	<SubTexture name="Categories0033" x="588" y="2" width="291" height="361" frameX="-161" frameY="-7" frameWidth="455" frameHeight="373" />
+</TextureAtlas>

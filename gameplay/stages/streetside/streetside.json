@@ -1,0 +1,49 @@
+{
+ "version": "1.0.2",
+ "name": "Streetside",
+ "props": [
+  {
+   "assetPath": "gameplay/stages/streetside/Tangerine_BG",
+   "name": "stageBack",
+   "position": [-320, -195],
+   "scale": 1.5,
+   "scroll": [0.9, 0.9],
+   "startingAnimation": "",
+   "zIndex": 10
+  },
+  {
+   "animations": [
+    {
+     "name": "idle",
+     "prefix": "audienceLoop"
+    }
+   ],
+   "assetPath": "gameplay/stages/streetside/Tangerine_Audience",
+   "danceEvery": 2,
+   "name": "stageFront",
+   "position": [-320, -240],
+   "scale": 1.5,
+   "scroll": [0.9, 0.9],
+   "startingAnimation": "idle",
+   "zIndex": 1000
+  }
+ ],
+ "characters": {
+  "bf": {
+   "cameraOffsets": [-350, -215],
+   "position": [1200, 700],
+   "zIndex": 300
+  },
+  "dad": {
+   "cameraOffsets": [300, -100],
+   "position": [200, 700],
+   "zIndex": 200
+  },
+  "gf": {
+   "cameraOffsets": [0, 0],
+   "position": [660, 575],
+   "zIndex": 100
+  }
+ },
+ "cameraZoom": 0.9
+}

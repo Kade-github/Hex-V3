@@ -1,0 +1,29 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Hex (Jumpin 4)",
+	"flipX": true,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"renderType": "animateatlas",
+	"assetPath": "gameplay/characters/hex-jumpin4/hexjumpin4",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],	
+		"id": "hex"
+	},
+	"animations": [
+		{
+			"prefix": "",
+			"name": "idle",
+			"looped": true
+		}	
+	]
+}

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="rightpace-hex.png">
+	
+	
+	<SubTexture name="hexLoop20000" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20001" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20002" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20003" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20004" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20005" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20006" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20007" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20008" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20009" x="2" y="2" width="288" height="527" frameX="-3" frameY="-1" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20010" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20011" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20012" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20013" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20014" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20015" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20016" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20017" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20018" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20019" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20020" x="292" y="2" width="291" height="525" frameX="-3" frameY="-3" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20021" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20022" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20023" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20024" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20025" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20026" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20027" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20028" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20029" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20030" x="2" y="531" width="294" height="520" frameX="-3" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20031" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20032" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20033" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20034" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20035" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20036" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20037" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20038" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20039" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20040" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+	<SubTexture name="hexLoop20041" x="298" y="531" width="287" height="520" frameX="-4" frameY="-8" frameWidth="299" frameHeight="528" />
+</TextureAtlas>

@@ -1,0 +1,210 @@
+{
+  "version": "1.0.1",
+  "name": "Basketball Court",
+  "cameraZoom": 1.05,
+  "props": [
+    {
+      "zIndex": 99999,
+      "position": [
+        -600,
+        -600
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "topbg1",
+      "assetPath": "gameplay/stages/basketCourt/topbg1",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -600,
+        -600
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg1",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_BG1",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -600,
+        -600
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg2",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_BG2",
+      "scroll": [
+        1,
+        1
+      ],
+      "animType": "sparrow",
+      "startingAnimation": "idle",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Jumpin_BG2",
+          "frameRate": 24,
+          "looped": true
+        }
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -600,
+        -480
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg3",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_BG3",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 800,
+      "position": [
+        -780,
+        -650
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "players3",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_Players3",
+      "scroll": [
+        1,
+        1
+      ],
+      "animType": "animateatlas",
+      "startingAnimation": "idle",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "",
+          "frameRate": 24,
+          "looped": true
+        }
+      ]
+    },
+    {
+      "zIndex": 150,
+      "position": [
+        -510,
+        -520
+      ],
+      "scale": [
+        1.0,
+        1.0
+      ],
+      "name": "players4",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_Players4",
+      "scroll": [
+        1,
+        1
+      ],
+      "animType": "animateatlas",
+      "startingAnimation": "idle",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "",
+          "frameRate": 24,
+          "looped": true
+        }
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -600,
+        -580
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg4",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_BG4",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 210,
+      "position": [
+        -420,
+        -255
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg4_hoop",
+      "assetPath": "gameplay/stages/basketCourt/Jumpin_BG4_hoop",
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 180,
+      "position": [
+        455,
+        155
+      ],
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "scale": 0.77
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        -335,
+        155
+      ],
+      "cameraOffsets": [
+        360,
+        0
+      ],
+      "scale": 0.77
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        80,
+        -110
+      ],
+      "position": [
+        -99999999,
+        99999999
+      ]
+    }
+  }
+}

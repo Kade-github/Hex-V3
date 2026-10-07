@@ -1,0 +1,48 @@
+{
+ "version": "2.2.6",
+ "songName": "Jumpin'",
+ "artist": "YingYang48",
+ "charter": "YingYang48",
+ "offsets": {
+  "vocals": {
+   "bf": 0,
+   "dad": 0
+  }
+ },
+ "playData": {
+  "difficulties": [
+   "easy",
+   "normal",
+   "hard"
+  ],
+  "characters": {
+   "player": "bf-jumpin1",
+   "girlfriend": "gf",
+   "opponent": "hex-jumpin1",
+   "opponentVocals": [
+    "hex-jumpin1"
+   ],
+   "playerVocals": [
+    "bf-jumpin1"
+   ]
+  },
+  "stage": "basketCourt",
+  "noteStyle": "hex",
+  "ratings": {
+   "easy": 4,
+   "hard": 8,
+   "normal": 6
+  },
+  "album": "Stepmania",
+  "previewEnd": 0.0936125066308859
+ },
+ "generatedBy": "Friday Night Funkin' - v0.9.0 (master : 19e42cc) PROTOTYPE",
+ "timeChanges": [
+  {
+   "t": 0,
+   "b": 0,
+   "bpm": 170,
+   "bt": [4, 4, 4, 4]
+  }
+ ]
+}

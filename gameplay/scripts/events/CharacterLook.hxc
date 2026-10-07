@@ -1,0 +1,246 @@
+package kade.hex.events;
+
+import funkin.play.event.SongEvent;
+import funkin.data.event.SongEventSchema;
+import funkin.data.song.SongData.SongEventData;
+import funkin.play.PlayState;
+import funkin.play.character.BaseCharacter;
+import funkin.Paths;
+import flixel.addons.display.FlxRuntimeShader;
+import flixel.math.FlxMath;
+import flixel.tweens.FlxEase;
+import openfl.utils.Assets;
+import funkin.modding.module.ModuleHandler;
+import StringTools;
+
+class CharacterLookSongEvent extends SongEvent
+{
+	static var DEFAULT_LOOK:String = "";
+	static var DEFAULT_FADE:Float = 0;
+	var chars:Array<BaseCharacter> = [];
+	var shaders:Array<FlxRuntimeShader> = [];
+	var fromLooks:Array<String> = [];
+	var toLooks:Array<String> = [];
+	var fadeStarts:Array<Float> = [];
+	var fadeLengths:Array<Float> = [];
+
+	var time:Float = 0;
+	var owner:PlayState = null;
+
+	public function new()
+	{
+		super("CharacterLook", {processOldEvents: true});
+	}
+
+	override public function onSongLoaded(event)
+	{
+		clearAll();
+		owner = PlayState.instance;
+	}
+
+	override public function onSongRetry(event)
+	{
+		clearAll();
+	}
+
+	override public function onDestroy(event)
+	{
+		clearAll();
+		owner = null;
+	}
+
+	override public function onUpdate(event)
+	{
+		time += event.elapsed;
+
+		if (owner != PlayState.instance)
+		{
+			chars = [];
+			shaders = [];
+			fromLooks = [];
+			toLooks = [];
+			fadeStarts = [];
+			fadeLengths = [];
+			owner = PlayState.instance;
+		}
+
+		var i:Int = chars.length;
+		while (i-- > 0)
+			stepFade(i);
+	}
+
+	override public function handleEvent(data:SongEventData):Void
+	{
+		var stage = PlayState.instance == null ? null : PlayState.instance.currentStage;
+		if (stage == null)
+			return;
+
+		var look:String = data.value.look == null ? DEFAULT_LOOK : data.value.look;
+		if (look == "none")
+			look = "";
+		var fade:Float = data.value.fade == null ? DEFAULT_FADE : data.value.fade * 1.0;
+
+		var rim = ModuleHandler.getModule("CharacterRim");
+		if (rim != null)
+			rim.shift(look, fade);
+
+		for (who in [stage.getBoyfriend(), stage.getDad(), stage.getGirlfriend()])
+		{
+			if (rim != null && rim.holds(who) == true)
+				continue;
+			setLook(who, look, fade);
+		}
+	}
+
+	function lookPath(who:BaseCharacter, look:String):String
+	{
+		return Paths.image("gameplay/looks/" + who.characterId + "-" + look);
+	}
+
+	function hasLook(who:BaseCharacter, look:String):Bool
+	{
+		return look == "" || Assets.exists(lookPath(who, look));
+	}
+
+	function setLook(who:BaseCharacter, look:String, fade:Float):Void
+	{
+		if (who == null || !hasLook(who, look))
+			return;
+
+		var i:Int = chars.indexOf(who);
+		if (i == -1)
+		{
+			if (look == "")
+				return;
+
+			var shader:FlxRuntimeShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/characterLook")));
+			chars.push(who);
+			shaders.push(shader);
+			fromLooks.push("");
+			toLooks.push("");
+			fadeStarts.push(time);
+			fadeLengths.push(0);
+			i = chars.length - 1;
+			who.shader = shader;
+		}
+
+		fromLooks[i] = toLooks[i];
+		toLooks[i] = look;
+		fadeStarts[i] = time;
+		fadeLengths[i] = fade;
+
+		var shader:FlxRuntimeShader = shaders[i];
+		bindLook(shader, "lutFrom", "uFromOn", who, fromLooks[i]);
+		bindLook(shader, "lutTo", "uToOn", who, toLooks[i]);
+		shader.setFloat("uBlend", fade > 0 ? 0 : 1);
+
+		stepFade(i);
+	}
+
+	function bindLook(shader:FlxRuntimeShader, sampler:String, flag:String, who:BaseCharacter, look:String):Void
+	{
+		shader.setFloat(flag, look == "" ? 0 : 1);
+
+		var path:String = lookPath(who, look == "" ? firstLook(who) : look);
+		if (path == null || !Assets.exists(path))
+			return;
+
+		var made = null;
+		try
+		{
+			made = Assets.getBitmapData(path, false, false, false);
+		}
+		catch (e:Dynamic)
+		{
+			trace("[CharacterLook] " + path + " failed to load uncompressed: " + e);
+		}
+
+		if (made == null)
+		{
+			try
+			{
+				made = Assets.getBitmapData(path, false);
+			}
+			catch (e:Dynamic)
+			{
+				trace("[CharacterLook] " + path + " failed to load: " + e);
+			}
+		}
+
+		if (made == null)
+		{
+			shader.setFloat(flag, 0);
+			return;
+		}
+
+		shader.setBitmapData(sampler, made);
+	}
+
+	function firstLook(who:BaseCharacter):String
+	{
+		for (look in ["dark", "lcdred", "lcdreddark"])
+			if (Assets.exists(lookPath(who, look)))
+				return look;
+		return "dark";
+	}
+
+	function stepFade(i:Int):Void
+	{
+		var shader:FlxRuntimeShader = shaders[i];
+		var length:Float = fadeLengths[i];
+		var t:Float = length <= 0 ? 1 : FlxMath.bound((time - fadeStarts[i]) / length, 0, 1);
+		shader.setFloat("uBlend", FlxEase.sineInOut(t));
+
+		if (t < 1)
+			return;
+
+		if (toLooks[i] == "")
+			remove(i);
+	}
+
+	function remove(i:Int):Void
+	{
+		if (chars[i] != null && chars[i].shader == shaders[i])
+			chars[i].shader = null;
+
+		chars.splice(i, 1);
+		shaders.splice(i, 1);
+		fromLooks.splice(i, 1);
+		toLooks.splice(i, 1);
+		fadeStarts.splice(i, 1);
+		fadeLengths.splice(i, 1);
+	}
+
+	function clearAll():Void
+	{
+		var i:Int = chars.length;
+		while (i-- > 0)
+			remove(i);
+	}
+
+	override public function getTitle():String
+	{
+		return "Character Look";
+	}
+
+	override public function getEventSchema():SongEventSchema
+	{
+		return new SongEventSchema([
+			{
+				name: "look",
+				title: "Look",
+				defaultValue: DEFAULT_LOOK,
+				type: "string"
+			},
+			{
+				name: "fade",
+				title: "Fade Time",
+				defaultValue: DEFAULT_FADE,
+				min: 0,
+				step: 0.1,
+				type: "float",
+				units: "s"
+			}
+		]);
+	}
+}

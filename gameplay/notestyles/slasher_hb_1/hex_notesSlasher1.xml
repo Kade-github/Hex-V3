@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="hex_notesSlasher1.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="noteDown0000" x="1" y="1" width="157" height="157"/>
+	<SubTexture name="noteLeft0000" x="159" y="1" width="156" height="157"/>
+	<SubTexture name="noteRight0000" x="1" y="159" width="157" height="157"/>
+	<SubTexture name="noteUp0000" x="159" y="159" width="157" height="156"/>
+</TextureAtlas>

@@ -1,0 +1,76 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"scale": 1.35,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"name": "Slasher (Third)",
+	"assetPath": "gameplay/characters/slasher-3/Headbasher_Slasher3",
+	"healthIcon": {
+		"shouldBop": true,
+		"offsets": [
+			0,
+			0
+		],
+		"id": "slasher"
+	},
+	"animations": [
+		{
+			"prefix": "Idle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				2,
+				52
+			],
+			"prefix": "Death1",
+			"name": "death1"
+		},
+		{
+			"offsets": [
+				244,
+				55
+			],
+			"prefix": "Death2",
+			"name": "death2"
+		},
+		{
+			"offsets": [
+				16,
+				-33
+			],
+			"prefix": "Left",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-16,
+				-27
+			],
+			"prefix": "Down",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-70,
+				44
+			],
+			"prefix": "Up",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-56,
+				-46
+			],
+			"prefix": "Right",
+			"name": "singRIGHT"
+		}
+	]
+}

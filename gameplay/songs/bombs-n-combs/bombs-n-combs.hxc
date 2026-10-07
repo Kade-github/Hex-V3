@@ -1,0 +1,417 @@
+package kade.hex.songs;
+
+import kade.hex.modules.Hex_Hud;
+import funkin.modding.module.ModuleHandler;
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import funkin.play.character.BaseCharacter;
+
+import funkin.play.song.Song;
+import funkin.save.Save;
+import funkin.play.PlayState;
+
+import funkin.play.notes.Strumline;
+import kade.hex.notefield.TouchLanes;
+import funkin.util.GRhythmUtil;
+import funkin.modding.events.ScriptEvent;
+
+import flixel.FlxSprite;
+
+import flixel.FlxG;
+import funkin.graphics.video.FunkinVideoSprite;
+import funkin.Conductor;
+import StringTools;
+
+class BombsNCombs extends Song {
+	var hud:Hex_Hud;
+	var introVideo:FunkinVideoSprite;
+	var carolStrumline:Strumline;
+	var carolStrumlineNotes:Array<Dynamic> = null;
+	var carol:BaseCharacter;
+
+	public function new() {
+  	    super("bombs-n-combs");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+	var tvNoise:FlxRuntimeShader;
+	var blackBox:FlxSprite;
+
+	var superBB1:FlxSprite;
+	var superBB2:FlxSprite;
+
+	var videoOwner:Dynamic = null;
+	var barsOwner:Dynamic = null;
+	var barOne:FlxSprite;
+	var barTwo:FlxSprite;
+	var videoPrimed:Bool = false;
+	var videoStarted:Bool = false;
+	var videoVolume:Float = 100;
+
+	public function ensureVideo()
+	{
+		if (introVideo != null && videoOwner == PlayState.instance)
+			return;
+
+		if (introVideo != null)
+			introVideo.destroy();
+
+		videoOwner = PlayState.instance;
+
+		introVideo = new FunkinVideoSprite(0, 0);
+		introVideo.load(Paths.videos("ui/hex/videos/bombsncombsIntro"));
+		videoVolume = introVideo.bitmap.volume;
+
+		videoPrimed = false;
+		introVideo.bitmap.onFormatSetup.add(function()
+		{
+			if (!videoStarted)
+			{
+				introVideo.pause();
+				introVideo.bitmap.time = 0;
+				introVideo.bitmap.volume = videoVolume;
+			}
+		});
+
+		primeVideo();
+
+		trace("LOADED INTRO VIDEO");
+	}
+
+	public function primeVideo()
+	{
+		if (introVideo == null || videoPrimed)
+			return;
+
+		videoPrimed = true;
+		videoStarted = false;
+		introVideo.bitmap.volume = 0;
+		introVideo.play();
+	}
+
+	function makeBar(x:Float, y:Float):FlxSprite
+	{
+		var bar:FlxSprite = new FlxSprite();
+		bar.makeGraphic(1, 1, 0xFFFFFFFF);
+		bar.color = 0xFF000000;
+		bar.scale.set(FlxG.width * 0.2, FlxG.height * 4);
+		bar.updateHitbox();
+		bar.scrollFactor.set();
+		bar.x = x;
+		bar.y = y;
+		PlayState.instance.currentStage.add(bar);
+
+		return bar;
+	}
+
+	public function startIntro()
+	{
+		if (introVideo == null)
+			return;
+
+		videoStarted = true;
+		introVideo.bitmap.volume = videoVolume;
+		introVideo.visible = true;
+		introVideo.alpha = 1.0;
+		introVideo.play();
+		introVideo.bitmap.time = Conductor.instance.songPosition;
+
+		trace("PLAYING INTRO VIDEO");
+	}
+
+	public override function onSongStart(event) {
+		super.onSongStart(event);
+
+		startIntro();
+	}
+
+	var layoutOwner:Dynamic = null;
+
+	function applyLayout()
+	{
+		var ps = PlayState.instance;
+		if (ps == null)
+			return;
+
+		ps.playerStrumline.scale.set(0.6, 0.6);
+		ps.opponentStrumline.scale.set(0.6, 0.6);
+
+		ps.playerStrumline.x = 845;
+		ps.opponentStrumline.x = 20;
+
+		ps.playerStrumline.setNoteSpacing(0.90);
+		ps.opponentStrumline.setNoteSpacing(0.90);
+
+		ps.opponentStrumline.alpha = 0.4;
+
+		if (carolStrumline != null)
+		{
+			carolStrumline.scale.set(0.6, 0.6);
+			carolStrumline.y = ps.opponentStrumline.y;
+			carolStrumline.x = 430;
+			carolStrumline.setNoteSpacing(0.90);
+			carolStrumline.alpha = 0.4;
+		}
+	}
+
+	public override function onSongLoaded(event) {
+		super.onSongLoaded(event);
+
+		if (hud == null)
+			hud = ModuleHandler.getModule("HEX-HUD");
+
+		if (hud != null)
+			hud.hideBars();
+
+		ensureVideo();
+
+		if (layoutOwner == PlayState.instance)
+			applyLayout();
+	}
+
+	public override function onSongRetry(event) {
+		if (hud != null)
+			hud.hideBars();
+
+		blackBox.visible = true;
+		superBB1.alpha = 1.0;
+		superBB2.alpha = 1.0;
+
+		if (introVideo != null)
+		{
+			introVideo.stop();
+			videoPrimed = false;
+			primeVideo();
+			introVideo.alpha = 1 / 255;
+			introVideo.visible = true;
+		}
+
+		if (carolStrumline != null && carolStrumlineNotes != null)
+		{
+			carolStrumline.clean();
+			carolStrumline.applyNoteData(carolStrumlineNotes);
+		}
+
+		super.onSongRetry(event);
+  	}
+
+	public function onStrumlineNoteIncoming(note)
+	{
+		@:privateAccess
+		PlayState.instance.onStrumlineNoteIncoming(note);
+		dimNote(note);
+	}
+
+	function dimNote(note)
+	{
+		if (note == null)
+			return;
+
+		note.alpha = 0.4;
+
+		if (note.holdNoteSprite != null)
+			note.holdNoteSprite.alpha = 0.4;
+	}
+
+	public override function onCreate() {
+		super.onCreate();
+
+		@:privateAccess PlayState.instance.playerStrumline.background.visible = false;
+		@:privateAccess PlayState.instance.opponentStrumline.background.visible = false;
+
+		carol = PlayState.instance.currentStage.getGirlfriend();
+
+		blackBox = new FlxSprite();
+		blackBox.makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+		blackBox.scrollFactor.set();
+		PlayState.instance.add(blackBox);
+		blackBox.zIndex = 9998;
+		blackBox.cameras = [PlayState.instance.camHUD];
+
+		superBB1 = new FlxSprite();
+		superBB1.makeGraphic(FlxG.width * 0.4, FlxG.height, 0xFF000000);
+		superBB1.scrollFactor.set();
+		superBB1.y = 0;
+		superBB1.x = -350;
+		PlayState.instance.add(superBB1);
+		superBB1.zIndex = 10000;
+		superBB1.cameras = [PlayState.instance.camHUD];
+
+		superBB2 = new FlxSprite();
+		superBB2.makeGraphic(FlxG.width * 0.4, FlxG.height, 0xFF000000);
+		superBB2.scrollFactor.set();
+		superBB2.y = 0;
+		superBB2.x = FlxG.width - 160;
+		PlayState.instance.add(superBB2);
+		superBB2.zIndex = 10000;
+		superBB2.cameras = [PlayState.instance.camHUD];
+		
+		ensureVideo();
+		PlayState.instance.add(introVideo);
+		introVideo.cameras = [PlayState.instance.camHUD];
+		introVideo.setGraphicSize(1, 1);
+		introVideo.updateHitbox();
+		introVideo.zIndex = 9999;
+		introVideo.visible = true;
+		introVideo.alpha = 1 / 255;
+
+		hud = ModuleHandler.getModule("HEX-HUD");
+
+		hud.hideBars();
+
+		// add black bars to left and right (Simulate 4:3 aspect ratio)
+		if (barsOwner != PlayState.instance.currentStage)
+		{
+			barsOwner = PlayState.instance.currentStage;
+
+			barOne = makeBar(-250, -180);
+			barTwo = makeBar(FlxG.width - (FlxG.width * 0.2) + 270, -180);
+		}
+
+		tvNoise = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/tv_noise")));
+
+        var shf = new ShaderFilter(tvNoise);
+
+		PlayState.instance.camGame.filters = [shf];
+
+		PlayState.instance.refresh();
+
+		var diff = PlayState.instance.currentDifficulty + " (carol)";
+		trace(difficulties);
+		var carolDiff = difficulties.get("default").get(diff);
+
+		if (carolDiff == null)
+		{
+			trace("Couldn't find carol difficulty data for " + diff);
+			return;
+		}
+		
+		TouchLanes.toggle(true);
+
+		@:privateAccess
+		carolStrumline = new Strumline(PlayState.instance.noteStyle, false, PlayState.instance.currentChart?.scrollSpeed);
+		carolStrumline.isDownscroll = PlayState.instance.opponentStrumline.isDownscroll;
+		carolStrumline.onNoteIncoming.add(onStrumlineNoteIncoming);
+
+		carolStrumline.zIndex = 1001;
+		carolStrumline.cameras = [PlayState.instance.camHUD];
+
+		carolStrumlineNotes = carolDiff.notes;
+		carolStrumline.applyNoteData(carolStrumlineNotes);
+		PlayState.instance.add(carolStrumline);
+
+		applyLayout();
+		layoutOwner = PlayState.instance;
+
+		PlayState.instance.opponentStrumline.onNoteIncoming.add(function(note)
+		{
+			dimNote(note);
+		});
+	}
+
+	public override function onBeatHit(event) {
+		super.onBeatHit(event);
+		
+		if (carolStrumline != null)
+			carolStrumline.onBeatHit();
+	}
+
+	public override function onPause(event) {
+		if (introVideo != null && introVideo.alpha > 0)
+    		introVideo.pause();
+    	super.onPause(event);
+  	}
+
+	public override function onResume(event) {
+		if (introVideo != null && introVideo.alpha > 0)
+		{
+			introVideo.bitmap.time = Conductor.instance.songPosition;
+			introVideo.resume();
+		}
+    	super.onResume(event);
+  	}
+
+
+	function liftCountdown()
+	{
+		var lifted:Bool = false;
+		for (m in PlayState.instance.members)
+		{
+			if (m == null || m.zIndex > superBB1.zIndex || !Std.isOfType(m, FlxSprite))
+				continue;
+			var spr:FlxSprite = cast m;
+			if (spr.graphic == null || spr.graphic.key == null)
+				continue;
+			var key:String = spr.graphic.key;
+			if (StringTools.contains(key, "notestyles/hex/ready") || StringTools.contains(key, "notestyles/hex/set") || StringTools.contains(key, "notestyles/hex/go"))
+			{
+				spr.zIndex = superBB1.zIndex + 1;
+				lifted = true;
+			}
+		}
+		if (lifted)
+			PlayState.instance.refresh();
+	}
+
+	public override function onUpdate(event)
+  	{
+		super.onUpdate(event);
+
+		if (Conductor.instance.songPosition < 1000 && superBB1 != null)
+			liftCountdown();
+
+		if (Conductor.instance.songPosition > 7500 && introVideo != null && introVideo.alpha > 0)
+		{
+			blackBox.visible = false;
+			introVideo.alpha -= event.elapsed;
+			superBB1.alpha -= event.elapsed;
+			superBB2.alpha -= event.elapsed;
+			if (introVideo.alpha < 0.0)
+				introVideo.alpha = 0.0;
+		}
+		
+		if (carolStrumline == null)
+			return;
+
+		for (strNotes in PlayState.instance.opponentStrumline.strumlineNotes.members)
+		{
+			if (strNotes == null) continue;
+			strNotes.alpha = 0.4;
+		}
+
+		var songPos:Float = Conductor.instance.songPosition;
+
+		for (note in carolStrumline.notes.members)
+		{
+			if (note == null || !note.alive || note.hasBeenHit || note.hasMissed) continue;
+			if (note.strumTime > songPos) continue;
+
+			var r = GRhythmUtil.processWindow(note, false);
+			if (r.botplayHit)
+			{
+				carol.playSingAnimation(note.noteData.getDirection(), false);
+				carol.holdTimer = 0;
+
+				carolStrumline.hitNote(note);
+
+				if (note.holdNoteSprite != null)
+					carolStrumline.playNoteHoldCover(note.holdNoteSprite);
+
+			}
+		}
+
+		for (holdNote in carolStrumline.holdNotes.members)
+		{
+			if (holdNote == null || !holdNote.alive) continue;
+			if (!holdNote.hitNote || holdNote.missedNote || holdNote.sustainLength <= 0) continue;
+
+			if (carol != null && carol.isSinging())
+				carol.holdTimer = 0;
+		}
+
+	}
+}

@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "name": "Hex",
+  "assetPath": "gameplay/characters/hex/hex",
+  "singTime": 3.5,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "Dad idle dance",
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "idle-hold",
+      "prefix": "Dad idle dance",
+      "looped": true,
+      "frameIndices": [
+        11,
+        12
+      ],
+      "offsets": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "Dad Sing Note LEFT",
+      "offsets": [
+        -10,
+        10
+      ]
+    },
+    {
+      "name": "singLEFT-hold",
+      "prefix": "Dad Sing Note LEFT",
+      "looped": true,
+      "offsets": [
+        -10,
+        10
+      ]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "Dad Sing Note DOWN",
+      "offsets": [
+        0,
+        -30
+      ]
+    },
+    {
+      "name": "singDOWN-hold",
+      "prefix": "Dad Sing Note DOWN",
+      "looped": true,
+      "offsets": [
+        0,
+        -30
+      ]
+    },
+    {
+      "name": "singUP",
+      "prefix": "Dad Sing Note UP",
+      "offsets": [
+        -6,
+        50
+      ]
+    },
+    {
+      "name": "singUP-hold",
+      "prefix": "Dad Sing Note UP",
+      "looped": true,
+      "offsets": [
+        -6,
+        50
+      ]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "Dad Sing Note RIGHT",
+      "offsets": [
+        0,
+        27
+      ]
+    },
+    {
+      "name": "singRIGHT-hold",
+      "prefix": "Dad Sing Note RIGHT",
+      "looped": true,
+      "offsets": [
+        0,
+        27
+      ]
+    }
+  ]
+}

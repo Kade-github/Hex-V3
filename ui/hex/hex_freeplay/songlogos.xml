@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="songlogos.png">
+	
+	
+	<SubTexture name="bit" x="986" y="2" width="367" height="351" frameX="0" frameY="0" frameWidth="367" frameHeight="351" />
+	<SubTexture name="bombs-n-combs" x="2" y="2" width="367" height="378" frameX="0" frameY="0" frameWidth="367" frameHeight="378" />
+	<SubTexture name="cooling" x="1455" y="1045" width="341" height="158" frameX="0" frameY="0" frameWidth="341" frameHeight="158" />
+	<SubTexture name="detected" x="2" y="1045" width="375" height="226" frameX="0" frameY="0" frameWidth="375" frameHeight="226" />
+	<SubTexture name="dunk" x="346" y="735" width="324" height="276" frameX="0" frameY="0" frameWidth="324" frameHeight="276" />
+	<SubTexture name="encore" x="740" y="382" width="297" height="334" frameX="0" frameY="0" frameWidth="297" frameHeight="334" />
+	<SubTexture name="eye2eye" x="365" y="382" width="373" height="337" frameX="0" frameY="0" frameWidth="373" frameHeight="337" />
+	<SubTexture name="glitcher-reg" x="1366" y="735" width="347" height="246" frameX="0" frameY="0" frameWidth="347" frameHeight="246" />
+	<SubTexture name="glitcher-remix" x="1424" y="382" width="361" height="308" frameX="0" frameY="0" frameWidth="361" frameHeight="308" />
+	<SubTexture name="headbasher" x="1039" y="382" width="383" height="326" frameX="0" frameY="0" frameWidth="383" frameHeight="326" />
+	<SubTexture name="hello-world" x="379" y="1045" width="370" height="215" frameX="0" frameY="0" frameWidth="370" frameHeight="215" />
+	<SubTexture name="hexcript" x="672" y="735" width="341" height="259" frameX="0" frameY="-1" frameWidth="347" frameHeight="260" />
+	<SubTexture name="java" x="1015" y="735" width="349" height="253" frameX="0" frameY="0" frameWidth="349" frameHeight="253" />
+	<SubTexture name="jumpin" x="2" y="382" width="361" height="351" frameX="0" frameY="0" frameWidth="361" frameHeight="351" />
+	<SubTexture name="lan" x="751" y="1045" width="333" height="205" frameX="0" frameY="0" frameWidth="333" frameHeight="205" />
+	<SubTexture name="lcd" x="633" y="2" width="351" height="352" frameX="0" frameY="0" frameWidth="351" frameHeight="352" />
+	<SubTexture name="ram" x="1086" y="1045" width="367" height="190" frameX="0" frameY="0" frameWidth="367" frameHeight="190" />
+	<SubTexture name="right-pace" x="1355" y="2" width="367" height="351" frameX="0" frameY="0" frameWidth="367" frameHeight="351" />
+	<SubTexture name="tangerine" x="371" y="2" width="260" height="364" frameX="0" frameY="0" frameWidth="260" frameHeight="364" />
+	<SubTexture name="that-retro-song" x="2" y="735" width="342" height="308" frameX="0" frameY="0" frameWidth="342" frameHeight="308" />
+</TextureAtlas>

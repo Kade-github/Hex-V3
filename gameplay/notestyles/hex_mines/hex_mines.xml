@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="hex_mines.png">
+	
+	
+	<SubTexture name="noteDown0000" x="486" y="350" width="156" height="154" frameX="0" frameY="-12" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteDown0001" x="475" y="2" width="156" height="166" frameX="0" frameY="0" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteDown0002" x="475" y="2" width="156" height="166" frameX="0" frameY="0" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteDown0003" x="798" y="191" width="172" height="154" frameX="0" frameY="-12" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteDown0004" x="798" y="191" width="172" height="154" frameX="0" frameY="-12" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteDown0005" x="317" y="2" width="156" height="171" frameX="0" frameY="-12" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteDown0006" x="317" y="2" width="156" height="171" frameX="0" frameY="-12" frameWidth="172" frameHeight="183" />
+	<SubTexture name="noteLeft0000" x="333" y="191" width="153" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteLeft0001" x="488" y="191" width="153" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteLeft0002" x="488" y="191" width="153" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteLeft0003" x="643" y="191" width="153" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteLeft0004" x="643" y="191" width="153" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteLeft0005" x="797" y="2" width="175" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteLeft0006" x="797" y="2" width="175" height="157" frameX="0" frameY="0" frameWidth="175" frameHeight="157" />
+	<SubTexture name="noteRight0000" x="177" y="191" width="154" height="157" frameX="-8" frameY="-30" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteRight0001" x="633" y="2" width="162" height="162" frameX="0" frameY="-25" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteRight0002" x="633" y="2" width="162" height="162" frameX="0" frameY="-25" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteRight0003" x="2" y="191" width="173" height="157" frameX="-8" frameY="-30" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteRight0004" x="2" y="191" width="173" height="157" frameX="-8" frameY="-30" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteRight0005" x="161" y="2" width="154" height="187" frameX="-8" frameY="0" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteRight0006" x="161" y="2" width="154" height="187" frameX="-8" frameY="0" frameWidth="181" frameHeight="187" />
+	<SubTexture name="noteUp0000" x="168" y="350" width="157" height="154" frameX="-7" frameY="-33" frameWidth="164" frameHeight="187" />
+	<SubTexture name="noteUp0001" x="327" y="350" width="157" height="154" frameX="-7" frameY="-33" frameWidth="164" frameHeight="187" />
+	<SubTexture name="noteUp0002" x="327" y="350" width="157" height="154" frameX="-7" frameY="-33" frameWidth="164" frameHeight="187" />
+	<SubTexture name="noteUp0003" x="2" y="350" width="164" height="154" frameX="0" frameY="-33" frameWidth="164" frameHeight="187" />
+	<SubTexture name="noteUp0004" x="2" y="350" width="164" height="154" frameX="0" frameY="-33" frameWidth="164" frameHeight="187" />
+	<SubTexture name="noteUp0005" x="2" y="2" width="157" height="187" frameX="-7" frameY="0" frameWidth="164" frameHeight="187" />
+	<SubTexture name="noteUp0006" x="2" y="2" width="157" height="187" frameX="-7" frameY="0" frameWidth="164" frameHeight="187" />
+</TextureAtlas>

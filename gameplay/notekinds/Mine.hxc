@@ -1,0 +1,21 @@
+package kade.hex.notes;
+
+import funkin.play.notes.notekind.NoteKind;
+import funkin.Paths;
+import flixel.FlxG;
+
+class Mine extends NoteKind {
+
+    public function new() {
+        // ID of the note, Description, styleId.
+        super("mine", "A special mine that explodes and swaps on beats.", "hex_mines");
+    }
+
+    public override function onNoteMiss(event) {
+        event.cancel();
+    }
+
+    public override function onNoteHit(event) {
+        
+    }
+}

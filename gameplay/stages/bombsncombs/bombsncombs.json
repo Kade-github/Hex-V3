@@ -1,0 +1,76 @@
+{
+  "version": "1.0.1",
+  "name": "Bombs N' Combs",
+  "cameraZoom": 0.75,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -725,
+        -980
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/bombsncombs/bg",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 100000,
+      "position": [
+        445,
+        -85
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/bombsncombs/logo",
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        310,
+        130
+      ],
+      "cameraOffsets": [
+        -300,
+        -150
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        -365,
+        110
+      ],
+      "cameraOffsets": [
+        365,
+        -150
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        80,
+        -110
+      ],
+      "position": [
+        -80,
+        110
+      ]
+    }
+  }
+}

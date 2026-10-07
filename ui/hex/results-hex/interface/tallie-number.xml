@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="tallie-number.png">
+	
+	
+	<SubTexture name="0 small0000" x="2" y="93" width="23" height="25" frameX="0" frameY="0" frameWidth="24" frameHeight="25" />
+	<SubTexture name="1 small0000" x="2" y="63" width="21" height="28" frameX="0" frameY="0" frameWidth="21" frameHeight="28" />
+	<SubTexture name="2 small0000" x="25" y="63" width="24" height="27" frameX="0" frameY="0" frameWidth="24" frameHeight="28" />
+	<SubTexture name="3 small0000" x="53" y="2" width="23" height="28" frameX="0" frameY="0" frameWidth="23" frameHeight="29" />
+	<SubTexture name="4 small0000" x="51" y="63" width="22" height="27" frameX="0" frameY="0" frameWidth="23" frameHeight="27" />
+	<SubTexture name="5 small0000" x="27" y="2" width="24" height="28" frameX="0" frameY="0" frameWidth="24" frameHeight="28" />
+	<SubTexture name="6 small0000" x="2" y="33" width="23" height="28" frameX="0" frameY="0" frameWidth="23" frameHeight="28" />
+	<SubTexture name="7 small0000" x="2" y="2" width="23" height="29" frameX="0" frameY="0" frameWidth="23" frameHeight="29" />
+	<SubTexture name="8 small0000" x="27" y="33" width="23" height="28" frameX="0" frameY="0" frameWidth="23" frameHeight="28" />
+	<SubTexture name="9 small0000" x="52" y="33" width="23" height="28" frameX="0" frameY="0" frameWidth="23" frameHeight="29" />
+</TextureAtlas>

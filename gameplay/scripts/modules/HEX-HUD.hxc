@@ -1,0 +1,751 @@
+package kade.hex.modules;
+
+import funkin.modding.module.Module;
+import funkin.play.PlayState;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxCamera;
+import flixel.util.FlxColor;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import funkin.Conductor;
+import StringTools;
+import Std;
+import funkin.util.Constants;
+import funkin.modding.module.ModuleHandler;
+import openfl.utils.Assets;
+
+import funkin.audio.FunkinSound;
+
+import kade.hex.states.HexMainMenu;
+import kade.hex.states.HexDialogueState;
+import funkin.play.PlayStatePlaylist;
+
+import kade.hex.substates.HexPauseMenu;
+import kade.hex.substates.HexGameOverMenu;
+import kade.hex.substates.HexEvilGameOver;
+import kade.hex.objects.HexTransitional;
+import kade.hex.modules.CharacterRim;
+import kade.hex.modules.HoldCoverScale;
+import kade.hex.modules.KE_QOL;
+import kade.hex.notefield.TouchLanes;
+
+import funkin.InitState;
+
+class Hex_Hud extends Module
+{
+    public static var instance:Hex_Hud;
+
+    public var shouldUseHexHud:Bool = false;
+
+    public var timer:FlxText;
+    public var didFade:Bool = false;
+    public var reverseLowTaperFade:Bool = false;
+
+    public var leftCircle:FlxSprite;
+    public var rightCircle:FlxSprite;
+
+    public var topBar:FlxSprite;
+    public var bottomBar:FlxSprite;
+    public var barsCam:FlxCamera;
+    public var overCam:FlxCamera;
+    public var shakeCam:FlxCamera;
+    var shakeCamHooked:Bool = false;
+    var shakeCamSync = null;
+
+    var healthBarBaseY:Float = 0;
+
+    public var initialTrans:Bool = false;
+    public var elapsedTime:Float = 0;
+    public var trans2:HexTransitional;
+    public var transitional:HexTransitional;
+
+    var titleState:Bool = false;
+
+    public function new()
+    {
+        super("HEX-HUD",4);
+    }
+
+    public override function onCreate(event:ScriptEvent):Void
+    {
+        super.onCreate(event);
+
+        KE_QOL.ensure();
+        HoldCoverScale.ensure();
+        CharacterRim.ensure();
+
+        if (!titleState)
+        {
+            var hmm = new HexMainMenu();
+            InitState.customTitleState = hmm;
+            titleState = true;
+        }
+    }
+
+    public override function onStateCreate(event:ScriptEvent):Void
+    {
+        super.onStateCreate(event);
+        if (!shouldUseHexHud)
+            return;
+        instance = this;
+        if (timer != null)
+        {
+            timer.destroy();
+            timer = null;
+        }
+    }
+
+    public override function onUpdate(event:UpdateScriptEvent)
+    {
+        if (!shouldUseHexHud)
+            return;
+        if (PlayState.instance == null)
+            return;
+
+        if (pendingRelease)
+        {
+            pendingRelease = false;
+            releaseSongEnd();
+            return;
+        }
+
+        elapsedTime += FlxG.elapsed;
+
+        if (elapsedTime >= 0.5 && !initialTrans)
+        {
+            var preId:String = storyDialogueId("Pre-");
+            if (preId != null)
+            {
+                initialTrans = true;
+                openStoryDialogue(preId, function()
+                {
+                    transitional.forceIn();
+                    transitional.transitionOut();
+                    PlayState.instance.startCountdown();
+                });
+                return;
+            }
+
+            if (transitional != null)
+                transitional.transitionOut();
+            initialTrans = true;
+            var vwoosh = PlayState.instance.vwooshTimer;
+            if (vwoosh == null || !vwoosh.active || vwoosh.finished)
+                PlayState.instance.startCountdown();
+        }
+
+        if (timer != null)
+        {
+            if (FlxG.sound.music != null && Conductor.instance != null && !reverseLowTaperFade)
+            {
+                if (!didFade)
+                {
+                    if (timer.alpha < 1)
+                        timer.alpha += 0.02 * FlxG.elapsed * 60;
+                    else
+                        didFade = true;
+                }
+                var totalSeconds = (FlxG.sound.music.length - Conductor.instance.songPosition) / 1000;
+                var minutes = Std.int(totalSeconds / 60);
+                var seconds = totalSeconds % 60;
+                var timeString = minutes + ":" + (if (seconds < 10) "0" else "") + Std.int(seconds);
+                timer.text = timeString;
+                timer.x = (FlxG.width / 2) - (timer.width / 2);
+                timer.y = timerY();
+            }
+            else
+            {
+                if (reverseLowTaperFade)
+                {
+                    if (timer.alpha > 0)
+                        timer.alpha -= 0.02 * FlxG.elapsed * 60;
+                    else
+                    {
+                        reverseLowTaperFade = false;
+                        didFade = false;
+                    }
+                }
+            }
+
+            for (tally in PlayState.instance.comboPopUps.members)
+            {
+                if (StringTools.contains(tally.graphic.assetsKey, "num"))
+                {
+                    tally.origin.set(tally.width * 3.8, 25);
+                }
+            }
+        }
+    }
+
+    // Story scripts are named after the song, not its id, so keep the two sides mapped here.
+    var dialogueNames:Map<String, String> = [
+        "dunk" => "Dunk",
+        "ram" => "R.A.M.",
+        "hello-world" => "Hello World",
+        "glitcher" => "Glitcher",
+        "cooling" => "Cooling",
+        "detected" => "Detected",
+        "bit" => "B.I.T.",
+        "jumpin" => "Jumpin'",
+        "headbasher" => "Headbasher"
+    ];
+
+    /** Name of the script for this slot, or null when there is nothing to play. */
+    function storyDialogueId(prefix:String):String
+    {
+        if (!PlayStatePlaylist.isStoryMode || PlayState.instance == null || PlayState.instance.currentSong == null)
+            return null;
+
+        var name:String = dialogueNames.get(PlayState.instance.currentSong.id);
+        if (name == null)
+            return null;
+
+        var id:String = prefix + name;
+        if (HexDialogueState.played.indexOf(id) != -1)
+            return null;
+
+        if (!Assets.exists(Paths.txt("gameplay/hex/story/dialogue/" + id)))
+            return null;
+
+        return id;
+    }
+
+    /**
+     * Opens the dialogue over the PlayState rather than switching to it, so whatever was
+     * happening underneath survives to carry on once it closes.
+     */
+    function openStoryDialogue(id:String, after:Void->Void):Void
+    {
+        HexDialogueState.played.push(id);
+
+        var scene:HexDialogueState = new HexDialogueState();
+        scene.dialogueId = id;
+        scene.closeCallback = after;
+        scene.camera = PlayState.instance.camPause;
+
+        PlayState.instance.persistentUpdate = false;
+        PlayState.instance.persistentDraw = false;
+        PlayState.instance.shouldSubstatePause = true;
+        PlayState.instance.openSubState(scene);
+    }
+
+    var holdingEnd:Bool = false;
+    var endReleased:Bool = false;
+    var pendingRelease:Bool = false;
+
+    function releaseSongEnd():Void
+    {
+        holdingEnd = false;
+        endReleased = true;
+        PlayState.instance.endSong(true);
+    }
+
+    public override function onSongEnd(event:ScriptEvent):Void
+    {
+        super.onSongEnd(event);
+
+        if (!shouldUseHexHud || transitional == null || !PlayStatePlaylist.isStoryMode)
+            return;
+
+        if (endReleased)
+            return;
+
+        if (holdingEnd)
+        {
+            event.cancelEvent();
+            return;
+        }
+
+        var lastSong:Bool = PlayStatePlaylist.playlistSongIds.length == 0;
+        var id:String = lastSong ? storyDialogueId("Post-") : null;
+
+        if (!lastSong)
+        {
+            holdingEnd = true;
+            event.cancelEvent();
+
+            transitional.transitionIn();
+            transitional.onComplete = function(out:Bool)
+            {
+                if (out)
+                    return;
+
+                transitional.onComplete = null;
+                releaseSongEnd();
+            };
+            return;
+        }
+
+        if (id == null)
+            return;
+
+        holdingEnd = true;
+        event.cancelEvent();
+
+        openStoryDialogue(id, function()
+        {
+            transitional.forceIn();
+            pendingRelease = true;
+        });
+    }
+
+    public override function onSongRetry(event:SongRetryEvent)
+    {
+        if (!shouldUseHexHud)
+            return;
+        showBars();
+        if (timer != null)
+        {
+            reverseLowTaperFade = true;
+        }
+    }
+
+    function sizeIcons()
+    {
+        if (PlayState.instance.iconP1 != null)
+            PlayState.instance.iconP1.size.set(0.9, 0.9);
+        if (PlayState.instance.iconP2 != null)
+            PlayState.instance.iconP2.size.set(0.9, 0.9);
+    }
+
+    public override function onCountdownStart(event:CountdownScriptEvent)
+    {
+        if (!shouldUseHexHud)
+            return;
+        sizeIcons();
+        if (!initialTrans)
+            event.cancelEvent();
+    }
+
+    public override function onResume(event:ResumeScriptEvent)
+    {
+        if (!shouldUseHexHud)
+            return;
+        if (PlayState.instance.needsReset)
+        {
+            trans2.forceIn();
+            return;
+        }
+
+        PlayState.instance.add(transitional);
+        transitional.cameras = [getOverCam()];
+    }
+
+    public function getOverCam():FlxCamera
+    {
+        if (overCam == null || FlxG.cameras.list.indexOf(overCam) == -1)
+        {
+            overCam = new FlxCamera();
+            overCam.bgColor = 0x00000000;
+            FlxG.cameras.insert(overCam, FlxG.cameras.list.indexOf(PlayState.instance.camHUD) + 1, false);
+        }
+
+        return overCam;
+    }
+
+    public function getShakeCam():FlxCamera
+    {
+        if (shakeCam == null || FlxG.cameras.list.indexOf(shakeCam) == -1)
+        {
+            var under:FlxCamera = getOverCam();
+
+            shakeCam = new FlxCamera();
+            shakeCam.bgColor = 0x00000000;
+            FlxG.cameras.insert(shakeCam, FlxG.cameras.list.indexOf(under) + 1, false);
+
+            if (!shakeCamHooked)
+            {
+                shakeCamHooked = true;
+
+                if (shakeCamSync == null)
+                {
+                    shakeCamSync = function()
+                    {
+                        syncShakeCam();
+                    };
+                }
+
+                FlxG.signals.preDraw.add(shakeCamSync);
+            }
+        }
+
+        return shakeCam;
+    }
+
+    function syncShakeCam():Void
+    {
+        if (shakeCam == null || PlayState.instance == null)
+        {
+            unhookShakeCam();
+            return;
+        }
+
+        var hud = PlayState.instance.camHUD;
+        if (hud == null)
+            return;
+
+        if (FlxG.cameras.list.indexOf(shakeCam) == -1)
+        {
+            unhookShakeCam();
+            return;
+        }
+
+        shakeCam.x = hud.x;
+        shakeCam.y = hud.y;
+        shakeCam.angle = hud.angle;
+        shakeCam.zoom = hud.zoom;
+    }
+
+    function makeBar(bar:FlxSprite):Void
+    {
+        bar.makeGraphic(1, 1, 0xFFFFFFFF);
+        bar.color = 0xFF000000;
+        bar.scale.set(FlxG.width + 8, 67 + 4);
+        bar.updateHitbox();
+    }
+
+    function unhookShakeCam():Void
+    {
+        if (!shakeCamHooked)
+            return;
+
+        shakeCamHooked = false;
+
+        if (shakeCamSync != null)
+            FlxG.signals.preDraw.remove(shakeCamSync);
+    }
+
+    var goEvil:Bool = false;
+
+    public override function onGameOver(event:ScriptEvent)
+    {
+        if (!shouldUseHexHud)
+            return;
+
+        if (transitional != null && !transitional.complete || !initialTrans)
+            return;
+
+        if (event != null) event.cancelEvent();
+
+        if (PlayState.instance.isGameOverState)
+            return;
+
+        // Hook into HEX game over
+
+        PlayState.instance.persistentUpdate = false;
+        PlayState.instance.persistentDraw = true;
+        PlayState.instance.isPlayerDying = true;
+
+        PlayState.instance.playerStrumline.clean();
+        PlayState.instance.opponentStrumline.clean();
+
+        PlayState.instance.vwooshTimer.cancel();
+
+        PlayState.instance.songScore = 0;
+        PlayState.instance.updateScoreText();
+
+        PlayState.instance.health = Constants.HEALTH_STARTING;
+
+        if (!PlayState.instance.isMinimalMode)
+        {
+            PlayState.instance.iconP1?.updatePosition();
+            PlayState.instance.iconP2?.updatePosition();
+        }
+
+        PlayState.instance.isGameOverState = true;
+        PlayState.instance.shouldSubstatePause = true;
+        PlayState.instance.add(transitional);
+
+        PlayState.instance.togglePauseButton(false);
+        #if FEATURE_TOUCH_CONTROLS
+        if (PlayState.instance.hitbox != null)
+            PlayState.instance.hitbox.visible = false;
+        #end
+
+        var gameOverSub = new HexGameOverMenu();
+        gameOverSub.percentage = Conductor.instance.songPosition / FlxG.sound.music.length;
+        if (goEvil)
+            gameOverSub = new HexEvilGameOver();
+
+        goEvil = false;
+        gameOverSub.trans = transitional;
+        gameOverSub.camera = PlayState.instance.camPause;
+        PlayState.instance.openSubState(gameOverSub);
+    }
+
+    public function evilDeathScreen()
+    {
+        goEvil = true;
+        onGameOver(null);
+    }
+    
+    function placeJudgements()
+    {
+        var state = PlayState.instance;
+        if (state == null || state.comboPopUps == null)
+            return;
+
+        var mobileLayout:Bool = state.opponentStrumline != null && state.opponentStrumline.strumlineScale.x < 1;
+        var down:Bool = state.playerStrumline != null && state.playerStrumline.isDownscroll;
+
+        @:privateAccess
+        state.comboPopUps.offsets = [FlxG.width * (mobileLayout ? .40 : .34), FlxG.height * (down ? -.18 : .45)];
+    }
+
+    function timerY():Float
+    {
+        var state = PlayState.instance;
+        var keepHigh:Bool = state.currentSong != null && state.currentSong.id == "headbasher";
+        var low:Bool = state.playerStrumline != null && state.playerStrumline.isDownscroll && !keepHigh;
+        return low ? FlxG.height - 57 : 10;
+    }
+
+    public function isHealthBarShown():Bool
+    {
+        var keQOL = ModuleHandler.getModule("KE-QOL");
+        if (keQOL == null)
+            return false;
+
+        return keQOL.healthBar.visible;
+    }
+
+    public override function onPause(event:PauseScriptEvent)
+    {
+        if (!shouldUseHexHud)
+            return;
+        event.cancelEvent();
+        // Hook into HEX pause menu
+
+        if (transitional != null && !transitional.complete || !initialTrans)
+            return;
+
+        PlayState.instance.persistentUpdate = false;
+        PlayState.instance.persistentDraw = true;
+
+        PlayState.instance.add(transitional);
+        final pauseSubState = new HexPauseMenu();
+        pauseSubState.trans = transitional;
+        pauseSubState.camera = PlayState.instance.camPause;
+        PlayState.instance.shouldSubstatePause = true;
+        PlayState.instance.openSubState(pauseSubState);
+    }
+
+    public function hideBars()
+    {
+        topBar.visible = false;
+        bottomBar.visible = false;
+        leftCircle.visible = false;
+        rightCircle.visible = false;
+    }
+
+    public function hideHealth()
+    {
+        timer.visible = false;
+
+        var keQOL = ModuleHandler.getModule("KE-QOL");
+        keQOL.healthBar.visible = false;
+        keQOL.healthBarBG.visible = false;
+
+        PlayState.instance.healthBar.visible = false;
+
+        PlayState.instance.iconP1.visible = false;
+        PlayState.instance.iconP2.visible = false;
+
+        var keQOL = ModuleHandler.getModule("KE-QOL");
+
+        if (keQOL.scoreText != null )
+            keQOL.scoreText.visible = false;
+    }
+
+    public function showBars()
+    {
+        topBar.visible = true;
+        bottomBar.visible = true;
+        leftCircle.visible = true;
+        rightCircle.visible = true;
+    }
+
+    public function showHealth()
+    {
+        timer.visible = true;
+
+        var keQOL = ModuleHandler.getModule("KE-QOL");
+        keQOL.healthBar.visible = true;
+        keQOL.healthBarBG.visible = false;
+              
+        PlayState.instance.healthBar.visible = true;
+
+        PlayState.instance.iconP1.visible = true;
+        PlayState.instance.iconP2.visible = true;
+
+        var keQOL = ModuleHandler.getModule("KE-QOL");
+
+        if (keQOL.scoreText != null )
+            keQOL.scoreText.visible = true;
+    }
+
+    public override function onSongLoaded(event:SongLoadScriptEvent)
+    {
+        if (PlayState.instance != null && PlayState.instance.currentInstrumental == "" && PlayState.instance.currentChart != null)
+        {
+            var chartInst:String = PlayState.instance.currentChart.characters.instrumental;
+            if (chartInst != null && chartInst != "")
+                PlayState.instance.currentInstrumental = chartInst;
+        }
+
+        if (PlayState.instance.noteStyle.id == "hex")
+            shouldUseHexHud = true;
+        if (!shouldUseHexHud)
+            return;
+
+        if (PlayState.instance != null)
+        {
+            FunkinSound.load(Paths.music("ui/hex/music/hex-pause/hex-pause"));
+            initialTrans = false;
+            elapsedTime = 0;
+            holdingEnd = false;
+            endReleased = false;
+            pendingRelease = false;
+
+            if (transitional != null)
+            {
+                PlayState.instance.remove(transitional);
+                transitional.onComplete = null;
+                transitional = null;
+            }
+            if (trans2 != null)
+            {
+                PlayState.instance.remove(trans2);
+                trans2.onComplete = null;
+                trans2 = null;
+            }
+
+            trans2 = new HexTransitional();
+            trans2.forceOut();
+            PlayState.instance.add(trans2);
+            trans2.zIndex = 8998;
+            trans2.cameras = [getOverCam()];
+            trans2.scrollFactor.set();
+
+            transitional = new HexTransitional();
+            transitional.forceIn();
+            PlayState.instance.add(transitional);
+            transitional.zIndex = 9000;
+            transitional.cameras = [getOverCam()];
+            transitional.scrollFactor.set();
+
+        }
+
+        if (timer != null)
+        {
+            timer.destroy();
+            timer = null;
+        }
+
+        if (leftCircle != null)
+        {
+            leftCircle.destroy();
+            leftCircle = null;
+        }
+
+        if (rightCircle != null)
+        {
+            rightCircle.destroy();
+            rightCircle = null;
+        }
+
+        if (topBar != null)
+        {
+            topBar.destroy();
+            topBar = null;
+        }
+
+        if (bottomBar != null)
+        {
+            bottomBar.destroy();
+            bottomBar = null;
+        }
+
+
+        HexPauseMenu.warm();
+
+        // ying timer
+
+        didFade = false;
+
+        timer = new FlxText(FlxG.width / 2, timerY(), 0, '', 20);
+        timer.alpha = 0;
+        timer.setFormat(Paths.font('ui/fonts/Arista'), 42, 0xFFFFFFFF, "center", FlxTextBorderStyle.OUTLINE, 0xFF000000);
+        timer.scrollFactor.set();
+        timer.zIndex = 801;
+        timer.cameras = [PlayState.instance.camHUD];
+        timer.x = (FlxG.width / 2) - (timer.width / 2);
+        PlayState.instance.add(timer);
+
+        if (barsCam == null || FlxG.cameras.list.indexOf(barsCam) == -1)
+        {
+            barsCam = new FlxCamera();
+            barsCam.bgColor = 0x00000000;
+            FlxG.cameras.insert(barsCam, FlxG.cameras.list.indexOf(PlayState.instance.camHUD), false);
+        }
+
+        // add black bars to the state
+
+        topBar = new FlxSprite(-4, -4);
+        //topBar.y = 25;
+        makeBar(topBar);
+        topBar.scrollFactor.set();
+        topBar.zIndex = 700;
+        topBar.cameras = [barsCam];
+        PlayState.instance.add(topBar);
+
+        bottomBar = new FlxSprite(-4, 0);
+        makeBar(bottomBar);
+        bottomBar.scrollFactor.set();
+        bottomBar.y = FlxG.height - 67;
+        bottomBar.zIndex = 700;
+        bottomBar.cameras = [barsCam];
+        PlayState.instance.add(bottomBar);
+
+        // circles
+
+        leftCircle = new FlxSprite();
+        leftCircle.loadGraphic(Paths.image("ui/hex/circle"));
+        leftCircle.scrollFactor.set();
+        leftCircle.x = -2;
+        leftCircle.y = FlxG.height - leftCircle.height;
+        leftCircle.zIndex = 701;
+        leftCircle.cameras = [barsCam];
+        PlayState.instance.add(leftCircle);
+
+        rightCircle = new FlxSprite();
+        rightCircle.loadGraphic(Paths.image("ui/hex/circle"));
+        rightCircle.scrollFactor.set();
+        rightCircle.zIndex = 701;
+        rightCircle.cameras = [barsCam];
+        // Flip x
+        rightCircle.scale.set(1.5, 1.5);
+        rightCircle.flipX = true;
+
+        // Set origin to top left
+        rightCircle.origin.set(0, 0);
+
+        rightCircle.x = FlxG.width - rightCircle.width * 1.5;
+        rightCircle.y = FlxG.height - rightCircle.height;
+        PlayState.instance.add(rightCircle);
+
+        placeJudgements();
+        TouchLanes.afterLayout(placeJudgements);
+
+        healthBarBaseY = PlayState.instance.healthBar.y;
+        var keepLow:Bool = PlayState.instance.currentSong != null && PlayState.instance.currentSong.id == "headbasher";
+        var low:Bool = keepLow || !PlayState.instance.playerStrumline.isDownscroll;
+        PlayState.instance.healthBar.y = low ? FlxG.height * 0.9 + 4 : FlxG.height * 0.1 + 24;
+
+        sizeIcons();
+
+        showBars();
+        PlayState.instance.refresh();
+    }
+}

@@ -1,0 +1,44 @@
+{
+  "version": "2.2.4",
+  "songName": "B.I.T.",
+  "artist": "YingYang48",
+  "charter": "YingYang48",
+  "divisions": 96,
+  "looped": false,
+  "playData": {
+    "songVariations": ["erect"],
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "bfbit",
+      "girlfriend": "gf",
+      "opponent": "hexbit",
+      "instrumental": "",
+      "altInstrumentals": [      ]
+    },
+    "stage": "train",
+    "noteStyle": "hex",
+    "ratings": {
+      "easy": 3,
+      "normal": 4,
+      "hard": 6
+    },
+    "album": "Stepmania",
+    "previewStart": 0,
+    "previewEnd": 15000
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 140,
+      "n": 4,
+      "d": 4
+    }
+  ]
+}

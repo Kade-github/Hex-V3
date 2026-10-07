@@ -1,0 +1,57 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.modding.module.ModuleHandler;
+import funkin.play.PlayState;
+
+class TangerineSong extends Song {
+    public function new() {
+        super("tangerine");
+    }
+
+    public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String> {
+        return [];
+    }
+
+    public override function onSongLoaded(event) {
+        loadModchart();
+
+        super.onSongLoaded(event);
+    }
+
+    function loadModchart() {
+        var hud = ModuleHandler.getModule("HEX-HUD");
+        hud.scriptCall("hideBars");
+
+        var diff = PlayState.instance.currentDifficulty;
+
+        var modId = (diff != null && diff.toLowerCase() == "normal") ? "tangerine_modchart_normal" : "tangerine_modchart";
+
+        if (diff != null && diff.toLowerCase() == "easy")
+            modId = null;
+
+        for (other in ["tangerine_modchart", "tangerine_modchart_normal"]) {
+            if (other == modId)
+                continue;
+
+            var was = ModuleHandler.getModule(other);
+            if (was != null)
+                was.unload();
+        }
+
+        if (modId == null)
+            return;
+
+        var modchart = ModuleHandler.getModule(modId);
+        if (modchart == null)
+            return;
+
+        modchart.load(diff);
+    }
+
+    public override function onSongRetry(event) {
+        super.onSongRetry(event);
+
+        loadModchart();
+    }
+}

@@ -1,0 +1,122 @@
+{
+  "version": "1.0.1",
+  "name": "LAN",
+  "cameraZoom": 1.05,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -600,
+        -600
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/lan/bg",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 50,
+      "position": [
+        -600,
+        -600
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "frg",
+      "assetPath": "gameplay/stages/lan/frg",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 999,
+      "position": [
+        -725,
+        -635
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "crowd",
+      "assetPath": "gameplay/stages/lan/Audience_LAN",
+      "scroll": [
+        1,
+        1
+      ],
+      "danceEvery": 2,
+      "startingAnimation": "idle",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "audienceLoop",
+          "frameRate": 24
+        }
+      ]
+    },
+    {
+      "zIndex": 1000,
+      "position": [
+        -600,
+        -600
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "name": "addlayer",
+      "assetPath": "gameplay/stages/lan/addlayer",
+      "blend": "add",
+      "alpha": 0.45,
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        250,
+        -70
+      ],
+      "cameraOffsets": [
+        -225,
+        50
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        -230,
+        0
+      ],
+      "cameraOffsets": [
+        250,
+        -60
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        20,
+        -52
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "(Hex) Event X (Freeplay)",
+    "titleAsset": "storymenu/titles/weekX",
+    "background": "#3cfeff",
+    "songs": ["bombs-n-combs", "lan", "hexcript", "thatretrosong", "eye2eye", "tangerine", "rightpace"],
+    "visible": false,
+    "props": [
+
+    ]
+  }

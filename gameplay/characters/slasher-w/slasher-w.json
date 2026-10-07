@@ -1,0 +1,67 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Slasher (Wire)",
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"assetPath": "gameplay/characters/slasher-w/Headbasher_Slasher1W",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "slasher"
+	},
+	"scale": 1.35,
+	"animations": [
+		{
+			"prefix": "Idle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				70,
+				150
+			],
+			"prefix": "Transition_1",
+			"name": "transition1"
+		},
+		{
+			"offsets": [
+				18,
+				-69
+			],
+			"prefix": "Left",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				155,
+				-90
+			],
+			"prefix": "Down",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				182,
+				-75
+			],
+			"prefix": "Up",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-15,
+				-71
+			],
+			"prefix": "Right",
+			"name": "singRIGHT"
+		}
+	]
+}

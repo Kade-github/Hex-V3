@@ -1,0 +1,91 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Hex (Headbasher 3)",
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"assetPath": "gameplay/characters/hex-hb-3/Headbasher_Hex3",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "hex"
+	},
+	"scale": 1.25,
+	"animations": [
+		{
+			"prefix": "idle0",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				-42,
+				-24
+			],
+			"prefix": "left0",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				0,
+				-70
+			],
+			"prefix": "down0",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				57,
+				-5
+			],
+			"prefix": "up0",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-40,
+				-16
+			],
+			"prefix": "right0",
+			"name": "singRIGHT"
+		},
+		{
+			"offsets": [
+				-32,
+				-29
+			],
+			"prefix": "mleft",
+			"name": "singLEFTmiss"
+		},
+		{
+			"offsets": [
+				35,
+				-70
+			],
+			"prefix": "mdown0",
+			"name": "singDOWNmiss"
+		},
+		{
+			"offsets": [
+				62,
+				5
+			],
+			"prefix": "mup0",
+			"name": "singUPmiss"
+		},
+		{
+			"offsets": [
+				-30,
+				-16
+			],
+			"prefix": "mright0",
+			"name": "singRIGHTmiss"
+		}
+	]
+}

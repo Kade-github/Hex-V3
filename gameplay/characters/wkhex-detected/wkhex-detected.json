@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "name": "Hex (Detected)",
+  "assetPath": "gameplay/characters/wkhex-detected/wkhex-detected",
+  "healthIcon": {
+    "id": "wkhex-detected",
+    "flipX": false
+  },
+  "singTime": 3.5,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "Ilde instance 1",
+      "looped": true,
+      "offsets": [
+        15,
+        21
+      ]
+    },
+    {
+      "name": "idle-hold",
+      "prefix": "Ilde instance 1",
+      "looped": true,
+      "offsets": [
+        15,
+        21
+      ]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "LEFT instance 1",
+      "offsets": [
+        297,
+        -65
+      ]
+    },
+    {
+      "name": "singLEFT-hold",
+      "prefix": "LEFT instance 1",
+      "offsets": [
+        297,
+        -65
+      ]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "jefheziuoghz instance 1",
+      "offsets": [
+        38,
+        -132
+      ]
+    },
+    {
+      "name": "singDOWN-hold",
+      "prefix": "jefheziuoghz instance 1",
+      "offsets": [
+        38,
+        -132
+      ]
+    },
+    {
+      "name": "singUP",
+      "prefix": "AAAAAA instance 1",
+      "offsets": [
+        73,
+        73
+      ]
+    },
+    {
+      "name": "singUP-hold",
+      "prefix": "AAAAAA instance 1",
+      "offsets": [
+        73,
+        173
+      ]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "FUCK U instance 1",
+      "offsets": [
+        25,
+        -134
+      ]
+    },
+    {
+      "name": "singRIGHT-hold",
+      "prefix": "FUCK U instance 1",
+      "offsets": [
+        25,
+        -134
+      ]
+    }
+  ]
+}

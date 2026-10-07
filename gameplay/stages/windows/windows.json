@@ -1,0 +1,113 @@
+{
+  "version": "1.0.1",
+  "name": "Windows",
+  "cameraZoom": 1.08,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [0,25],
+      "scale": [1,1],
+      "name": "bg",
+      "assetPath": "gameplay/stages/windows/BG_Hexware"
+    },
+    {
+      "zIndex": 500,
+      "position": [0,0],
+      "scale": [1,1],
+      "name": "cursor",
+      "assetPath": "gameplay/stages/windows/cursor"
+    },
+    {
+      "zIndex": 12,
+      "position": [135,200],
+      "scale": [1,1],
+      "name": "notepad",
+      "assetPath": "gameplay/stages/windows/windowNotepad",
+      "animType": "sparrow",
+      "startingAnimation": "open",
+      "animations": [
+        {
+          "name": "open",
+          "prefix": "windowNotepadOpening",
+          "frameRate": 24
+        },
+        {
+          "name": "close",
+          "prefix": "windowNotepadClosing",
+          "frameRate": 24
+        }
+      ]
+    },
+    {
+      "zIndex": 15,
+      "position": [155,715],
+      "scale": [1,1],
+      "name": "taskbar",
+      "assetPath": "gameplay/stages/windows/taskbarLayer",
+      "animType": "sparrow",
+      "startingAnimation": "1",
+      "animations": [
+        {
+          "name": "1",
+          "prefix": "1",
+          "frameRate": 1
+        },
+        {
+          "name": "2",
+          "prefix": "2",
+          "frameRate": 1
+        },
+        {
+          "name": "3",
+          "prefix": "3",
+          "frameRate": 1
+        },
+        {
+          "name": "4",
+          "prefix": "4",
+          "frameRate": 1
+        },
+        {
+          "name": "5",
+          "prefix": "5",
+          "frameRate": 1
+        }
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        900,
+        650
+      ],
+      "cameraOffsets": [
+        0,
+        0
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        350,
+        650
+      ],
+      "cameraOffsets": [
+        300,
+        -100
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        -90000,
+        -90000
+      ]
+    }
+  }
+}

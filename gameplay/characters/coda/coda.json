@@ -1,0 +1,67 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"scale": 0.9,
+	"name": "Coda (Street)",
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"singTime": 4,
+	"assetPath": "gameplay/characters/coda/coda",
+	"healthIcon": {
+		"shouldBop": true,
+		"offsets": [
+			0,
+			0
+		]
+	},
+	"atlasSettings": {
+		"applyStageMatrix": false,
+		"swfMode": true,
+		"useRenderTexture": false,
+		"cacheOnLoad": false,
+		"filterQuality": 1
+	},
+	"animations": [
+		{
+			"prefix": "Coda Idle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				119,
+				20
+			],
+			"prefix": "Coda left",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-18,
+				-166
+			],
+			"prefix": "Coda down",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				93,
+				165
+			],
+			"prefix": "Coda up",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-13,
+				-18
+			],
+			"prefix": "Coda right",
+			"name": "singRIGHT"
+		}
+	]
+}

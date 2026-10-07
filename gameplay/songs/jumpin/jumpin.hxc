@@ -1,0 +1,455 @@
+package kade.hex.songs;
+
+import flixel.FlxG;
+
+import funkin.play.song.Song;
+import funkin.save.Save;
+import flixel.tweens.FlxEase;
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import funkin.play.character.BaseCharacter;
+import funkin.data.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import flixel.math.FlxRect;
+import funkin.play.PlayState;
+
+import funkin.Conductor;
+
+class JumpinSong extends Song {
+	var topbg1 = null;
+	var bg1 = null;
+	var bg2 = null;
+	var bg3 = null;
+	var players3 = null;
+	var bg4 = null;
+	var hoop4 = null;
+	var players4 = null;
+
+	var sweep = null;
+	var sweepFilter = null;
+
+	var originalHex = null;
+	var hex2 = null;
+	var hex3 = null;
+	var hex4 = null;
+
+	var originalBf = null;
+	var bf2 = null;
+	var bf3 = null;
+	var bf4 = null;
+
+	public function new() {
+  	    super("jumpin");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+	public function switchToCharacter(character:BaseCharacter, characterType:CharacterType):BaseCharacter
+	{
+		originalHex.visible = false;
+		originalBf.visible = false;
+
+		hex2.visible = false;
+		hex3.visible = false;
+		hex4.visible = false;
+
+		bf2.visible = false;
+		bf3.visible = false;
+		bf4.visible = false;
+
+		hex2.legs.visible = false;
+		bf2.legs.visible = false;
+
+		PlayState.instance.currentStage.addCharacter(character, characterType);
+		character.playAnimation("idle", true);
+
+		PlayState.instance.currentStage.refresh();
+	}
+
+	var current_show:Int = 0;
+
+	public function show(bg:Int):Void
+	{
+		current_show = bg;
+		hex2.x = originalHex.x;
+		hex2.y = originalHex.y;
+		hex3.x = originalHex.x;
+		hex3.y = originalHex.y;
+		hex4.x = originalHex.x;
+		hex4.y = originalHex.y;
+
+		bf2.x = originalBf.x;
+		bf2.y = originalBf.y;
+		bf3.x = originalBf.x;
+		bf3.y = originalBf.y;
+		bf4.x = originalBf.x;
+		bf4.y = originalBf.y;
+
+		hex4.angle = 0;
+
+		PlayState.instance.resetCamera();
+
+		PlayState.instance.tweenCameraZoom(1.05, 0);
+		FlxG.camera.angle = 0;
+
+		switch (bg) {
+			case 0:
+				topbg1.visible = true;
+				bg1.visible = true;
+				bg2.visible = false;
+				bg3.visible = false;
+				players3.visible = false;
+				bg4.visible = false;
+				hoop4.visible = false;
+				players4.visible = false;
+
+				// TODO: Fix these because they're wrong
+				originalHex.x = -335;
+				originalHex.y = 155;
+
+				originalBf.x = 455;
+				originalBf.y = 155;
+
+
+				switchToCharacter(originalHex, CharacterType.DAD);
+				switchToCharacter(originalBf, CharacterType.BF);
+				
+				originalHex.visible = true;
+				originalBf.visible = true;
+
+				PlayState.instance.tweenCameraToPosition(originalHex.cameraFocusPoint.x, originalHex.cameraFocusPoint.y, 0);
+
+			case 1:
+				topbg1.visible = false;
+				bg1.visible = false;
+				bg2.visible = true;
+				bg3.visible = false;
+				bg4.visible = false;
+				hoop4.visible = false;
+				players3.visible = false;
+				players4.visible = false;
+
+				switchToCharacter(hex2, CharacterType.DAD);
+				switchToCharacter(bf2, CharacterType.BF);
+
+				hex2.x += 400;
+				hex2.y += 350;
+
+				bf2.x -= 500;
+				bf2.y += 235;
+				hex2.scale.set(1,1);
+				bf2.scale.set(0.87,0.87);
+
+				hex2.visible = false;
+				bf2.visible = true;
+				originalHex.visible = false;
+				originalBf.visible = false;
+			case 2:
+				topbg1.visible = false;
+				bg1.visible = false;
+				bg2.visible = false;
+				bg3.visible = true;
+				bg4.visible = false;
+				hoop4.visible = false;
+				players3.visible = true;
+				players4.visible = false;
+
+				switchToCharacter(hex3, CharacterType.DAD);
+				switchToCharacter(bf3, CharacterType.BF);
+
+				hex3.visible = true;
+				hex3.flipX = false;
+				hex3.x += 408;
+				hex3.y -= 320;
+				bf3.visible = true;
+
+				hex3.scale.set(1.0,1.0);
+				bf3.scale.set(1.0,1.0);
+				PlayState.instance.tweenCameraZoom(1.06 * framingScale(), 0);
+				hex2.visible = false;
+				hex2.legs.visible = false;
+				bf2.visible = false;
+				bf2.legs.visible = false;
+			case 3:
+				topbg1.visible = false;
+				bg1.visible = false;
+				bg2.visible = false;
+				bg3.visible = false;
+				bg4.visible = true;
+				hoop4.visible = true;
+				players3.visible = false;
+				players4.visible = true;
+
+				switchToCharacter(hex4, CharacterType.DAD);
+				switchToCharacter(bf4, CharacterType.BF);
+
+				PlayState.instance.currentStage.remove(hoop4);
+				PlayState.instance.currentStage.add(hoop4);
+				PlayState.instance.currentStage.refresh();
+
+				hex4.visible = true;
+				bf4.visible = true;
+
+				hex4.flipX = false;
+				hex4.x += 225;
+				hex4.y -= 180;
+
+				bf4.x -= 380;
+				bf4.y -= 430;
+
+				PlayState.instance.tweenCameraToPosition(50, -235, 0);
+
+				hex4.scale.set(1.0,1.0);
+				bf4.scale.set(1.0,1.0);
+				hex3.visible = false;
+				bf3.visible = false;
+		}
+	}
+
+	function framingScale():Float
+	{
+		if (FlxG.stage == null || FlxG.stage.stageHeight <= 0)
+			return 1;
+
+		var wide:Float = FlxG.initialHeight * (FlxG.stage.stageWidth / FlxG.stage.stageHeight);
+		if (wide <= FlxG.width)
+			return 1;
+
+		return FlxG.width / wide;
+	}
+
+	public override function onBeatHit(event) {
+		super.onBeatHit(event);
+
+		switch (event.beat)
+		{
+			case 66:
+				startSweep(0.65);
+			case 68:
+				show(1);
+				PlayState.instance.tweenCameraToPosition(50, 360, 0);
+
+				PlayState.instance.tweenCameraToPosition(50, -200, 6, FlxEase.quadInOut);
+			case 83:
+				// White
+				FlxG.camera.fade(0xFFFFFFFF, 0.2);
+			case 84:
+				// Back to normal 
+				FlxG.camera.stopFade();
+				FlxG.camera.flash(0xFFFFFFFF, 0.2);
+				hex2.visible = true;
+				bf2.visible = false;
+
+				PlayState.instance.tweenCameraToPosition(50, 360, 0);
+
+				PlayState.instance.tweenCameraToPosition(50, -200, 6, FlxEase.quadInOut);
+			case 115:
+				// White
+				FlxG.camera.fade(0xFFFFFFFF, 0.2);
+			case 116:
+				// Back to normal 
+				FlxG.camera.stopFade();
+				FlxG.camera.flash(0xFFFFFFFF, 0.2);
+
+				hex2.visible = false;
+				bf2.visible = true;
+			case 130:
+				startSweep(0.65);
+			case 132:
+				show(2);
+			case 194:
+				startSweep(0.65);
+			case 196:
+				show(3);
+			case 258:
+				startSweep(0.65);
+			case 260:
+				show(1);
+
+				hex2.visible = false;
+				bf2.visible = true;
+
+				PlayState.instance.tweenCameraToPosition(50, 360, 0);
+
+				PlayState.instance.tweenCameraToPosition(50, -200, 6, FlxEase.quadInOut);
+			case 275:
+				// White
+				FlxG.camera.fade(0xFFFFFFFF, 0.2);
+			case 276:
+				// Back to normal
+				FlxG.camera.stopFade();
+				FlxG.camera.flash(0xFFFFFFFF, 0.2);
+
+				PlayState.instance.tweenCameraToPosition(50, 360, 0);
+
+				PlayState.instance.tweenCameraToPosition(50, -200, 6, FlxEase.quadInOut);
+
+				hex2.visible = true;
+				bf2.visible = false;
+			case 307:
+				// White
+				FlxG.camera.fade(0xFFFFFFFF, 0.2);
+			case 308:
+				// Back to normal
+				FlxG.camera.stopFade();
+				FlxG.camera.flash(0xFFFFFFFF, 0.2);
+
+				hex2.visible = false;
+				bf2.visible = true;
+			case 322:
+				startSweep(0.65);
+			case 324:
+				show(2);
+			case 354:
+				startSweep(0.65);
+			case 356:
+				show(3);
+			case 386:
+				startSweep(0.65);
+			case 388:
+				show(0);
+		}
+	}
+
+	function runAtlas(prop):Void
+	{
+		if (prop == null || prop.anim == null)
+			return;
+
+		prop.anim.play("", true, false, 0);
+	}
+
+	public override function onCreate(event) {
+		super.onCreate(event);
+
+		PlayState.instance.comboPopUps.offsets = [FlxG.width * .2, FlxG.height * .5];
+
+		originalHex = PlayState.instance.currentStage.getDad();
+		originalBf = PlayState.instance.currentStage.getBoyfriend();
+
+		originalHex.x = -335;
+		originalHex.y = 155;
+
+		originalBf.x = 455;
+		originalBf.y = 155;
+
+		// preload characters
+
+		hex2 = CharacterDataParser.fetchCharacter("hex-jumpin2");
+		hex3 = CharacterDataParser.fetchCharacter("hex-jumpin3");
+		hex4 = CharacterDataParser.fetchCharacter("hex-jumpin4");
+		hex2.characterType = CharacterType.DAD;
+		hex3.characterType = CharacterType.DAD;
+		hex4.characterType = CharacterType.DAD;
+
+		bf2 = CharacterDataParser.fetchCharacter("bf-jumpin2");
+		bf3 = CharacterDataParser.fetchCharacter("bf-jumpin3");
+		bf4 = CharacterDataParser.fetchCharacter("bf-jumpin4");
+		bf2.characterType = CharacterType.BF;
+		bf3.characterType = CharacterType.BF;
+		bf4.characterType = CharacterType.BF;
+
+		topbg1 = PlayState.instance.currentStage.getNamedProp("topbg1");
+		bg1 = PlayState.instance.currentStage.getNamedProp("bg1");
+		bg2 = PlayState.instance.currentStage.getNamedProp("bg2");
+		bg3 = PlayState.instance.currentStage.getNamedProp("bg3");
+		players3 = PlayState.instance.currentStage.getNamedProp("players3");
+		bg4 = PlayState.instance.currentStage.getNamedProp("bg4");
+		hoop4 = PlayState.instance.currentStage.getNamedProp("bg4_hoop");
+		players4 = PlayState.instance.currentStage.getNamedProp("players4");
+
+		runAtlas(players3);
+		runAtlas(players4);
+
+		sweep = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/sweep")));
+
+        sweep.setFloat("percent", 0);
+
+        sweepFilter = new ShaderFilter(sweep);
+
+        FlxG.camera.filters = [sweepFilter];
+
+		show(0);
+	}
+
+	public override function onSongStart(event) {
+		super.onSongStart(event);
+
+		PlayState.instance.comboPopUps.offsets = [FlxG.width * .2, FlxG.height * .5];
+	}
+
+	public override function onSongRetry(event) {
+		super.onSongRetry(event);
+
+		sweepStart = 0;
+		sweepDuration = 0;
+
+		if (sweep != null)
+			sweep.setFloat("percent", 0);
+
+		if (sweepFilter != null)
+			FlxG.camera.filters = [sweepFilter];
+
+		FlxG.camera.stopFade();
+		FlxG.camera.scrollAngle = 0;
+
+		originalHex.x = -335;
+		originalHex.y = 155;
+
+		originalBf.x = 455;
+		originalBf.y = 155;
+
+		show(0);
+	}
+
+	var sweepStart:Float = 0;
+	var sweepDuration:Float = 0;
+
+	public function startSweep(duration:Float) {
+		sweepStart = Conductor.instance.songPosition;
+		sweepDuration = duration * 1000;
+	}
+
+	public override function onUpdate(event) {
+		super.onUpdate(event);
+		
+		if (sweep != null && sweepDuration > 0) {
+			var elapsed = Conductor.instance.songPosition - sweepStart;
+			var t = Math.min(elapsed / sweepDuration, 2.0);
+
+			var eased:Float;
+			if (t <= 1.0) {
+				eased = FlxEase.quadInOut(t);
+			} else {
+				eased = 1.0 + FlxEase.quadInOut(t - 1.0);
+			}
+
+			sweep.setFloat("percent", eased);
+
+			if (t >= 2.0) {
+				sweepDuration = 0;
+			}
+		}
+
+		if (current_show >= 2)
+		{
+			// Slowly move characters
+			switch (current_show) {
+				case 2:
+					hex3.x -= 1 * event.elapsed;
+					bf3.x += 1 * event.elapsed;
+					players3.y -= 1 * event.elapsed;
+					FlxG.camera.scrollAngle += 0.05 * event.elapsed;
+				case 3:
+					bf4.x -= 1 * event.elapsed;
+					bf4.y += 0.5 * event.elapsed;
+					players4.x += 1 * event.elapsed;
+					players4.y -= 0.5 * event.elapsed;
+					FlxG.camera.scrollAngle -= 0.05 * event.elapsed;
+			}
+		}
+	}
+}

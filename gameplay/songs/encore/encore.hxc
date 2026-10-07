@@ -1,0 +1,15 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.save.Save;
+
+class EncoreSong extends Song {
+	public function new() {
+  	    super("encore");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+}

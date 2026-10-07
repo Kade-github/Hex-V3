@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "(Hex) Weekend X",
+    "titleAsset": "storymenu/titles/weekX",
+    "background": "#3cfeff",
+    "songs": ["cooling", "detected"],
+    "visible": false,
+    "props": [
+
+    ]
+  }

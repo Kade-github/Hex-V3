@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="au_lcd_audience_3.png">
+	
+	<SubTexture name="Symbol 10000" x="2" y="2" width="1210" height="500" frameX="0" frameY="-244" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10001" x="2" y="2" width="1210" height="500" frameX="0" frameY="-240" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10002" x="2" y="2" width="1210" height="500" frameX="0" frameY="-236" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10003" x="2" y="2" width="1210" height="500" frameX="0" frameY="-234" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10004" x="2" y="2" width="1210" height="500" frameX="0" frameY="-230" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10005" x="2" y="2" width="1210" height="500" frameX="0" frameY="-226" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10006" x="2" y="2" width="1210" height="500" frameX="0" frameY="-224" frameWidth="1280" frameHeight="758" />
+	<SubTexture name="Symbol 10007" x="2" y="2" width="1210" height="500" frameX="0" frameY="-220" frameWidth="1280" frameHeight="758" />
+</TextureAtlas>

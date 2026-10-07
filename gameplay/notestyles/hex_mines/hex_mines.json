@@ -1,0 +1,34 @@
+{
+  "version": "1.1.0",
+  "name": "Hex Mines",
+  "author": "Kade/YingYang48",
+  "fallback": null,
+  "assets": {
+    "note": {
+      "assetPath": "gameplay/notestyles/hex_mines/hex_mines",
+      "scale": 0.7,
+      "data": {
+        "left": {
+          "prefix": "noteLeft",
+          "frameRate": 24,
+          "looped": true
+        },
+        "down": {
+          "prefix": "noteDown",
+          "frameRate": 24,
+          "looped": true
+        },
+        "up": {
+          "prefix": "noteUp",
+          "frameRate": 24,
+          "looped": true
+        },
+        "right": {
+          "prefix": "noteRight",
+          "frameRate": 24,
+          "looped": true
+        }
+      }
+    }
+  }
+}

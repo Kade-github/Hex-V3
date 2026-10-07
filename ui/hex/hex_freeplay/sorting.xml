@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="sorting.png">
+	
+	
+	<SubTexture name="all.png" x="124" y="87" width="111" height="72" frameX="0" frameY="0" frameWidth="111" frameHeight="72" />
+	<SubTexture name="eventX.png" x="112" y="2" width="112" height="81" frameX="0" frameY="0" frameWidth="112" frameHeight="81" />
+	<SubTexture name="freeplayExclusive.png" x="2" y="87" width="120" height="78" frameX="0" frameY="0" frameWidth="120" frameHeight="78" />
+	<SubTexture name="weekX.png" x="2" y="2" width="108" height="83" frameX="0" frameY="0" frameWidth="108" frameHeight="83" />
+	<SubTexture name="weekendX.png" x="2" y="167" width="113" height="69" frameX="0" frameY="0" frameWidth="113" frameHeight="69" />
+</TextureAtlas>

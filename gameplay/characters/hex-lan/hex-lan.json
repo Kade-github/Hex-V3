@@ -1,0 +1,157 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 1,
+  "applyStageMatrix": false,
+  "scale": 0.7,
+  "name": "Hex (LAN)",
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "flipX": true,
+  "singTime": 4,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/hex-lan/hex-lan",
+  "healthIcon": {
+    "isPixel": false,
+    "offsets": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "id": "hex",
+    "flipX": false
+  },
+  "atlasSettings": {
+    "applyStageMatrix": false,
+    "useRenderTexture": false,
+    "filterQuality": 1,
+    "cacheOnLoad": false,
+    "swfMode": true
+  },
+  "animations": [
+    {
+      "offsets": [
+        -1,
+        0
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "ídle",
+      "animType": "framelabel",
+      "name": "idle",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        33,
+        -91
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "rleft",
+      "animType": "framelabel",
+      "name": "singLEFT",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        9,
+        -303
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "rdown",
+      "animType": "framelabel",
+      "name": "singDOWN",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -18,
+        8
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "rup",
+      "animType": "framelabel",
+      "name": "singUP",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -9,
+        -36
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "rright",
+      "animType": "framelabel",
+      "name": "singRIGHT",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        32,
+        -98
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "leftmiss",
+      "animType": "framelabel",
+      "name": "singLEFTmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        7,
+        -320
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "downmiss",
+      "animType": "framelabel",
+      "name": "singDOWNmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -15,
+        14
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "upmiss",
+      "animType": "framelabel",
+      "name": "singUPmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -14,
+        -37
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "rightmiss",
+      "animType": "framelabel",
+      "name": "singRIGHTmiss",
+      "looped": false,
+      "flipX": false
+    }
+  ]
+}

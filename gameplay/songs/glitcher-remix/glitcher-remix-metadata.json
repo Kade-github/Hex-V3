@@ -1,0 +1,63 @@
+{
+  "version": "2.2.4",
+  "songName": "Glitcher (Remix)",
+  "artist": "YingYang48",
+  "charter": "YingYang48",
+  "divisions": 96,
+  "looped": false,
+  "offsets": {
+    "instrumental": 35,
+    "altInstrumentals": {    },
+    "vocals": {    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": [    ],
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "bf-old",
+      "girlfriend": "gf-old",
+      "opponent": "wkhex-detected",
+      "instrumental": "",
+      "altInstrumentals": [      ],
+      "opponentVocals": [
+        "hex"
+      ],
+      "playerVocals": [
+        "bf"
+      ]
+    },
+    "stage": "xwstage_detected_rmx",
+    "noteStyle": "hex",
+    "ratings": {
+      "erect": 0,
+      "easy": 5,
+      "hard": 7,
+      "nightmare": 0,
+      "normal": 6
+    },
+    "previewStart": 0,
+    "previewEnd": 0
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 180,
+      "n": 4,
+      "d": 4,
+      "bt": [
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ]
+}

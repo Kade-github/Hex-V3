@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 1,
+  "applyStageMatrix": false,
+  "scale": 0.7,
+  "name": "Static (LAN)",
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "flipX": false,
+  "singTime": 4,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/static/static",
+  "healthIcon": {
+    "offsets": [
+      0,
+      0
+    ],
+    "isPixel": false,
+    "scale": 1,
+    "flipX": false,
+    "id": "cyrix-static"
+  },
+  "atlasSettings": {
+    "swfMode": true,
+    "applyStageMatrix": false,
+    "useRenderTexture": false,
+    "filterQuality": 1,
+    "cacheOnLoad": false
+  },
+  "animations": [
+    {
+      "flipY": false,
+      "offsets": [
+        -3,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "idle",
+      "flipX": false,
+      "looped": false,
+      "name": "idle",
+      "animType": "framelabel"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        8,
+        -16
+      ],
+      "frameRate": 24,
+      "prefix": "left",
+      "flipX": false,
+      "looped": false,
+      "name": "singLEFT",
+      "animType": "framelabel"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -79,
+        -53
+      ],
+      "frameRate": 24,
+      "prefix": "down",
+      "flipX": false,
+      "looped": false,
+      "name": "singDOWN",
+      "animType": "framelabel"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -78,
+        -12
+      ],
+      "frameRate": 24,
+      "prefix": "up",
+      "flipX": false,
+      "looped": false,
+      "name": "singUP",
+      "animType": "framelabel"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -59,
+        -51
+      ],
+      "frameRate": 24,
+      "prefix": "right",
+      "flipX": false,
+      "looped": false,
+      "name": "singRIGHT",
+      "animType": "framelabel"
+    }
+  ]
+}

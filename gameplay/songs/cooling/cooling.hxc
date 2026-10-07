@@ -1,0 +1,532 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.modding.module.ModuleHandler;
+import funkin.play.PlayStatePlaylist;
+import funkin.play.character.BaseCharacter;
+import funkin.modding.base.ScriptedFlxSpriteGroup;
+import openfl.utils.Assets;
+import funkin.graphics.FunkinSprite;
+import funkin.graphics.video.FunkinVideoSprite;
+import StringTools;
+import flixel.FlxG;
+import funkin.save.Save;
+import funkin.util.tools.FloatTools;
+import funkin.Conductor;
+import funkin.graphics.shaders.RuntimeCustomBlendShader;
+import kade.hex.util.ReactiveSpotlights;
+
+import Math;
+import flixel.math.FlxMath;
+import flixel.tweens.FlxEase;
+
+import funkin.Paths;
+
+
+class CoolingSong extends Song {
+  //var blendShaders:Array<RuntimeCustomBlendShader> = [];
+
+  var spots:ReactiveSpotlights;
+  var spotsOwner:Dynamic = null;
+
+	var vid:FunkinVideoSprite;
+  var isPaused = false;
+
+  var videoReady:Bool = false;
+  var rateSupported:Bool = true;
+  var videoRate:Float = 1.0;
+
+  var shouldPsychMove:Bool = false;
+
+  var switchToDark:Bool = false;
+
+  static var SWITCH_TIME:Float = 0.7;
+  var switchTime:Float = SWITCH_TIME;
+  var darkBlend:Float = 0;
+
+  var hasStarted:Bool = false;
+  var focusType:Int = 0;
+
+  var oldBF:BaseCharacter = null;
+  var oldDad:BaseCharacter = null;
+  var oldGF:BaseCharacter = null;
+
+  var focusCached:Bool = false;
+  var bfFocusX:Float = 0;
+  var bfFocusY:Float = 0;
+  var dadFocusX:Float = 0;
+  var dadFocusY:Float = 0;
+  var breakSpotlight:FunkinSprite = null;
+
+  var regStuff:Array<Dynamic> = [];
+  var darkStuff:Array<Dynamic> = [];
+  var breakSpotlightThing:Bool = false;
+
+  var cameraXOffset:Float = 0;
+  var cameraYOffset:Float = 0;
+
+  var realCamX:Float = 0;
+  var realCamY:Float = 0;
+
+  var videoPrimed:Bool = false;
+  var videoAdded:Bool = false;
+  var lastVideoSeek:Float = -99999;
+  var lastRateChange:Float = -99999;
+  var videoVolume:Float = 100;
+
+  static var SYNC_SETTLE:Float = 1000;
+  static var SYNC_SNAP:Float = 1000;
+  static var SYNC_HOLD:Float = 400;
+  static var SYNC_DEADBAND:Float = 40;
+
+  var revealFrames:Int = 0;
+
+	public function new() {
+  	super("cooling");
+	}
+
+  public override function onCreate() {
+    super.onCreate();
+    trace("loading cooling song");
+
+    hasStarted = false;
+    videoPrimed = false;
+    videoAdded = false;
+
+    vid = new FunkinVideoSprite(0, 0);
+    vid.load(Paths.videos("ui/hex/videos/coolingVisualizer"), [":no-audio"]);
+    vid.bitmap.onFormatSetup.add(() ->
+      {
+        vid.cameras = [PlayState.instance.camGame];
+        vid.x = 455;
+        vid.y = 0;
+        vid.scale.set(0.75, 0.75);
+        vid.updateHitbox();
+        vid.scrollFactor.set(0.9,0.9);
+        videoReady = true;
+
+        if (!hasStarted)
+        {
+          vid.pause();
+          vid.bitmap.time = 0;
+          vid.bitmap.volume = videoVolume;
+
+          if (!videoAdded)
+          {
+            videoAdded = true;
+            vid.alpha = 1 / 255;
+            PlayState.instance.add(vid);
+            vid.zIndex = -1000;
+            PlayState.instance.refresh();
+          }
+        }
+      });
+    vid.pause();
+
+    primeVideo();
+
+    darkStuff = [];
+
+    darkStuff.push(PlayState.instance.currentStage.getNamedProp("breakBack"));
+    darkStuff.push(PlayState.instance.currentStage.getNamedProp("breakFront"));
+    darkStuff.push(PlayState.instance.currentStage.getNamedProp("breakOverlay"));
+    darkStuff.push(PlayState.instance.currentStage.getNamedProp("crowd_dark"));
+
+    breakSpotlight = PlayState.instance.currentStage.getNamedProp("breakSpotlight");
+
+    regStuff = [];
+
+    regStuff.push(PlayState.instance.currentStage.getNamedProp("hexBack"));
+    regStuff.push(PlayState.instance.currentStage.getNamedProp("hexFront"));
+    regStuff.push(PlayState.instance.currentStage.getNamedProp("topOverlay"));
+    regStuff.push(PlayState.instance.currentStage.getNamedProp("crowd"));
+
+
+    for (dark in darkStuff)
+    {
+      dark.alpha = 0;
+    }
+
+
+    breakSpotlight.alpha = 0;
+
+    switchEm(false);
+
+    switchTime = SWITCH_TIME;
+    applyBlend();
+	}
+
+  public override function onSongLoaded(event) {
+    super.onSongLoaded(event);
+    rimOn();
+
+    oldBF = PlayState.instance.currentStage.getBoyfriend();
+    oldDad = PlayState.instance.currentStage.getDad();
+    oldGF = PlayState.instance.currentStage.getGirlfriend();
+
+    if (!focusCached && oldBF != null && oldDad != null)
+    {
+      bfFocusX = oldBF.cameraFocusPoint.x;
+      bfFocusY = oldBF.cameraFocusPoint.y;
+      dadFocusX = oldDad.cameraFocusPoint.x;
+      dadFocusY = oldDad.cameraFocusPoint.y;
+      focusCached = true;
+    }
+
+    placeOriginals();
+
+    var variation:String = PlayState.instance.currentVariation;
+
+    trace("loading spotlights for variation " + variation);
+
+    if (spots != null && spotsOwner == PlayState.instance.currentStage)
+      PlayState.instance.currentStage.remove(spots);
+
+    spots = new ReactiveSpotlights();
+    spots.load(getDifficulty('erect', variation));
+
+    spotsOwner = PlayState.instance.currentStage;
+    PlayState.instance.currentStage.add(spots);
+    PlayState.instance.currentStage.refresh();
+  }
+
+  public override function onSongEvent(event) {
+    var event = event.eventData;
+
+    if (event.eventKind == "FocusCamera")
+    {
+      focusType = event.value.char;
+      breakSpotlight.y = -170;
+      breakSpotlightThing = true;
+    }
+
+    super.onSongEvent(event);
+  }
+
+  function applyBlend()
+  {
+    var t:Float = FlxEase.sineInOut(switchTime / SWITCH_TIME);
+    darkBlend = switchToDark ? t : 1 - t;
+
+    var regAlpha:Float = 1 - darkBlend;
+
+    for (dark in darkStuff)
+      dark.alpha = darkBlend;
+
+    for (reg in regStuff)
+      reg.alpha = regAlpha;
+  }
+
+  function placeOriginals()
+  {
+    if (oldDad != null)
+    {
+      oldDad.x = 500;
+      oldDad.y = 160;
+    }
+
+    if (oldBF != null)
+    {
+      oldBF.x = 1100;
+      oldBF.y = 450;
+    }
+
+    if (oldGF != null)
+    {
+      oldGF.x = 670;
+      oldGF.y = 180;
+    }
+  }
+
+  public function switchEm(to:Bool)
+  {
+    cameraXOffset = 0;
+    cameraYOffset = 0;
+    switchToDark = to;
+    switchTime = 0;
+
+    if (!switchToDark)
+      breakSpotlightThing = true;
+
+    trace("switched to " + (switchToDark ? "dark" : "regular") + " mode");
+  }
+
+  public function syncVideo()
+  {
+    if (!hasStarted || isPaused || !videoReady)
+      return;
+
+    var now:Float = Conductor.instance.songPosition;
+    var videoTime:Float = vid.bitmap.time;
+
+    if (videoTime <= 0 || now - lastVideoSeek < SYNC_SETTLE)
+      return;
+
+    var diff:Float = now - videoTime;
+    var off:Float = Math.abs(diff);
+
+    if (off > SYNC_SNAP)
+    {
+      seekVideo(now);
+      return;
+    }
+
+    if (now - lastRateChange < SYNC_HOLD)
+      return;
+
+    if (off < SYNC_DEADBAND)
+    {
+      if (videoRate != 1.0)
+      {
+        lastRateChange = now;
+        setVideoRate(1.0);
+      }
+      return;
+    }
+
+    lastRateChange = now;
+    setVideoRate(1.0 + Math.round(FloatTools.clamp(diff / 1000, -0.1, 0.1) / 0.02) * 0.02);
+  }
+
+  function seekVideo(ms:Float)
+  {
+    lastVideoSeek = ms;
+    lastRateChange = ms;
+    setVideoRate(1.0);
+
+    var target:Float = Math.max(0, ms);
+    if (Math.abs(vid.bitmap.time - target) > SYNC_DEADBAND)
+      vid.bitmap.time = Std.int(target);
+  }
+
+  public function setVideoRate(rate:Float)
+  {
+    if (!rateSupported || Math.abs(videoRate - rate) < 0.005)
+      return;
+
+    try
+    {
+      vid.bitmap.rate = rate;
+      videoRate = rate;
+    }
+    catch (e:Dynamic)
+    {
+      rateSupported = false;
+    }
+  }
+
+  public override function onBeatHit(event) {
+    switch (event.beat)
+    {
+      case 100:
+        regStuff[3].danceEvery = 2;
+      case 132:
+        shouldPsychMove = true;
+        regStuff[3].danceEvery = 1;
+      case 196:
+        regStuff[3].danceEvery = 4;
+        shouldPsychMove = false;
+        cameraXOffset = 0;
+        cameraYOffset = 0;
+        switchEm(true);
+      case 256:
+        switchEm(false);
+      case 324:
+        regStuff[3].danceEvery = 2;
+      case 356:
+        regStuff[3].danceEvery = 1;
+        shouldPsychMove = true;
+      case 412:
+        regStuff[3].danceEvery = 4;
+        shouldPsychMove = false;
+        cameraXOffset = 0;
+        cameraYOffset = 0;
+    }
+
+    super.onBeatHit(event);
+  }
+
+  public override function onPause(event) {
+    vid.pause();
+    isPaused = true;
+    super.onPause(event);
+  }
+
+  public override function onResume(event) {
+    seekVideo(Conductor.instance.songPosition);
+    vid.resume();
+    isPaused = false;
+    super.onResume(event);
+  }
+
+  public override function onDestroy(event) {
+    focusCached = false;
+    super.onDestroy(event);
+  }
+
+  public override function onSongRetry(event) {
+    seekVideo(0);
+    if (spots != null)
+      spots.reset();
+    vid.pause();
+    vid.alpha = 1 / 255;
+    setVideoRate(1.0);
+    hasStarted = false;
+    revealFrames = 4;
+    switchEm(false);
+    switchTime = SWITCH_TIME;
+    applyBlend();
+    super.onSongRetry(event);
+    rimOn();
+  }
+
+  public override function onUpdate(event)
+  {
+
+    if (revealFrames > 0 && hasStarted && !isPaused && videoReady && vid.bitmap.time > 0 && vid.bitmap.time < 2000)
+    {
+      revealFrames--;
+      if (revealFrames == 0)
+        vid.alpha = 1;
+    }
+
+    syncVideo();
+
+    if (oldBF == null || oldDad == null)
+      return;
+
+    realCamX = FlxMath.lerp(realCamX, cameraXOffset, 0.06);
+    realCamY = FlxMath.lerp(realCamY, cameraYOffset, 0.06);
+
+    switch(focusType)
+    {
+      case 0: // bf
+        PlayState.instance.cameraFollowPoint.setPosition(bfFocusX + realCamX, bfFocusY + realCamY);
+      case 1: // dad
+        PlayState.instance.cameraFollowPoint.setPosition(dadFocusX + realCamX, dadFocusY + realCamY);
+    }
+
+    var oneFithOfFrame = event.elapsed * 3.25;
+
+
+    // dark stuff
+
+    if (switchTime < SWITCH_TIME)
+    {
+      switchTime += event.elapsed;
+      if (switchTime > SWITCH_TIME)
+        switchTime = SWITCH_TIME;
+    }
+
+    applyBlend();
+
+    // break spotlight
+
+    if (breakSpotlightThing)
+    {
+      breakSpotlight.alpha = FloatTools.clamp(FlxMath.lerp(breakSpotlight.alpha, 0, oneFithOfFrame), 0, 1);
+
+      if (breakSpotlight.alpha < 0.1)
+        breakSpotlightThing = false;
+    }
+    else
+    {
+      switch(focusType) // break spotlight
+      {
+        case 0: // bf
+          breakSpotlight.x = oldBF.x - 200;
+        case 1: // dad
+          breakSpotlight.x = oldDad.x - 200;
+      }
+
+      if (switchToDark)
+        breakSpotlight.alpha = FloatTools.clamp(FlxMath.lerp(breakSpotlight.alpha, 1, oneFithOfFrame), 0, 1);
+    }
+
+    super.onUpdate(event);
+  }
+
+  public override function onCountdownStart(event) {
+    placeOriginals();
+
+    if (spots != null)
+      spots.hide();
+
+    super.onCountdownStart(event);
+  }
+
+  public override function onNoteHit(event) {
+    if (shouldPsychMove)
+    {
+      var data = event.note.noteData.data;
+
+      if (data > 3)
+        data -= 4;
+
+      switch(data)
+      {
+        case 0: // left
+          cameraXOffset = -50;
+          cameraYOffset = 0;
+        case 1: // down
+          cameraYOffset = 50;
+          cameraXOffset = 0;
+        case 2: // up
+          cameraYOffset = -50;
+          cameraXOffset = 0;
+        case 3: // right
+          cameraXOffset = 50;
+          cameraYOffset = 0;
+      }
+
+    }
+
+    super.onNoteHit(event);
+  }
+
+  function primeVideo():Void {
+    if (vid == null || videoPrimed)
+      return;
+
+    videoPrimed = true;
+    videoVolume = vid.bitmap.volume;
+    vid.bitmap.volume = 0;
+    vid.play();
+  }
+
+  public override function onSongStart(event):Void {
+    hasStarted = true;
+    vid.bitmap.volume = videoVolume;
+
+    seekVideo(Conductor.instance.songPosition);
+
+    if (revealFrames <= 0)
+      vid.alpha = 1;
+
+    vid.play();
+
+    if (!videoAdded)
+    {
+      videoAdded = true;
+      PlayState.instance.add(vid);
+      vid.zIndex = -1000;
+      PlayState.instance.refresh();
+    }
+
+    super.onSongStart(event);
+  }
+
+  public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+
+  // BF and GF are the old sheets in the weekend look, through CharacterRim.
+  function rimOn() {
+    var rim = ModuleHandler.getModule("CharacterRim");
+    if (rim != null)
+      rim.enable("weekend");
+  }
+}

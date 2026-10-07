@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="hex_mine_explosion.png">
+	
+	
+	<SubTexture name="mineBoom0000" x="2" y="302" width="190" height="271" frameX="-31" frameY="-11" frameWidth="260" frameHeight="298" />
+	<SubTexture name="mineBoom0001" x="194" y="302" width="214" height="266" frameX="-26" frameY="-21" frameWidth="260" frameHeight="298" />
+	<SubTexture name="mineBoom0002" x="264" y="2" width="251" height="291" frameX="-4" frameY="-6" frameWidth="260" frameHeight="298" />
+	<SubTexture name="mineBoom0003" x="2" y="2" width="260" height="298" frameX="0" frameY="0" frameWidth="260" frameHeight="298" />
+</TextureAtlas>

@@ -1,0 +1,43 @@
+{
+ "version": "2.2.8",
+ "songName": "HEXcript",
+ "artist": "YingYang48 ft. KadeDevl",
+ "charter": "YingYang48",
+ "offsets": { },
+ "playData": {
+  "difficulties": [
+   "easy",
+   "normal",
+   "hard"
+  ],
+  "characters": {
+   "player": "bf-hexware",
+   "girlfriend": "gf",
+   "opponent": "hex-hexware",
+   "opponentVocals": [
+    "hex-hexware"
+   ],
+   "playerVocals": [
+    "bf-hexware"
+   ]
+  },
+  "stage": "windows",
+  "noteStyle": "hex",
+  "ratings": {
+   "easy": 6,
+   "normal": 6,
+   "hard": 8
+  },
+  "album": "volume1",
+  "stickerPack": "default"
+ },
+ "generatedBy": "Friday Night Funkin' - v0.8.5",
+ "timeChanges": [
+  {
+   "t": 0,
+   "b": 0,
+   "bpm": 175,
+   "bt": [4, 4, 4, 4]
+  }
+ ]
+}

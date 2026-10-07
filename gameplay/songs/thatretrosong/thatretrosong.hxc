@@ -1,0 +1,74 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.play.character.BaseCharacter;
+import funkin.play.character.CharacterType;
+import funkin.save.Save;
+import funkin.data.character.CharacterDataParser;
+
+class ThatRetroSong extends Song {
+    var hexOg:BaseCharacter;
+    var hexTrans:BaseCharacter;
+    var hexTWO:BaseCharacter; // hex was so good they made a second one
+
+    var didSwitch:Bool = false;
+
+    public function new() {
+        super("thatretrosong");
+    }
+
+    function animationFinished(name:String)
+    {
+        trace("animation finished");
+
+        if (!didSwitch || PlayState.instance.currentStage.getBoyfriend() != hexTrans)
+            return;
+
+        hexTrans.animation.onFinish.remove(animationFinished);
+        hexTrans.visible = false;
+        hexTWO.visible = true;
+        PlayState.instance.currentStage.addCharacter(hexTWO, CharacterType.BF);
+    }
+
+    public override function onSongRetry(event) {
+        super.onSongRetry(event);
+        didSwitch = false;
+        hexTrans.animation.onFinish.remove(animationFinished);
+        hexTrans.animation.stop();
+        hexTrans.visible = false;
+        hexTWO.visible = false;
+        PlayState.instance.currentStage.addCharacter(hexOg, CharacterType.BF);
+        hexOg.visible = true;
+    }
+
+    public function switchToTrans() {
+        trace("switching to trans");
+        PlayState.instance.currentStage.addCharacter(hexTrans, CharacterType.BF);
+        hexTrans.playAnimation("idle", true);
+        hexTrans.animation.onFinish.remove(animationFinished);
+        hexTrans.animation.onFinish.add(animationFinished);
+        hexTWO.visible = false;
+        hexOg.visible = false;
+    }
+
+	public override function onSongLoaded(event) {
+		hexOg = PlayState.instance.currentStage.getBoyfriend();
+        hexTrans = CharacterDataParser.fetchCharacter("hexretrotrans");
+        hexTrans.characterType = CharacterType.BF;
+        hexTWO = CharacterDataParser.fetchCharacter("hexretro2");
+        hexTWO.characterType = CharacterType.BF;
+    }
+
+    public override function onBeatHit(event) {
+        if (event.beat >= 160 && !didSwitch) {
+            didSwitch = true;
+            switchToTrans();
+        }
+    }
+
+    public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+}

@@ -1,0 +1,1220 @@
+package kade.hex.songs;
+
+import kade.hex.modules.Hex_Hud;
+import funkin.modding.module.ModuleHandler;
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import flixel.tweens.FlxEase;
+import funkin.play.character.BaseCharacter;
+import funkin.data.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import flixel.FlxObject;
+import flixel.math.FlxMath;
+import funkin.modding.events.HitNoteScriptEvent;
+import funkin.data.notestyle.NoteStyleRegistry;
+import funkin.play.song.Song;
+import funkin.save.Save;
+import funkin.play.PlayState;
+import funkin.play.notes.StrumlineNote;
+import funkin.play.notes.Strumline;
+import funkin.util.GRhythmUtil;
+import flixel.math.FlxPoint;
+import funkin.Highscore;
+import funkin.modding.events.ScriptEvent;
+import funkin.audio.FunkinSound;
+import flixel.FlxSprite;
+
+import flixel.FlxG;
+import hxvlc.flixel.FlxVideoSprite;
+import funkin.Conductor;
+import funkin.Paths;
+
+
+// https://media1.tenor.com/m/1A18x410xEEAAAAd/guardians-of-the-galaxy-i-know-that-sounds-bad.gif
+class Headbasher extends Song {
+	var hexStrumline:Strumline;
+
+	var hexNotes = null;
+	var hexRow = null;
+
+	function dimNote(note)
+	{
+		if (note == null)
+			return;
+
+		note.alpha = 0.4;
+
+		if (note.holdNoteSprite != null)
+			note.holdNoteSprite.alpha = 0.4;
+	}
+
+	public function onStrumlineNoteIncoming(note)
+	{
+		@:privateAccess
+		PlayState.instance.onStrumlineNoteIncoming(note);
+		dimNote(note);
+	}
+
+	var modchartModule:Dynamic = null;
+	var modchartOwner:Dynamic = null;
+
+	function grabHexRow():Void
+	{
+		if (hexNotes == null)
+			return;
+
+		hexStrumline = null;
+
+		if (modchartModule == null || modchartOwner != PlayState.instance)
+		{
+			modchartOwner = PlayState.instance;
+			modchartModule = ModuleHandler.getModule("headbasher_modchart");
+		}
+
+		var modchart = modchartModule;
+		if (modchart == null)
+			return;
+
+		var nf = modchart.nf;
+		if (nf == null || nf.field == null)
+			return;
+
+		var all = nf.field.rows();
+		if (all == null || all.length < 3)
+			return;
+
+		var row = all[2];
+		if (row == null || row.notes == null || row.notes.members == null)
+			return;
+
+		hexStrumline = row;
+
+		if (row == hexRow)
+			return;
+
+		hexRow = row;
+		hexStrumline.noteStyle = NoteStyleRegistry.instance.fetchEntry("hex_hb_1");
+		hexStrumline.applyNoteData(hexNotes);
+		hexStrumline.onNoteIncoming.add(onStrumlineNoteIncoming);
+
+		var owned = nf.field.owned;
+		if (owned != null && owned.indexOf(row) < 0)
+			owned.push(row);
+	}
+
+	var hex:BaseCharacter;
+
+	var leftBG:FlxSprite;
+	var middleBG:FlxSprite;
+	var rightBG:FlxSprite;
+	var leftWireBG:StageProp;
+	var middleWireBG:StageProp;
+	var rightWireBG:StageProp;
+
+	var leftOverlay:StageProp;
+	var rightOverlay:StageProp;
+	var bg2Right:StageProp;
+	var bg2RightOverlay:StageProp;
+
+	var bg3:StageProp;
+	var bg3Overlay:StageProp;
+
+	var warnBack:FlxSprite;
+	var warnFill:FlxSprite;
+	var warnOne:FlxSprite;
+	var warnTwo:FlxSprite;
+
+	var hexWire:BaseCharacter;
+	var slasherWire:BaseCharacter;
+	var bfWire:BaseCharacter;
+
+	var hex2:BaseCharacter;
+	var bf2:BaseCharacter;
+	var slasher2:BaseCharacter;
+
+	var hex3:BaseCharacter;
+	var bf3:BaseCharacter;
+	var slasher3:BaseCharacter;
+
+	var hexOg:BaseCharacter;
+	var bfOg:BaseCharacter;
+	var slasherOg:BaseCharacter;
+
+	var curHex:BaseCharacter;
+	var curBF:BaseCharacter;
+	var curSlasher:BaseCharacter;
+
+	public function new() {
+  	    super("headbasher");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+	function loadModchart() {
+		var modchart = ModuleHandler.getModule("headbasher_modchart");
+		if (modchart == null) {
+			trace("headbasher: no headbasher_modchart module, the notefield will not come up");
+			return;
+		}
+
+		modchart.load(PlayState.instance.currentDifficulty);
+		modchart.armed = true;
+		trace("headbasher: modchart loaded, armed " + modchart.armed);
+	}
+
+	public override function onCreate() {
+		super.onCreate();
+
+		FunkinSound.load(Paths.sound("ui/hex/sounds/slasher-hit"));
+		
+		hex = PlayState.instance.currentStage.getGirlfriend();
+
+		var diff = PlayState.instance.currentDifficulty + " (hex)";
+		var hexDiff = difficulties.get("default").get(diff);
+
+		hexNotes = hexDiff == null ? null : hexDiff.notes;
+		hexStrumline = null;
+		hexRow = null;
+
+		if (hexNotes == null)
+			trace("Couldn't find hex difficulty data for " + diff);
+
+		var slasherStyle = NoteStyleRegistry.instance.fetchEntry("slasher_hb_1");
+		if (PlayState.instance.opponentStrumline.noteStyle != slasherStyle)
+			PlayState.instance.opponentStrumline.noteStyle = slasherStyle;
+
+		loadModchart();
+
+		bfOg = PlayState.instance.currentStage.getBoyfriend();
+		slasherOg = PlayState.instance.currentStage.getDad();
+		hexOg = PlayState.instance.currentStage.getGirlfriend();
+
+		hexWire = CharacterDataParser.fetchCharacter("hex-hb-1-w");
+		bfWire = CharacterDataParser.fetchCharacter("bf-hb-1-w");
+		slasherWire = CharacterDataParser.fetchCharacter("slasher-w");
+
+		hex2 = CharacterDataParser.fetchCharacter("hex-hb-2");
+		bf2 = CharacterDataParser.fetchCharacter("bf-hb-2");
+		slasher2 = CharacterDataParser.fetchCharacter("slasher-2");
+
+		hex3 = CharacterDataParser.fetchCharacter("hex-hb-3");
+		bf3 = CharacterDataParser.fetchCharacter("bf-hb-3");
+		slasher3 = CharacterDataParser.fetchCharacter("slasher-3");
+
+		stageNow = -1;
+		swapped = false;
+		deathStep = 0;
+		onceOn[0] = false;
+		onceOn[1] = false;
+		secondTween = false;
+		firstTween = false;
+		needsReset = false;
+		curHex = null;
+		curBF = null;
+		curSlasher = null;
+		bgOffsetY = 0;
+		bgOffsetX = 0;
+		characterOffsetY = 0;
+		characterOffsetX = 0;
+		slasherCharacterOffsetY = 0;
+		slasherCharacterOffsetX = 0;
+		for (i in 0...holdOverrideNotes.length)
+			holdOverrideNotes[i] = false;
+
+		leftBG = PlayState.instance.currentStage.getNamedProp("bg1_left");
+		middleBG = PlayState.instance.currentStage.getNamedProp("bg1_center");
+		rightBG = PlayState.instance.currentStage.getNamedProp("bg1_right");
+
+		leftWireBG = PlayState.instance.currentStage.getNamedProp("bg1w_left");
+		middleWireBG = PlayState.instance.currentStage.getNamedProp("bg1w_center");
+		rightWireBG = PlayState.instance.currentStage.getNamedProp("bg1w_right");
+
+		leftOverlay = PlayState.instance.currentStage.getNamedProp("bg2_left_overlay");
+		rightOverlay = PlayState.instance.currentStage.getNamedProp("bg3_right_overlay");
+		bg2Right = PlayState.instance.currentStage.getNamedProp("bg2_right");
+		bg2RightOverlay = PlayState.instance.currentStage.getNamedProp("bg2_right_overlay");
+
+		bg3 = PlayState.instance.currentStage.getNamedProp("bg3_center");
+		bg3Overlay = PlayState.instance.currentStage.getNamedProp("bg3_overlay");
+
+		leftWireBG.visible = false;
+		middleWireBG.visible = false;
+		rightWireBG.visible = false;
+
+		leftOverlay.visible = true;
+		bg2Right.visible = false;
+		bg2RightOverlay.visible = false;
+		rightOverlay.visible = false;
+
+		bg3.visible = false;
+		bg3Overlay.visible = false;
+
+		leftBGStartOffset.set(leftBG.offset.x, leftBG.offset.y);
+		middleBGStartOffset.set(middleBG.offset.x, middleBG.offset.y);
+		rightBGStartOffset.set(rightBG.offset.x, rightBG.offset.y);
+
+		hexOgStartOffset.set(hexOg.offset.x, hexOg.offset.y);
+		bfOgStartOffset.set(bfOg.offset.x, bfOg.offset.y);
+		slasher2StartOffset.set(slasher2.offset.x, slasher2.offset.y);
+
+		hex2StartOffset.set(hex2.offset.x, hex2.offset.y);
+		bf2StartOffset.set(bf2.offset.x, bf2.offset.y);
+
+		bg2RightStartOffset.set(bg2Right.offset.x, bg2Right.offset.y);
+		bg2RightOverlayStartOffset.set(bg2RightOverlay.offset.x, bg2RightOverlay.offset.y);
+		leftOverlayStartOffset.set(leftOverlay.offset.x, leftOverlay.offset.y);
+
+		buildWarning();
+
+		switchem();
+		switchem();
+
+		switchCharacters(1);
+		switchCharacters(2);
+		switchCharacters(0);
+
+		stageNow = -1;
+		swapped = false;
+	}
+
+	function overlayCamera()
+	{
+		var hud = ModuleHandler.getModule("HEX-HUD");
+		if (hud != null && hud.shouldUseHexHud)
+			return hud.getOverCam();
+
+		return PlayState.instance.camHUD;
+	}
+
+	function shakeCamera()
+	{
+		var hud = ModuleHandler.getModule("HEX-HUD");
+		if (hud != null && hud.shouldUseHexHud)
+			return hud.getShakeCam();
+
+		return PlayState.instance.camHUD;
+	}
+
+	function buildWarning():Void
+	{
+		warnBack = new FlxSprite();
+		warnBack.makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFF000000);
+		warnBack.scrollFactor.set();
+		warnBack.visible = false;
+		PlayState.instance.add(warnBack);
+		warnBack.zIndex = 9998;
+		warnBack.cameras = [overlayCamera()];
+		warnBack.screenCenter();
+
+		warnFill = new FlxSprite();
+		warnFill.makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFF000000);
+		warnFill.scrollFactor.set();
+		warnFill.visible = false;
+		PlayState.instance.add(warnFill);
+		warnFill.zIndex = 9997;
+		warnFill.cameras = [PlayState.instance.camGame];
+		warnFill.screenCenter();
+
+		warnOne = makeWarning("warningText1");
+		warnTwo = makeWarning("warningText2");
+	}
+
+	function makeWarning(id:String):FlxSprite
+	{
+		var made = new FlxSprite();
+		made.loadGraphic(Paths.image("gameplay/stages/headbasher/" + id));
+		made.scrollFactor.set();
+		made.visible = false;
+		PlayState.instance.add(made);
+		made.zIndex = 9999;
+		made.cameras = [shakeCamera()];
+		made.screenCenter();
+
+		return made;
+	}
+
+	var deathStep:Int = 0;
+
+	function startDeath():Void
+	{
+		if (slasher3 == null)
+			return;
+
+		deathStep = 1;
+		slasher3.canPlayOtherAnims = true;
+		slasher3.playAnimation("death1", true, true);
+	}
+
+	function stepDeath():Void
+	{
+		if (deathStep == 0 || slasher3 == null || slasher3.animation == null)
+			return;
+
+		var now = slasher3.animation.curAnim;
+		if (now == null)
+			return;
+
+		var want = deathStep == 1 ? "death1" : "death2";
+
+		if (now.name != want)
+		{
+			slasher3.canPlayOtherAnims = true;
+			slasher3.playAnimation(want, true, true);
+			return;
+		}
+
+		if (!now.finished)
+			return;
+
+		if (deathStep == 1)
+		{
+			deathStep = 2;
+			slasher3.canPlayOtherAnims = true;
+			slasher3.playAnimation("death2", true, true);
+			return;
+		}
+
+		deathStep = 0;
+		slasher3.canPlayOtherAnims = true;
+		slasher3.visible = false;
+	}
+
+	function showWarning(which:FlxSprite):Void
+	{
+		if (warnBack == null)
+			return;
+
+		warnBack.visible = true;
+		warnFill.visible = true;
+		warnOne.visible = which == warnOne;
+		warnTwo.visible = which == warnTwo;
+	}
+
+	function hideWarning():Void
+	{
+		if (warnBack == null)
+			return;
+
+		warnBack.visible = false;
+		warnFill.visible = false;
+		warnOne.visible = false;
+		warnTwo.visible = false;
+	}
+
+	public override function onSongStart(event) {
+		super.onSongStart(event);
+	}
+
+	private var swapped:Bool = false;
+
+	var stageNow:Int = -1;
+
+	function stageFor(beat:Float):Int {
+		if (beat < 96) return 0;
+		if (beat < 160) return 1;
+		if (beat < 176) return 2;
+		if (beat < 511.5) return 3;
+		return 4;
+	}
+
+	public function applyStage(beat:Float):Void {
+		var want:Int = stageFor(beat);
+		if (want == stageNow)
+			return;
+
+		stageNow = want;
+
+		switch (want)
+		{
+			case 0:
+				switchCharacters(0);
+			case 1:
+				setWire(true);
+			case 2:
+				setWire(false);
+			case 3:
+				switchCharacters(1);
+			case 4:
+				switchCharacters(2);
+		}
+	}
+
+	static var SCARED_FROM:Float = 238.25;
+	static var SCARED_SWAP:Float = 240;
+	static var SCARED_TO:Float = 443;
+
+	// [0] = hex, [1] = bf
+	var idleWant:Array<String> = ["", ""];
+	var idleWas:Array<String> = ["", ""];
+	var idleFrames:Array<Int> = [0, 0];
+	var idleDone:Array<Bool> = [true, true];
+	var onceOn:Array<Bool> = [false, false];
+
+	function applyScared(beat:Float):Void
+	{
+		if (beat >= SCARED_FROM && beat < SCARED_SWAP)
+		{
+			idleWant[0] = "idle_transition";
+			bfSuffix = "_scared";
+		}
+		else if (beat >= SCARED_SWAP && beat < SCARED_TO)
+		{
+			idleWant[0] = "alt_idle";
+			bfSuffix = "_mad";
+		}
+		else
+		{
+			idleWant[0] = "";
+			bfSuffix = "";
+		}
+
+		var stage = PlayState.instance.currentStage;
+		if (stage == null)
+			return;
+
+		holdOnce(stage.getGirlfriend(), 0);
+		holdOnce(stage.getBoyfriend(), 1);
+
+		if (!onceOn[0])
+			holdIdle(stage.getGirlfriend(), 0);
+
+		applySuffix(stage.getBoyfriend());
+	}
+
+	var bfSuffix:String = "";
+
+	function applySuffix(cur:BaseCharacter):Void
+	{
+		for (bf in [bfOg, bfWire, bf2, bf3])
+		{
+			if (bf == null)
+				continue;
+
+			var suffix = (bfSuffix != "" && bf.hasAnimation("idle" + bfSuffix)) ? bfSuffix : "";
+			if (bf.idleSuffix == suffix)
+				continue;
+
+			bf.idleSuffix = suffix;
+
+			if (bf == cur && !onceOn[1] && !bf.isSinging())
+				bf.playAnimation("idle" + suffix, true);
+		}
+
+		if (cur == null || onceOn[1] || cur.idleSuffix == "" || cur.animation == null || cur.animation.curAnim == null)
+			return;
+
+		var now = cur.animation.curAnim;
+		if (now.name != "idle")
+			return;
+
+		var frame = now.curFrame;
+		cur.playAnimation("idle" + cur.idleSuffix, true);
+
+		var alt = cur.animation.curAnim;
+		if (alt != null && alt.name == "idle" + cur.idleSuffix && alt.numFrames > 0)
+			alt.curFrame = frame % alt.numFrames;
+	}
+
+	function playOnce(who:BaseCharacter, slot:Int, name:String):Void
+	{
+		if (who == null || !who.hasAnimation(name))
+			return;
+
+		who.canPlayOtherAnims = true;
+		who.playAnimation(name, true, true);
+		who.canPlayOtherAnims = false;
+		onceOn[slot] = true;
+
+		idleWant[slot] = "";
+		idleWas[slot] = "";
+		idleFrames[slot] = 0;
+		idleDone[slot] = true;
+	}
+
+	function holdOnce(who:BaseCharacter, slot:Int):Void
+	{
+		if (!onceOn[slot])
+			return;
+
+		if (who == null)
+		{
+			onceOn[slot] = false;
+			return;
+		}
+
+		var now = who.animation.curAnim;
+		if (now != null && (!now.finished || now.name == "glance_transition"))
+			return;
+
+		who.canPlayOtherAnims = true;
+		who.playAnimation("idle", true);
+		onceOn[slot] = false;
+	}
+
+	function holdIdle(who:BaseCharacter, slot:Int):Void
+	{
+		if (who == null || who.animation == null || who.animation.curAnim == null)
+			return;
+
+		var want = idleWant[slot];
+		var now = who.animation.curAnim;
+
+		if (want == "")
+		{
+			if (idleWas[slot] != "" && now.name == idleWas[slot])
+				who.playAnimation("idle", true);
+
+			idleWas[slot] = "";
+			idleFrames[slot] = 0;
+			idleDone[slot] = true;
+			return;
+		}
+
+		if (idleWas[slot] != want)
+		{
+			idleWas[slot] = want;
+			idleFrames[slot] = 0;
+			idleDone[slot] = false;
+
+			if (!who.isSinging())
+			{
+				who.playAnimation(want, true);
+				return;
+			}
+		}
+
+		if (now.name == want)
+		{
+			idleFrames[slot] = now.curFrame;
+
+			if (now.finished)
+				idleDone[slot] = true;
+
+			return;
+		}
+
+		if (now.name != "idle")
+			return;
+
+		who.playAnimation(want, true);
+
+		var back = who.animation.curAnim;
+		if (back == null || back.name != want || back.numFrames < 1)
+			return;
+
+		back.curFrame = idleFrames[slot] % back.numFrames;
+	}
+
+	function beatIdle(who:BaseCharacter, slot:Int, beat:Int):Void
+	{
+		var want = idleWant[slot];
+		if (want == "" || onceOn[slot] || who == null || who.animation == null || who.animation.curAnim == null)
+			return;
+
+		var now = who.animation.curAnim.name;
+		if (now != "idle" && now != want)
+			return;
+
+		if (who.danceEvery > 0 && beat % who.danceEvery != 0)
+			return;
+
+		if (!idleDone[slot])
+			return;
+
+		who.playAnimation(want, true);
+		idleFrames[slot] = 0;
+		idleDone[slot] = false;
+	}
+
+	public function switchem() {
+		setWire(!swapped);
+	}
+
+	function carryAnimation(from:BaseCharacter, to:BaseCharacter):Void
+	{
+		if (from == null || to == null || from == to || from.animation == null || to.animation == null)
+			return;
+
+		var was = from.animation.curAnim;
+		if (was == null)
+			return;
+
+		to.playAnimation(was.name, true);
+
+		var now = to.animation.curAnim;
+		if (now == null || now.name != was.name)
+		{
+			to.playAnimation("idle", true);
+			return;
+		}
+
+		now.curFrame = was.curFrame;
+		now.paused = was.paused;
+		to.holdTimer = from.holdTimer;
+	}
+
+	function swapTrio(newHex:BaseCharacter, newBF:BaseCharacter, newSlasher:BaseCharacter):Void
+	{
+		carryAnimation(curHex, newHex);
+		carryAnimation(curBF, newBF);
+		carryAnimation(curSlasher, newSlasher);
+
+		curHex = newHex;
+		curBF = newBF;
+		curSlasher = newSlasher;
+	}
+
+	public function setWire(on:Bool) {
+		if (swapped == on)
+			return;
+
+		swapped = on;
+
+		// flash red
+		FlxG.camera.flash(0xFFFF0000, 1);
+		if (on) {
+			PlayState.instance.currentStage.addCharacter(slasherWire, CharacterType.DAD);
+			slasherWire.zIndex = slasherOg.zIndex;
+			PlayState.instance.currentStage.addCharacter(bfWire, CharacterType.BF);
+			PlayState.instance.currentStage.addCharacter(hexWire, CharacterType.GF);
+			hexWire.visible = true;
+			bfWire.visible = true;
+			slasherWire.visible = true;
+			hexOg.visible = false;
+			bfOg.visible = false;
+			slasherOg.visible = false;
+
+			leftBG.visible = false;
+			middleBG.visible = false;
+			rightBG.visible = false;
+
+			leftWireBG.visible = true;
+			middleWireBG.visible = true;
+			rightWireBG.visible = true;
+		} else {
+			PlayState.instance.currentStage.addCharacter(slasherOg, CharacterType.DAD);
+			PlayState.instance.currentStage.addCharacter(bfOg, CharacterType.BF);
+			PlayState.instance.currentStage.addCharacter(hexOg, CharacterType.GF);
+			hexWire.visible = false;
+			bfWire.visible = false;
+			slasherWire.visible = false;
+			hexOg.visible = true;
+			bfOg.visible = true;
+			slasherOg.visible = true;
+
+			leftBG.visible = true;
+			middleBG.visible = true;
+			rightBG.visible = true;
+
+			leftWireBG.visible = false;
+			middleWireBG.visible = false;
+			rightWireBG.visible = false;
+		}
+
+		if (on)
+			swapTrio(hexWire, bfWire, slasherWire);
+		else
+			swapTrio(hexOg, bfOg, slasherOg);
+
+		PlayState.instance.currentStage.refresh();
+
+		applyOffsets();
+	}
+
+	public override function onSongRetry(event) {
+		super.onSongRetry(event);
+
+		loadModchart();
+
+		hexStrumline = null;
+		hexRow = null;
+
+		stageNow = -1;
+		swapped = false;
+
+		hideWarning();
+
+		deathStep = 0;
+
+		slasher3.canPlayOtherAnims = true;
+		slasher3.visible = true;
+
+		onceOn[0] = false;
+		onceOn[1] = false;
+		hex2.canPlayOtherAnims = true;
+		bf2.canPlayOtherAnims = true;
+
+		secondTween = false;
+		firstTween = false;
+		bgOffsetY = 0;
+		bgOffsetX = 0;
+		characterOffsetY = 0;
+		characterOffsetX = 0;
+		slasherCharacterOffsetY = 0;
+		slasherCharacterOffsetX = 0;
+		switchCharacters(0);
+	}
+
+	var bgOffsetY:Float = 0;
+	var bgOffsetX:Float = 0;
+
+	var characterOffsetY:Float = 0;
+	var characterOffsetX:Float = 0;
+
+	var slasherCharacterOffsetY:Float = 0;
+	var slasherCharacterOffsetX:Float = 0;
+
+	public function switchCharacters(num:Int)
+	{
+		hexOg.visible = false;
+		bfOg.visible = false;
+		slasherOg.visible = false;
+
+		hex2.visible = false;
+		bf2.visible = false;
+		slasher2.visible = false;
+
+		hex3.visible = false;
+		bf3.visible = false;
+		slasher3.visible = false;
+
+		hexWire.visible = false;
+		bfWire.visible = false;
+		slasherWire.visible = false;
+
+		leftWireBG.visible = false;
+		middleWireBG.visible = false;
+		rightWireBG.visible = false;
+
+		leftOverlay.visible = true;
+		middleBG.visible = true;
+		bg3.visible = false;
+		bg3Overlay.visible = false;
+		
+		switch(num)
+		{
+			case 0:
+				firstTween = false;
+				bgOffsetY = 0;
+				bgOffsetX = 0;
+				characterOffsetY = 0;
+				characterOffsetX = 0;
+				slasherCharacterOffsetY = 0;
+				slasherCharacterOffsetX = 0;
+
+				leftBG.visible = true;
+				rightBG.visible = true;
+
+				bg2Right.visible = false;
+				bg2RightOverlay.visible = false;
+				rightOverlay.visible = false;
+
+				PlayState.instance.currentStage.addCharacter(hexOg, CharacterType.GF);
+				PlayState.instance.currentStage.addCharacter(bfOg, CharacterType.BF);
+				PlayState.instance.currentStage.addCharacter(slasherOg, CharacterType.DAD);
+
+				hex2.visible = false;
+				bf2.visible = false;
+				slasher2.visible = false;
+
+				hex3.visible = false;
+				bf3.visible = false;
+				slasher3.visible = false;
+
+				hexOg.visible = true;
+				bfOg.visible = true;
+				slasherOg.visible = true;
+
+				swapTrio(hexOg, bfOg, slasherOg);
+			case 1:
+				PlayState.instance.currentStage.addCharacter(hex2, CharacterType.GF);
+				PlayState.instance.currentStage.addCharacter(bf2, CharacterType.BF);
+				PlayState.instance.currentStage.addCharacter(slasher2, CharacterType.DAD);
+
+				hex2.x += 1325;
+				bf2.x -= 300;
+				
+				hexOg.visible = false;
+				bfOg.visible = false;
+				slasherOg.visible = false;
+
+				hex3.visible = false;
+				bf3.visible = false;
+				slasher3.visible = false;
+
+				hex2.visible = true;
+				bf2.visible = true;
+				slasher2.visible = true;
+
+				swapTrio(hex2, bf2, slasher2);
+			case 2:
+				FlxG.camera.flash(0xFFFFFFFF, 1);
+				PlayState.instance.currentStage.addCharacter(hex3, CharacterType.GF);
+				PlayState.instance.currentStage.addCharacter(bf3, CharacterType.BF);
+				PlayState.instance.currentStage.addCharacter(slasher3, CharacterType.DAD);
+
+				slasher3.x -= 660;
+
+				hex3.x += 1060;
+				hex3.y -= 40;
+
+				bf3.x += 185;
+				bf3.y -= 70;
+
+				middleBG.visible = false;
+
+				rightOverlay.visible = false;
+
+				bg2Right.visible = false;
+				bg2RightOverlay.visible = false;
+
+				bg3.visible = true;
+				bg3Overlay.visible = true;
+
+				leftBG.visible = false;
+				rightBG.visible = false;
+
+				
+				hexOg.visible = false;
+				bfOg.visible = false;
+				slasherOg.visible = false;
+
+				hex2.visible = false;
+				bf2.visible = false;
+				slasher2.visible = false;
+
+				hex3.visible = true;
+				bf3.visible = true;
+				slasher3.visible = true;
+
+				swapTrio(hex3, bf3, slasher3);
+		}
+
+		applyOffsets();
+	}
+
+	var startTween:Float = 0;
+
+	var tweenAt:Float = 0;
+
+	var firstTween:Bool = false;
+	var secondTween:Bool = false;
+
+	var leftBGStartOffset:FlxPoint = new FlxPoint();
+	var middleBGStartOffset:FlxPoint = new FlxPoint();
+	var rightBGStartOffset:FlxPoint = new FlxPoint();
+
+	var hexOgStartOffset:FlxPoint = new FlxPoint();
+	var bfOgStartOffset:FlxPoint = new FlxPoint();
+	var slasher2StartOffset:FlxPoint = new FlxPoint();
+
+	var hex2StartOffset:FlxPoint = new FlxPoint();
+	var bf2StartOffset:FlxPoint = new FlxPoint();
+
+	var leftOverlayStartOffset:FlxPoint = new FlxPoint();
+	var bg2RightStartOffset:FlxPoint = new FlxPoint();
+	var bg2RightOverlayStartOffset:FlxPoint = new FlxPoint();
+
+	var needsReset:Bool = false;
+
+	public function applyOffsets():Void
+	{
+		if (leftBG == null || rightBG == null || hexOg == null || bfOg == null || slasher2 == null || hex2 == null || bf2 == null || leftOverlay == null || bg2Right == null || bg2RightOverlay == null)
+			return;
+
+		leftBG.offset.set(leftBGStartOffset.x + bgOffsetX, leftBGStartOffset.y + bgOffsetY);
+		rightBG.offset.set(rightBGStartOffset.x + bgOffsetX, rightBGStartOffset.y + bgOffsetY);
+		hexOg.offset.set(hexOgStartOffset.x + characterOffsetX, hexOgStartOffset.y + characterOffsetY);
+		bfOg.offset.set(bfOgStartOffset.x + characterOffsetX, bfOgStartOffset.y + characterOffsetY);
+		slasher2.offset.set(slasher2StartOffset.x + slasherCharacterOffsetX, slasher2StartOffset.y + slasherCharacterOffsetY);
+		hex2.offset.set(hex2StartOffset.x + characterOffsetX, hex2StartOffset.y + characterOffsetY);
+		bf2.offset.set(bf2StartOffset.x + characterOffsetX, bf2StartOffset.y + characterOffsetY);
+		leftOverlay.offset.set(leftOverlayStartOffset.x + slasherCharacterOffsetX, leftOverlayStartOffset.y + slasherCharacterOffsetY);
+		bg2Right.offset.set(bg2RightStartOffset.x + bgOffsetX, bg2RightStartOffset.y + bgOffsetY);
+		bg2RightOverlay.offset.set(bg2RightOverlayStartOffset.x + bgOffsetX, bg2RightOverlayStartOffset.y + bgOffsetY);
+	}
+
+	public function tween(type:Int):Void
+	{
+		startTween = Conductor.instance.songPosition;
+		tweenAt = 0;
+
+		if (needsReset)
+		{
+			leftBG.offset.set(leftBGStartOffset.x, leftBGStartOffset.y);
+			middleBG.offset.set(middleBGStartOffset.x, middleBGStartOffset.y);
+			rightBG.offset.set(rightBGStartOffset.x, rightBGStartOffset.y);
+			hexOg.offset.set(hexOgStartOffset.x, hexOgStartOffset.y);
+			bfOg.offset.set(bfOgStartOffset.x, bfOgStartOffset.y);
+			slasher2.offset.set(slasher2StartOffset.x, slasher2StartOffset.y);
+			hex2.offset.set(hex2StartOffset.x, hex2StartOffset.y);
+			bf2.offset.set(bf2StartOffset.x, bf2StartOffset.y);
+			bg2Right.offset.set(bg2RightStartOffset.x, bg2RightStartOffset.y);
+			bg2RightOverlay.offset.set(bg2RightOverlayStartOffset.x, bg2RightOverlayStartOffset.y);
+			leftOverlay.offset.set(leftOverlayStartOffset.x, leftOverlayStartOffset.y);
+		}
+
+		needsReset = true;
+
+		switch(type)
+		{
+			case 0:
+				firstTween = true;
+			case 1:
+				leftBG.visible = false;
+				rightBG.visible = false;
+				bg2Right.visible = true;
+				bg2RightOverlay.visible = true;
+
+				bg2Right.offset.set(bg2RightStartOffset.x - 700, bg2RightStartOffset.y);
+				bg2RightOverlay.offset.set(bg2RightOverlayStartOffset.x - 700, bg2RightOverlayStartOffset.y);
+
+				bgOffsetY = 0;
+				characterOffsetY = 0;
+				slasherCharacterOffsetX = 0;
+				bgOffsetX = 700;
+				secondTween = true;
+		}
+	}
+
+	public override function onBeatHit(event) {
+		super.onBeatHit(event);
+
+		if (PlayState.instance.currentStage != null)
+		{
+			beatIdle(PlayState.instance.currentStage.getGirlfriend(), 0, event.beat);
+			beatIdle(PlayState.instance.currentStage.getBoyfriend(), 1, event.beat);
+		}
+
+		switch (event.beat)
+		{
+			case 168:
+				slasherOg.playAnimation("transition", true);
+				tween(0);
+			case 192:
+				tween(1);
+			case 235:
+				slasher2.playAnimation("hit", true);
+			case 237:
+				FunkinSound.playOnce(Paths.sound("ui/hex/sounds/slasher-hit"));
+			case 438:
+				slasher2.playAnimation("crashout", true);
+			case 445:
+				playOnce(PlayState.instance.currentStage.getBoyfriend(), 1, "glance_transition");
+				playOnce(PlayState.instance.currentStage.getGirlfriend(), 0, "idle_transition2");
+				PlayState.instance.currentStage.getGirlfriend().danceEvery = 0;
+				PlayState.instance.currentStage.getBoyfriend().danceEvery = 0;
+			case 448:
+				playOnce(PlayState.instance.currentStage.getBoyfriend(), 1, "idle_transition");
+				PlayState.instance.currentStage.getGirlfriend().danceEvery = 2;
+				PlayState.instance.currentStage.getBoyfriend().danceEvery = 2;
+			case 504:
+				showWarning(warnOne);
+			case 508:
+				showWarning(warnTwo);
+			case 512:
+				hideWarning();
+			case 565:
+				startDeath();
+		}
+
+		grabHexRow();
+
+		if (hexStrumline != null)
+			hexStrumline.onBeatHit();
+	}
+
+	public override function onNoteMiss(event:NoteScriptEvent):Void
+	{
+		if (event.note == null){
+			super.onNoteMiss(event);
+			return;
+		}
+
+		var kind = event.note.kind;
+		if (kind == "hexAnd" || kind == "hex")
+		{
+			var currentHex:BaseCharacter = PlayState.instance.currentStage.getGirlfriend();
+			currentHex.playSingAnimation(event.note.noteData.getDirection(), true);
+			holdOverrideNotes[event.note.noteData.getDirection()] = false;
+			if (kind == "hex") event.stopPropagation();
+		}
+
+		super.onNoteMiss(event);
+	}
+
+	var holdOverrideNotes:Array<Bool> = [false,false,false,false];
+
+	public override function onNoteHit(event:HitNoteScriptEvent) 
+	{
+		if (event == null) return;
+
+		if (event.note == null)
+		{
+			super.onNoteHit(event);
+			return;
+		}
+
+		var kind = event.note.kind;
+		if (kind == "hexAnd")
+		{
+			var currentHex:BaseCharacter = PlayState.instance.currentStage.getGirlfriend();
+			currentHex.playSingAnimation(event.note.noteData.getDirection(), false);
+			currentHex.holdTimer = 0;
+			holdOverrideNotes[event.note.noteData.getDirection()] = true;
+		}
+		else if (kind == "hex")
+		{
+			var currentHex:BaseCharacter = PlayState.instance.currentStage.getGirlfriend();
+			currentHex.playSingAnimation(event.note.noteData.getDirection(), false);
+			currentHex.holdTimer = 0;
+			var currentBF:BaseCharacter = PlayState.instance.currentStage.getBoyfriend();
+			currentBF.holdTimer = 2000;
+			event.note.hasBeenHit = true;
+			event.note.handledMiss = true;
+
+			PlayState.instance.playerStrumline.hitNote(event.note, !event.isComboBreak);
+			if (event.doesNotesplash) PlayState.instance.playerStrumline.playNoteSplash(event.note.noteData.getDirection());
+			if (event.note.isHoldNote && event.note.holdNoteSprite != null) PlayState.instance.playerStrumline.playNoteHoldCover(event.note.holdNoteSprite);
+			if (PlayState.instance.vocals != null)
+			{
+				if (PlayState.instance.vocals.legacyVoiceSystem && !PlayState.instance.vocals.legacyVoiceUsesPlayer) PlayState.instance.vocals.opponentVolume = PlayState.instance.opponentVocalsVolume;
+				PlayState.instance.vocals.playerVolume = PlayState.instance.playerVocalsVolume;
+			}
+			if (event.note.scoreable)
+			{
+				Highscore.tallies.totalNotesHit++;
+				PlayState.instance.applyScore(event.score, event.judgement, event.healthChange, event.isComboBreak);
+				PlayState.instance.popUpScore(event.judgement);
+			}
+
+			holdOverrideNotes[event.note.noteData.getDirection()] = true;
+
+			event.cancel();
+			return;
+		}
+		super.onNoteHit(event);
+	}
+	
+	public override function onUpdate(event)
+  	{
+		super.onUpdate(event);
+
+		grabHexRow();
+		stepDeath();
+		applyStage(Conductor.instance.currentBeatTime);
+		applyScared(Conductor.instance.currentBeatTime);
+		
+		if (firstTween || secondTween)
+			tweenAt += event.elapsed * 1000;
+
+		var elapsed = tweenAt;
+
+		if (firstTween)
+		{
+			var tweenTime = 750;
+			var t = elapsed / tweenTime;
+			if (t > 1) t = 1;
+			var offset = FlxEase.cubeInOut(t);
+			var yOffset = FlxMath.lerp(0, -1000, offset);
+
+			bgOffsetY = yOffset;
+			characterOffsetY = yOffset;
+
+			if (t >= 1)
+			{
+				firstTween = false;
+				bgOffsetY = -1000;
+				characterOffsetY = -1000;
+			}
+		}
+		else if (secondTween)
+		{
+			var tweenTime = 750;
+			var t = elapsed / tweenTime;
+			if (t > 1) t = 1;
+			var offset = FlxEase.cubeInOut(t);
+			var xOffset = FlxMath.lerp(-900, 80, offset);
+			var slasherXOffset = FlxMath.lerp(0, 550, offset);
+
+			bg2RightOverlay.alpha = t;
+
+			bgOffsetX = xOffset;
+			characterOffsetX = xOffset;
+			slasherCharacterOffsetX = slasherXOffset;
+
+			if (t >= 1)
+			{
+				secondTween = false;
+				bgOffsetX = 80;
+				characterOffsetX = 80;
+				slasherCharacterOffsetX = 550;
+			}
+		}
+
+		applyOffsets();
+
+		if (hexStrumline == null)
+			return;
+
+		for (note in PlayState.instance.playerStrumline.notes.members)
+		{
+			// Hold overrides
+
+			if (note == null) continue;
+			if (note.kind != "hexAnd" && note.kind != "hex") continue;
+			if (note.holdNoteSprite == null) continue;
+			var holdNote = note.holdNoteSprite;
+			if (holdNote == null || holdNote.noteData == null) continue;
+			if (!holdNote.alive) holdOverrideNotes[holdNote.noteData.getDirection()] = false;
+			if (holdOverrideNotes[holdNote.noteData.getDirection()])
+			{
+				if (holdNote.hitNote && !holdNote.missedNote && holdNote.sustainLength > 0)
+				{
+					if (PlayState.instance.currentStage != null && PlayState.instance.currentStage.getGirlfriend() != null && PlayState.instance.currentStage.getGirlfriend().isSinging())
+					{
+						PlayState.instance.currentStage.getGirlfriend().holdTimer = 0;
+					}
+				}
+			}
+		}
+
+		var currentHex:BaseCharacter = PlayState.instance.currentStage.getGirlfriend();
+
+		if (currentHex == null)
+			return;
+
+		var songPos:Float = Conductor.instance.songPosition;
+
+		for (note in hexStrumline.notes.members)
+		{
+			if (note == null || !note.alive || note.hasBeenHit || note.hasMissed) continue;
+			if (note.strumTime > songPos) continue;
+
+			var r = GRhythmUtil.processWindow(note, false);
+			if (r.botplayHit)
+			{
+				currentHex.playSingAnimation(note.noteData.getDirection(), false);
+				currentHex.holdTimer = 0;
+
+				hexStrumline.hitNote(note);
+				onNoteHit(new HitNoteScriptEvent(note, 0, 0, 'LOL', true, 99999));
+
+				if (note.holdNoteSprite != null)
+					hexStrumline.playNoteHoldCover(note.holdNoteSprite);
+			}
+		}
+
+		for (holdNote in hexStrumline.holdNotes.members)
+		{
+			if (holdNote == null || !holdNote.alive) continue;
+			if (!holdNote.hitNote || holdNote.missedNote || holdNote.sustainLength <= 0) continue;
+
+			if (currentHex.isSinging())
+				currentHex.holdTimer = 0;
+		}
+	}
+}

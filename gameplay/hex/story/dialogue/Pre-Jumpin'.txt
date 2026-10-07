@@ -1,0 +1,30 @@
+cutscenes: eventX_CUT
+playMusic: jumpinInterlude
+
+- Sprite Mode - [bg_normal_7]
+
+BF: Man! Now I'm pumped! [BF_POINT1]
+BF: All that stress n' stuff evaporated thanks to you, Hex! [BF_SHRUG2]
+HX: Haha, glad I could help! [HX_THINK2]
+Attention players! We will be beginning the match in 10 minutes!
+Please head to the court!
+HX: Looks like the moment has arrived. [HX_EXPLAIN1]
+HX: Come on, I'll show you the way to the court! [HX_HIP2]
+BF: Hell yeah! Let's go! [BF_WELCOME]
+
+- Cutscene Mode -
+
+GF: Boyfriend! There's my pookie! [CUT9]
+GF: And Trex! You better not steal too much spotlight from him!
+HX: It's Hex actually, hehe...
+BF: You've got front row tickets, yea? [CUT10]
+GF: Mhm. Dad works wonders per always.
+GF: Or I guess in his case, curses.
+Players! Please get in position, we will be starting shortly!
+GF: Oh! This is it! Go funk them up, tiger! [CUT11]
+BF: Hehe, thank you...
+HX: Remember what I said, weakness into strength! [CUT12]
+HX: Are you ready, Boyfriend?
+BF: That's my line! But yea, 100%! [CUT13]
+
+startSong

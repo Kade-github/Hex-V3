@@ -1,0 +1,23 @@
+{
+  "animations": [
+    {
+        "name": "idle",
+        "prefix": "idle"
+    },
+    {
+        "name": "electrocuted",
+        "prefix": "electrocuted",
+        "looped": true
+    },
+    {
+        "name": "crispy",
+        "prefix": "crispy"
+    },
+    {
+        "name": "crispy-loop",
+        "prefix": "crispy loop",
+        "looped": true
+    }
+  ],
+  "offsets": [42, -105]
+}

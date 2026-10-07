@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="Audience_LAN.png">
+	
+	
+	<SubTexture name="audienceLoop0000" x="2" y="2" width="1480" height="315" frameX="0" frameY="-405" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0001" x="2" y="2" width="1480" height="315" frameX="0" frameY="-405" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0002" x="2" y="2" width="1480" height="315" frameX="0" frameY="-405" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0003" x="2" y="2" width="1480" height="315" frameX="0" frameY="-405" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0004" x="1484" y="2" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0005" x="1484" y="2" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0006" x="1484" y="2" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0007" x="1484" y="2" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0008" x="1484" y="319" width="1480" height="312" frameX="0" frameY="-408" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0009" x="1484" y="319" width="1480" height="312" frameX="0" frameY="-408" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0010" x="1484" y="319" width="1480" height="312" frameX="0" frameY="-408" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0011" x="1484" y="319" width="1480" height="312" frameX="0" frameY="-408" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0012" x="2" y="319" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0013" x="2" y="319" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0014" x="2" y="319" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+	<SubTexture name="audienceLoop0015" x="2" y="319" width="1480" height="314" frameX="0" frameY="-406" frameWidth="1480" frameHeight="720" />
+</TextureAtlas>

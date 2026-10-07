@@ -1,0 +1,140 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 1,
+  "scale": 1,
+  "name": "Hex (Retro 2)",
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "flipX": true,
+  "singTime": 4,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/hexretro2/hexretro2",
+  "healthIcon": {
+    "offsets": [
+      0,
+      0
+    ],
+    "id": "hex",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "animations": [
+    {
+      "flipY": false,
+      "offsets": [
+        -1,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "hex idle alt",
+      "flipX": false,
+      "looped": false,
+      "name": "idle"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        18,
+        9
+      ],
+      "frameRate": 24,
+      "prefix": "hex left alt",
+      "flipX": false,
+      "looped": false,
+      "name": "singLEFT"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -6,
+        -108
+      ],
+      "frameRate": 24,
+      "prefix": "hex down alt",
+      "flipX": false,
+      "looped": false,
+      "name": "singDOWN"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        2,
+        8
+      ],
+      "frameRate": 24,
+      "prefix": "hex up alt",
+      "flipX": false,
+      "looped": false,
+      "name": "singUP"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -59,
+        9
+      ],
+      "frameRate": 24,
+      "prefix": "hex right alt",
+      "flipX": false,
+      "looped": false,
+      "name": "singRIGHT"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        22,
+        17
+      ],
+      "frameRate": 24,
+      "prefix": "left alt miss",
+      "flipX": false,
+      "looped": false,
+      "name": "singLEFTmiss"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -8,
+        -95
+      ],
+      "frameRate": 24,
+      "prefix": "down alt miss",
+      "flipX": false,
+      "looped": false,
+      "name": "singDOWNmiss"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        0,
+        9
+      ],
+      "frameRate": 24,
+      "prefix": "up alt miss",
+      "flipX": false,
+      "looped": false,
+      "name": "singUPmiss"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -59,
+        8
+      ],
+      "frameRate": 24,
+      "prefix": "right alt miss",
+      "flipX": false,
+      "looped": false,
+      "name": "singRIGHTmiss"
+    }
+  ]
+}

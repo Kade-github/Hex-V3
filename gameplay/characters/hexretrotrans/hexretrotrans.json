@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 0,
+  "scale": 1,
+  "name": "Hex (Retro Trans)",
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "flipX": true,
+  "singTime": 9,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/hexretrotrans/hexretrotrans",
+  "healthIcon": {
+    "offsets": [
+      0,
+      0
+    ],
+    "id": "hex",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "animations": [
+    {
+      "flipY": false,
+      "offsets": [
+        0,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "hex transition",
+      "flipX": false,
+      "looped": false,
+      "name": "idle"
+    }
+  ]
+}

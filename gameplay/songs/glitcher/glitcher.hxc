@@ -1,0 +1,160 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.play.character.BaseCharacter;
+import funkin.data.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import funkin.play.PlayState;
+import funkin.play.stage.StageProp;
+import funkin.play.PlayStatePlaylist;
+import funkin.modding.base.ScriptedFlxSpriteGroup;
+import openfl.utils.Assets;
+import funkin.graphics.FunkinSprite;
+import flixel.FlxSprite;
+import flixel.FlxG;
+import funkin.save.Save;
+import StringTools;
+import funkin.Paths;
+import funkin.modding.module.ModuleHandler;
+
+class GlitcherSong extends Song {
+
+	var hexOg:BaseCharacter;
+	var bfOg:BaseCharacter;
+	var gf:BaseCharacter;
+
+	var wirebg:StageProp;
+	var wirebgOwner:Dynamic = null;
+	var front:StageProp;
+
+	public function new() {
+		super("glitcher"); // this sets the song to latch onto, so it'll be glitcher.
+	}
+
+	public override function onSongLoaded(event) { // load our custom characters, and also a new background.
+
+		hexOg = PlayState.instance.currentStage.getDad();
+		bfOg = PlayState.instance.currentStage.getBoyfriend();
+		gf = PlayState.instance.currentStage.getGirlfriend();
+
+		swapped = false;
+		ensureProps();
+
+		wirebg.visible = false;
+		if (front != null)
+			front.visible = true;
+
+		trace("loaded glitcher song");
+
+		super.onSongLoaded(event);
+		lookOn();
+	}
+
+	private var swapped:Bool = false;
+
+	function ensureProps() {
+		var stage = PlayState.instance == null ? null : PlayState.instance.currentStage;
+		if (stage == null)
+			return;
+
+		gf = stage.getGirlfriend();
+
+		if (wirebg != null && wirebgOwner == stage && stage.members != null && stage.members.indexOf(wirebg) >= 0)
+			return;
+
+		var back:StageProp = stage.getNamedProp("stageBack");
+
+		wirebg = new StageProp();
+		wirebg.loadTexture("gameplay/songs/glitcher/wire_weekx_back");
+		wirebgOwner = stage;
+		stage.addProp(wirebg);
+
+		if (back != null)
+		{
+			wirebg.x = back.x;
+			wirebg.y = back.y;
+			wirebg.zIndex = back.zIndex + 1;
+		}
+		wirebg.visible = swapped;
+
+		front = stage.getNamedProp("stageFront");
+		stage.refresh();
+	}
+
+	public static function coolTextFile(path:String):Array<String> {
+		var daList:Array<String> = StringTools.trim(Assets.getText(path)).split('\n');
+
+		for (i in 0...daList.length) {
+			daList[i] = StringTools.trim(daList[i]);
+		}
+
+		return daList;
+	}
+
+	public override function onSongRetry(event)
+	{
+		if (swapped)
+			switchem();
+
+		super.onSongRetry(event);
+		lookOn();
+	}
+
+	public function switchem() {
+		setSwapped(!swapped);
+	}
+
+	function setSwapped(to:Bool) {
+		if (swapped == to)
+			return;
+
+		// flash red
+		FlxG.camera.flash(0xFFFF0000, 1);
+
+		swapped = to;
+
+		ensureProps();
+
+		if (gf != null)
+			gf.visible = !swapped;
+		if (wirebg != null)
+			wirebg.visible = swapped;
+		if (front != null)
+			front.visible = !swapped;
+	}
+
+	public override function onSongEvent(event) {
+		var data = event.eventData;
+
+		if (data != null && data.eventKind == "SwitchCharacters" && data.value != null && data.value.id != null)
+		{
+			var charId:String = data.value.id;
+			if (StringTools.startsWith(charId, "wire"))
+				setSwapped(true);
+			else if (StringTools.startsWith(charId, "glitcher"))
+				setSwapped(false);
+		}
+
+		super.onSongEvent(event);
+	}
+
+	public override function onBeatHit(event) {
+		// event.beat
+		// event.step
+
+		setSwapped((event.beat >= 144 && event.beat < 208) || (event.beat >= 272 && event.beat < 336));
+
+		super.onBeatHit(event);
+	}
+
+	function lookOn() {
+		var shaded = ModuleHandler.getModule("CharacterRim");
+		if (shaded != null)
+			shaded.enable("glitcher");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+}

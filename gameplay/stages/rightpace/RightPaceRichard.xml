@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="RightPaceRichard.png">
+	
+	
+	<SubTexture name="richardLoop0000" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0001" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0002" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0003" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0004" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0005" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0006" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0007" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0008" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0009" x="2" y="426" width="216" height="419" frameX="-41" frameY="-109" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0010" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0011" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0012" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0013" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0014" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0015" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0016" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0017" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0018" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0019" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0020" x="218" y="2" width="216" height="420" frameX="-42" frameY="-108" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0021" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0022" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0023" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0024" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0025" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0026" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0027" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0028" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0029" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0030" x="2" y="2" width="214" height="422" frameX="-43" frameY="-106" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0031" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0032" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0033" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0034" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0035" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0036" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0037" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0038" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0039" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0040" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+	<SubTexture name="richardLoop0041" x="220" y="426" width="216" height="418" frameX="-41" frameY="-110" frameWidth="299" frameHeight="528" />
+</TextureAtlas>

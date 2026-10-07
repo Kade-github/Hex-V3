@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="Iris_Eyelid.png">
+	
+	
+	<SubTexture name="IRIS_Eyelid0000" x="1540" y="2" width="755" height="431" frameX="-290" frameY="-176" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0001" x="1540" y="2" width="755" height="431" frameX="-290" frameY="-176" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0002" x="1540" y="2" width="755" height="431" frameX="-290" frameY="-176" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0003" x="1540" y="2" width="755" height="431" frameX="-290" frameY="-176" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0004" x="767" y="2" width="771" height="435" frameX="-272" frameY="-173" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0005" x="767" y="2" width="771" height="435" frameX="-272" frameY="-173" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0006" x="767" y="2" width="771" height="435" frameX="-272" frameY="-173" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0007" x="767" y="2" width="771" height="435" frameX="-272" frameY="-173" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0008" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0009" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0010" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0011" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0012" x="2297" y="2" width="763" height="430" frameX="-275" frameY="-166" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0013" x="2297" y="2" width="763" height="430" frameX="-275" frameY="-166" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0014" x="2297" y="2" width="763" height="430" frameX="-275" frameY="-166" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0015" x="2297" y="2" width="763" height="430" frameX="-275" frameY="-166" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0016" x="3062" y="2" width="767" height="426" frameX="-271" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0017" x="3062" y="2" width="767" height="426" frameX="-271" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0018" x="3062" y="2" width="767" height="426" frameX="-271" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0019" x="3062" y="2" width="767" height="426" frameX="-271" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0020" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0021" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0022" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="IRIS_Eyelid0023" x="2" y="2" width="763" height="445" frameX="-273" frameY="-164" frameWidth="1280" frameHeight="720" />
+</TextureAtlas>

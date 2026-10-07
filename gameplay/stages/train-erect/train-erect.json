@@ -1,0 +1,122 @@
+{
+  "version": "1.0.1",
+  "name": "Train (Erect)",
+  "cameraZoom": 0.98,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -250,
+        150
+      ],
+      "scale": [
+        0.75,
+        0.75
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/train/erect/BIT_BG",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -180,
+        365
+      ],
+      "name": "guy1",
+      "assetPath": "gameplay/stages/train/erect/BIT_GUY1",
+      "scroll": [
+        1,
+        1
+      ],
+      "danceEvery": 8,
+      "startingAnimation": "idle",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "guy1_idle",
+          "frameRate": 24
+        }
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        900,
+        590
+      ],
+      "name": "guy2",
+      "assetPath": "gameplay/stages/train/erect/BIT_GUY2",
+      "scroll": [
+        1,
+        1
+      ],
+      "danceEvery": 8,
+      "startingAnimation": "idle",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "guy2_idle",
+          "frameRate": 24
+        }
+      ]
+    },
+    {
+      "zIndex": 40,
+      "position": [
+        -250,
+        150
+      ],
+      "scale": [
+        0.75,
+        0.75
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/train/erect/BIT_BG_FRONT",
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        690,
+        915
+      ],
+      "cameraOffsets": [
+        -300,
+        -180
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        280,
+        1000
+      ],
+      "cameraOffsets": [
+        50,
+        -230
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        -90000,
+        -90000
+      ]
+    }
+  }
+}

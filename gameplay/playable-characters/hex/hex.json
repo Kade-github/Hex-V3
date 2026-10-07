@@ -1,0 +1,167 @@
+{
+  "version": "1.0.0",
+  "name": "Hex",
+  "ownedChars": [
+    "hex",
+    "hex-bombs",
+    "hex-lan",
+    "hex-rightpace",
+    "hex-rightpace-happy",
+    "hexretro",
+    "hexretro2",
+    "hexretrotrans"
+  ],
+  "showUnownedChars": false,
+  "unlocked": false,
+  "freeplayStyle": "bf",
+  "stickerPack": "standard-bf",
+  "freeplayDJ": {
+    "assetPath": "ui/freeplay/dj/bf/freeplay-boyfriend",
+    "scriptClass": "funkin.ui.freeplay.dj.BoyfriendFreeplayDJ",
+    "fistPump": {
+      "introStartFrame": 0,
+      "introEndFrame": 4,
+
+      "loopStartFrame": 4,
+      "loopEndFrame": -1,
+
+      "introBadStartFrame": 0,
+      "introBadEndFrame": 4,
+
+      "loopBadStartFrame": 4,
+      "loopBadEndFrame": -1
+    },
+    "charSelect": {
+      "transitionDelay": 0.45
+    },
+    "text1": "HEX",
+    "text2": "YOU SHOULDN'T SEE THIS",
+    "text3": "HOW THE FUCK",
+    "useAnimatePosition": true,
+    "animations": [
+      {
+        "name": "intro",
+        "prefix": "Intro",
+        "animType": "framelabel"
+      },
+      {
+        "name": "idle",
+        "prefix": "Idle",
+        "animType": "framelabel"
+      },
+      {
+        "name": "idleEasterEgg",
+        "prefix": "AFK",
+        "animType": "framelabel"
+      },
+      {
+        "name": "confirm",
+        "prefix": "Confirm",
+        "animType": "framelabel"
+      },
+      {
+        "name": "fistPump",
+        "prefix": "Fist Pump",
+        "animType": "framelabel"
+      },
+      {
+        "name": "loss",
+        "prefix": "Fist Pump Loss",
+        "animType": "framelabel"
+      },
+      {
+        "name": "charSelect",
+        "prefix": "To Character Select",
+        "animType": "framelabel"
+      },
+      {
+        "name": "cartoon",
+        "prefix": "Watching TV",
+        "animType": "framelabel"
+      },
+      {
+        "name": "newUnlock",
+        "prefix": "New Unlock",
+        "animType": "framelabel"
+      }
+    ]
+  },
+  "charSelect": {
+    "position": -99,
+    "assetPath": "ui/character-select/characters/bf",
+    "gf": {
+      "assetPath": "ui/character-select/characters/gf",
+      "visualizer": false
+    }
+  },
+  "results": {
+    "music": {
+      "PERFECT_GOLD": "gameplay/playable-characters/hex/results/music/Results_Perfect",
+      "PERFECT": "gameplay/playable-characters/hex/results/music/Results_Perfect",
+      "EXCELLENT": "gameplay/playable-characters/hex/results/music/Results_Excellent",
+      "GREAT": "gameplay/playable-characters/hex/results/music/Results_Normal",
+      "GOOD": "gameplay/playable-characters/hex/results/music/Results_Normal",
+      "SHIT": "gameplay/playable-characters/hex/results/music/Results_Shit"
+    },
+    "perfectGold": [
+      {
+        "renderType": "animateatlas",
+        "assetPath": "gameplay/playable-characters/hex/results/graphics/resultsPERFECT",
+        "startFrameLabel": "INTRO",
+        "zIndex": 500,
+        "offsets": [410, -580],
+        "loopFrameLabel": "LOOP"
+      }
+    ],
+    "perfect": [
+      {
+        "renderType": "animateatlas",
+        "assetPath": "gameplay/playable-characters/hex/results/graphics/resultsPERFECT",
+        "startFrameLabel": "INTRO",
+        "zIndex": 500,
+        "offsets": [410, -580],
+        "loopFrameLabel": "LOOP"
+      }
+    ],
+    "excellent": [
+      {
+        "renderType": "animateatlas",
+        "assetPath": "gameplay/playable-characters/hex/results/graphics/resultsEXCELLENT",
+        "startFrameLabel": "INTRO",
+        "loopFrameLabel": "LOOP",
+        "zIndex": 500,
+        "offsets": [650, -80]
+      }
+    ],
+    "great": [
+      {
+        "renderType": "animateatlas",
+        "assetPath": "gameplay/playable-characters/hex/results/graphics/resultsGOOD",
+        "startFrameLabel": "INTRO",
+        "loopFrameLabel": "LOOP",
+        "offsets": [560, -50],
+        "zIndex": 499
+      }
+    ],
+    "good": [
+      {
+        "renderType": "animateatlas",
+        "assetPath": "gameplay/playable-characters/hex/results/graphics/resultsGOOD",
+        "zIndex": 501,
+        "offsets": [525, -25],
+        "startFrameLabel": "INTRO",
+        "loopFrameLabel": "LOOP"
+      }
+    ],
+    "loss": [
+      {
+        "renderType": "animateatlas",
+        "assetPath": "gameplay/playable-characters/hex/results/graphics/resultsSHIT",
+        "zIndex": 500,
+        "offsets": [-300, -25],
+        "startFrameLabel": "INTRO",
+        "loopFrameLabel": "LOOP"
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Boyfriend (Headbasher 3)",
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"assetPath": "gameplay/characters/bf-hb-3/Headbasher_BF3",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "bf"
+	},
+	"scale": 1.25,
+	"flipX": true,
+	"animations": [
+		{
+			"prefix": "idle0",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				8,
+				6
+			],
+			"prefix": "left0",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-15,
+				-20
+			],
+			"prefix": "down0",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-8,
+				25
+			],
+			"prefix": "up0",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-35,
+				-1
+			],
+			"prefix": "right0",
+			"name": "singRIGHT"
+		},
+		{
+			"offsets": [
+				10,
+				102
+			],
+			"prefix": "left miss",
+			"name": "singLEFTmiss"
+		},
+		{
+			"offsets": [
+				-13,
+				28
+			],
+			"prefix": "down miss",
+			"name": "singDOWNmiss"
+		},
+		{
+			"offsets": [
+				15,
+				61
+			],
+			"prefix": "up miss",
+			"name": "singUPmiss"
+		},
+		{
+			"offsets": [
+				-34,
+				64
+			],
+			"prefix": "right miss",
+			"name": "singRIGHTmiss"
+		}
+	]
+}

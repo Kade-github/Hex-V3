@@ -1,0 +1,399 @@
+package kade.hex.overrides;
+
+import funkin.modding.module.Module;
+import funkin.play.ResultState;
+import funkin.graphics.FunkinSprite;
+import flixel.FlxG;
+import funkin.ui.FullScreenScaleMode;
+import flixel.util.FlxTimer;
+import flixel.util.FlxGradient;
+import funkin.assets.Paths.AssetPath;
+import flixel.math.FlxPoint;
+import flixel.text.FlxBitmapText;
+import flixel.graphics.frames.FlxBitmapFont;
+import funkin.play.scoring.ScoringRank;
+import flixel.FlxSprite;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import funkin.play.PlayState;
+
+import funkin.play.PlayStatePlaylist;
+import funkin.data.story.level.LevelRegistry;
+
+import kade.hex.states.HexStoryMenu;
+import kade.hex.objects.HexTransitional;
+import kade.hex.states.HexFreeplay;
+
+import StringTools;
+
+class HResultsScreen extends Module
+{
+    public function new()
+    {
+        super("HResultsScreen", 1, {
+            state: PlayState
+        });
+    }
+
+    public static function getMonospaceBitmapFont(assetPath:AssetPath, fontLetters:String, letterSize:FlxPoint):FlxBitmapFont
+    {
+        if (assetPath == null)
+        {
+            trace("Error: assetPath is null. Cannot create bitmap font.");
+            return null;
+        }
+
+        return FlxBitmapFont.fromMonospace(assetPath, fontLetters, letterSize);
+    }
+
+    static var _lastDiff:String = '';
+    static var _lastObject:Dynamic = null;
+
+    public static function changeStuff(object:Dynamic):Void
+    {
+        _lastObject = object;
+        trace("Changing stuff for hex results screen");
+
+        var frames = Paths.getSparrowAtlas('ui/hex/results-hex/interface/results');
+        object.resultsAnim.loadGraphic(Paths.image("ui/hex/results-hex/interface/results"));
+        object.resultsAnim.frames = frames;
+        object.resultsAnim.animation.addByPrefix("result", "results", 24, false);
+        object.resultsAnim.x -= 350;
+        object.resultsAnim.y -= 20;
+        object.resultsAnim.zIndex = 10001;
+        object.blackTopBar.visible = false;
+
+        object.shouldClipSongName = false;
+
+        var bg:FlxSprite = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xFF52D3F3, 0xFF43B2E6], 90);
+        bg.scrollFactor.set();
+        bg.zIndex = 11;
+        bg.cameras = [object.cameraBG];
+        object.add(bg);
+
+        var topBar:FlxSprite = new FlxSprite(0, -25, Paths.image("ui/hex/results-hex/topBarBlack"));
+        topBar.scrollFactor.set();
+        topBar.zIndex = 10000;
+        object.add(topBar);
+        topBar.scale.set(0.75, 0.75);
+        topBar.updateHitbox();
+
+        object.refresh();
+
+        var soundSystemFrames = Paths.getSparrowAtlas('ui/hex/results-hex/interface/soundSystem');
+        object.soundSystem.loadGraphic(Paths.image("ui/hex/results-hex/interface/soundSystem"));
+        object.soundSystem.frames = soundSystemFrames;
+        object.soundSystem.animation.addByPrefix("idle", "sound system", 24, false);
+        object.soundSystem.scale.set(1.15, 1.15);
+
+        object.soundSystem.x -= 10;
+        object.soundSystem.y -= 95;
+
+        object.ratingsPopin.x += 50;
+        object.ratingsPopin.y += 10;
+
+        for (i in 0...object.ratingGrp.length)
+        {
+            var rating = object.ratingGrp.members[i];
+            rating.x += 18;
+            rating.y += 10;
+        }
+
+        var scorePopinFrames = Paths.getSparrowAtlas('ui/hex/results-hex/interface/score-popin');
+        object.scorePopin.loadGraphic(Paths.image("ui/hex/results-hex/interface/score-popin"));
+        object.scorePopin.frames = scorePopinFrames;
+        object.scorePopin.animation.addByPrefix("score", "tally score", 24, false);
+        object.scorePopin.scale.set(1.15, 1.15);
+        object.scorePopin.x += 35;
+        object.scorePopin.y += 30;
+
+        object.highscoreNew.x -= 80;
+        object.highscoreNew.y += 18;
+
+        object.score.x += 30;
+        object.score.y += 18;
+        object.score.setScale(0.85);
+
+        for (num in object.score.group.members)
+        {
+            if (num == null) continue;
+            num.updateHitbox();
+            num.centerOffsets(false);
+        }
+
+        var fontLetters:String = 'AaBbCcDdEeFfGgHhiIJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz:1234567890().-';
+        var font = getMonospaceBitmapFont(Paths.image('ui/fonts/hex/tardling'), fontLetters, FlxPoint.get(49, 61));
+        object.songName.font = font;
+        object.songName.angle = 0;
+
+        var diff = (object.params?.difficultyId ?? Constants.DEFAULT_DIFFICULTY);
+        object.difficulty.loadGraphic(Paths.image("ui/hex/results-hex/difficulty/" + diff));
+        object.difficulty.scale.set(1.15, 1.15);
+
+        object.cameraScroll.scrollAngle = 0;
+
+        object.difficulty.shader = null;
+        object.songName.shader = null;
+        object.clearPercentSmall.shader = null;
+
+        trace("Difficulty: " + diff);
+        _lastDiff = diff;
+        object.textChange.add(() -> {
+            var line:Float = 84;
+            _lastObject.clearPercentSmall.offset.set(0, 56);
+            _lastObject.difficulty.scale.set(0.8, 0.8);
+            _lastObject.difficulty.offset.set(0, 122 + _lastObject.difficulty.frameHeight / 2 - line);
+
+            FlxTween.cancelTweensOf(_lastObject.songName);
+            _lastObject.songName.y = -_lastObject.songName.height;
+            FlxTween.tween(_lastObject.songName, {y: 56 + (_lastObject.blackTopBar.height - 148)}, 0.5, {ease: FlxEase.expoOut, startDelay: 0.9});
+            _lastObject.difficulty.x = _lastObject.clearPercentSmall.x - 400;
+            _lastObject.clearPercentSmall.y += 20;
+            if (_lastDiff != 'technical' && _lastDiff != 'nightmare') _lastObject.difficulty.x += 180;
+            else _lastObject.difficulty.x += 50;
+
+            _lastObject.speedOfTween.set(-1,0);
+        });
+
+        object.textChange.dispatch();
+
+        switch(object.rank)
+        {
+            case 'PERFECT_GOLD':
+                object.rankVertAsset = Paths.image("ui/hex/results-hex/rank-text/perfect-vertical");
+                object.rankBackAsset = Paths.image("ui/hex/results-hex/rank-text/perfect");
+            case 'PERFECT':
+                object.rankVertAsset = Paths.image("ui/hex/results-hex/rank-text/perfect-vertical");
+                object.rankBackAsset = Paths.image("ui/hex/results-hex/rank-text/perfect");
+            case 'EXCELLENT':
+                object.rankVertAsset = Paths.image("ui/hex/results-hex/rank-text/excellent-vertical");
+                object.rankBackAsset = Paths.image("ui/hex/results-hex/rank-text/excellent");
+            case 'GREAT':
+                object.rankVertAsset = Paths.image("ui/hex/results-hex/rank-text/great-vertical");
+                object.rankBackAsset = Paths.image("ui/hex/results-hex/rank-text/great");
+            case 'GOOD':
+                object.rankVertAsset = Paths.image("ui/hex/results-hex/rank-text/good-vertical");
+                object.rankBackAsset = Paths.image("ui/hex/results-hex/rank-text/good");
+            case 'SHIT':
+                object.rankVertAsset = Paths.image("ui/hex/results-hex/rank-text/loss-vertical");
+                object.rankBackAsset = Paths.image("ui/hex/results-hex/rank-text/loss");
+        }
+    }
+
+    public override function onSubStateOpenEnd(event:SubStateScriptEvent):Void {
+        super.onSubStateOpenEnd(event);
+
+        var state = FlxG.state.subState;
+
+        if (!Std.is(state, ResultState))
+            return;
+
+        isLeaving = false;
+        exiting = false;
+        hexResultsOpen = PlayState.instance != null && isHexSong();
+
+        // Technically it doesn't matter, HScript doesn't care about access modifiers.
+        @:privateAccess
+        {
+            var isHex:Bool = state.playerCharacterId == "hex";
+            trace("Is Hex: " + isHex);
+            if (isHex) changeStuff(state);
+            else trace('Not playing as Hex');
+        }
+    }
+
+    function isHexSong():Bool
+    {
+        if (PlayStatePlaylist.isStoryMode && StringTools.startsWith(PlayStatePlaylist.campaignTitle, "(Hex)"))
+            return true;
+
+        if (PlayState.instance == null || PlayState.instance.currentSong == null)
+            return false;
+
+        var songId:String = PlayState.instance.currentSong.id;
+
+        trace("Checking if song is a Hex song: " + songId);
+
+        for (levelId in LevelRegistry.instance.listSortedLevelIds())
+        {
+            var level = LevelRegistry.instance.fetchEntry(levelId);
+            if (level == null) continue;
+
+            @:privateAccess
+            var levelName:String = level._data == null ? "" : level._data.name;
+
+            if (!StringTools.startsWith(levelName, "(Hex) ")) continue;
+            trace("Checking level: " + levelName);
+
+            var songs:Array<String> = level.getSongs();
+            if (songs != null && songs.indexOf(songId) != -1) {
+                trace("Song is a Hex song: " + songId);
+                return true;
+            }
+        }
+
+        trace("Song is not a Hex song");
+
+        return false;
+    }
+
+    var isLeaving:Bool = false;
+
+    var hexResultsOpen:Bool = false;
+
+    function isBaseMenu(target:Dynamic):Bool
+    {
+        if (target == null)
+            return false;
+
+        var name:String = Type.getClassNameOf(target);
+        return name == "funkin.ui.mainmenu.MainMenuState"
+            || name == "funkin.ui.freeplay.FreeplayState"
+            || name == "funkin.ui.story.StoryMenuState"
+            || name == "funkin.ui.charSelect.CharacterUnlockState";
+    }
+    var exiting:Bool = false;
+    var trans:HexTransitional = null;
+
+    public override function onUpdate(event:UpdateScriptEvent):Void
+    {
+        super.onUpdate(event);
+
+        if (exiting || !FlxG.keys.justPressed.ESCAPE)
+            return;
+
+        var state = FlxG.state.subState;
+        if (!Std.is(state, ResultState))
+            return;
+
+        @:privateAccess
+        {
+            if (state.busy)
+                return;
+        }
+
+        if (PlayState.instance == null || !isHexSong())
+            return;
+
+        @:privateAccess
+        state.busy = true;
+
+        beginExit(state);
+    }
+
+    public override function onSubStateOpenBegin(event:SubStateScriptEvent):Void
+    {
+        super.onSubStateOpenBegin(event);
+
+        var state = FlxG.state.subState;
+        if (!Std.is(state, ResultState))
+            return;
+
+        if (exiting)
+        {
+            event.cancelEvent();
+            return;
+        }
+
+        if (PlayState.instance == null || !isHexSong())
+            return;
+
+        event.cancelEvent();
+        beginExit(state);
+    }
+
+    function beginExit(state:Dynamic):Void
+    {
+        if (exiting)
+            return;
+
+        exiting = true;
+        isLeaving = true;
+
+        try
+        {
+            @:privateAccess
+            {
+                if (state.introMusicAudio != null) state.introMusicAudio.fadeOut(0.4, 0);
+                if (state.resultsMusic != null) state.resultsMusic.fadeOut(0.4, 0);
+            }
+
+            trans = new HexTransitional();
+            trans.forceOut();
+            trans.zIndex = 100000;
+            state.add(trans);
+            state.refresh();
+
+            trans.onComplete = function(out:Bool)
+            {
+                if (out) return;
+
+                trans.onComplete = null;
+                leaveResults();
+            };
+
+            trans.transitionIn();
+        }
+        catch (e:Dynamic)
+        {
+            trace("Hex results wipe failed, leaving anyway: " + e);
+            leaveResults();
+        }
+    }
+
+    function leaveResults():Void
+    {
+        hexResultsOpen = false;
+
+        var state = FlxG.state.subState;
+
+        if (state != null && Std.is(state, ResultState))
+        {
+            @:privateAccess
+            {
+                if (state.introMusicAudio != null) state.introMusicAudio.stop();
+                if (state.resultsMusic != null) state.resultsMusic.stop();
+            }
+        }
+
+        if (FlxG.sound.music != null)
+            FlxG.sound.music.stop();
+
+        if (PlayStatePlaylist.isStoryMode)
+            FlxG.switchState(new HexStoryMenu());
+        else
+            FlxG.switchState(new HexFreeplay());
+    }
+
+    public override function onStateChangeBegin(event:StateChangeScriptEvent):Void {
+
+        var state = FlxG.state.subState;
+
+        if (hexResultsOpen && !isLeaving && isBaseMenu(event.targetState))
+        {
+            event.cancelEvent();
+
+            if (state != null && Std.is(state, ResultState))
+                beginExit(state);
+            else
+                leaveResults();
+            return;
+        }
+
+        if (!Std.is(state, ResultState) || isLeaving)
+        {
+            super.onStateChangeBegin(event);
+            return;
+        }
+
+        if (PlayState.instance != null && isHexSong())
+        {
+            event.cancelEvent();
+            beginExit(state);
+        }
+        else
+        {
+            super.onStateChangeBegin(event);
+        }
+    }
+}

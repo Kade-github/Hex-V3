@@ -1,0 +1,66 @@
+{
+  "version": "2.2.4",
+  "songName": "R.A.M",
+  "artist": "YingYang48",
+  "charter": "YingYang48",
+  "divisions": 96,
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {    },
+    "vocals": {
+      "bf": 9,
+      "hex": 0
+    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": ["new"],
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "bf-old",
+      "girlfriend": "gf-old",
+      "opponent": "hex",
+      "instrumental": "",
+      "altInstrumentals": [      ],
+      "opponentVocals": [
+        "hex"
+      ],
+      "playerVocals": [
+        "bf"
+      ]
+    },
+    "stage": "xstage_sunset",
+    "noteStyle": "hex",
+    "ratings": {
+      "erect": 0,
+      "easy": 1,
+      "normal": 2,
+      "hard": 4,
+      "nightmare": 0
+    },
+    "previewStart": 0,
+    "previewEnd": 0
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 120,
+      "n": 4,
+      "d": 4,
+      "bt": [
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ]
+}

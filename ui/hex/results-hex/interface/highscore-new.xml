@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="highscore-new.png">
+	
+	
+	<SubTexture name="highscore entry n loop0000" x="502" y="96" width="390" height="19" frameX="0" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0001" x="526" y="2" width="253" height="55" frameX="-251" frameY="-4" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0002" x="2" y="2" width="260" height="65" frameX="-240" frameY="0" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0003" x="264" y="2" width="260" height="65" frameX="-244" frameY="0" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0004" x="2" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0005" x="2" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0006" x="252" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0007" x="252" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0008" x="502" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0009" x="502" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0010" x="752" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0011" x="752" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0012" x="2" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0013" x="2" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0014" x="252" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0015" x="252" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0016" x="2" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0017" x="2" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0018" x="252" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0019" x="252" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0020" x="502" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0021" x="502" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0022" x="752" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0023" x="752" y="69" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0024" x="2" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0025" x="2" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0026" x="252" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+	<SubTexture name="highscore entry n loop0027" x="252" y="96" width="248" height="25" frameX="-244" frameY="-20" frameWidth="504" frameHeight="65" />
+</TextureAtlas>

@@ -1,0 +1,119 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.save.Save;
+import funkin.play.PlayState;
+
+import flixel.FlxG;
+
+class BitSong extends Song {
+	static inline var JITTER_PX:Float = 20;
+	static inline var PAN_PX:Float = 60;
+
+	var intensity:Float = 0; // How intense the jitter is
+	var panAmount:Float = 0; // How much to pan the camera
+
+	var appliedX:Float = 0;
+	var appliedY:Float = 0;
+	var appliedCam = null;
+
+	public function new() {
+  	    super("bit");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+	public override function onCreate() {
+		super.onCreate();
+
+		PlayState.instance.camGame.width = FlxG.width * 1.2;
+		PlayState.instance.camGame.height = FlxG.height * 1.2;
+
+		PlayState.instance.camGame.x -= FlxG.width * 0.1;
+		PlayState.instance.camGame.y -= FlxG.height * 0.1;
+	}
+
+	public override function onUpdate(event)
+  	{
+		super.onUpdate(event);
+
+		var erect:Bool = PlayState.instance != null && PlayState.instance.currentVariation == "erect";
+
+		if (!erect && PlayState.instance != null && PlayState.instance.camGame != null && FlxG.sound.music != null)
+		{
+			var cam = PlayState.instance.camGame;
+			var time = FlxG.sound.music.time;
+
+			// Increase intensity and pan amount based on song position
+			/// Between 0-5 seconds go to 0.1, and 0.2
+			if (time < 5000)
+			{
+				intensity = 0.001 * (time / 5000);
+				panAmount = 0.02 * (time / 5000);
+			}
+			/// Between 30-34 go to 0.2, and 0.4
+			else if (time >= 30000 && time < 34000)
+			{
+				intensity = 0.001 + 0.001 * ((time - 30000) / 4000);
+				panAmount = 0.02 + 0.02 * ((time - 30000) / 4000);
+			}
+			/// Between 1m 30s and 1m 54s go to 0.3 and 0.5
+			else if (time >= 90000 && time < 114000)
+			{
+				intensity = 0.001 + 0.02 * ((time - 90000) / 24000);
+				panAmount = 0.02 + 0.03 * ((time - 90000) / 24000);
+			}
+			/// After 2m 34s go to 0 on both over 10 seconds
+			else if (time >= 154000)
+			{
+				var t = Math.min((time - 154000) / 10000, 1);
+				intensity = 0.003 * (1 - t);
+				panAmount = 0.05 * (1 - t);
+			}
+
+			var jitter:Float = intensity * JITTER_PX * FlxG.random.float(0.8, 1.2);
+			var pan:Float = panAmount * PAN_PX;
+
+			var ox:Float = Math.sin(time * 0.05) * jitter + Math.sin(time * 0.01) * pan;
+			var oy:Float = Math.cos(time * 0.05) * jitter + Math.cos(time * 0.01) * pan;
+
+			applyOffset(cam, ox, oy);
+		}
+		else
+		{
+			intensity = 0;
+			panAmount = 0;
+			clearOffset();
+		}
+	}
+
+	function applyOffset(cam, ox:Float, oy:Float):Void
+	{
+		if (appliedCam != cam)
+		{
+			appliedCam = cam;
+			appliedX = 0;
+			appliedY = 0;
+		}
+
+		cam.x += ox - appliedX;
+		cam.y += oy - appliedY;
+		appliedX = ox;
+		appliedY = oy;
+	}
+
+	function clearOffset():Void
+	{
+		if (appliedCam != null)
+		{
+			appliedCam.x -= appliedX;
+			appliedCam.y -= appliedY;
+		}
+
+		appliedX = 0;
+		appliedY = 0;
+	}
+}

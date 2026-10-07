@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="stars.png">
+	
+	
+	<SubTexture name="above10.png" x="2" y="2" width="58" height="59" frameX="0" frameY="0" frameWidth="58" frameHeight="59" />
+	<SubTexture name="noStar.png" x="62" y="63" width="37" height="41" frameX="-11" frameY="-9" frameWidth="58" frameHeight="59" />
+	<SubTexture name="normalStar.png" x="62" y="2" width="58" height="59" frameX="0" frameY="0" frameWidth="58" frameHeight="59" />
+	<SubTexture name="normalBounce.png" x="2" y="63" width="58" height="59" frameX="0" frameY="0" frameWidth="58" frameHeight="59" />
+</TextureAtlas>

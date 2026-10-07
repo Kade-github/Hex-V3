@@ -1,0 +1,63 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"name": "Hex (Headbasher 1)",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "hex"
+	},
+	"scale": 1.1,
+	"assetPath": "gameplay/characters/hex-hb-1/Headbasher_Hex1",
+	"animations": [
+		{
+			"prefix": "idle0",
+			"name": "idle"
+		},
+		{
+			"prefix": "altIdle",
+			"name": "idle_scared"
+		},
+		{
+			"offsets": [
+				18,
+				-29
+			],
+			"prefix": "left0",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-5,
+				-60
+			],
+			"prefix": "down0",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-18,
+				45
+			],
+			"prefix": "up0",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				10,
+				-76
+			],
+			"prefix": "right0",
+			"name": "singRIGHT"
+		}
+	]
+}

@@ -1,0 +1,62 @@
+cutscenes: eventX_CUT
+playMusic: jumpinInterlude
+
+- Cutscene Mode -
+
+Attention! We will be taking a timeout! [CUT14]
+
+- Sprite Mode - [bg_normal_8]
+
+BF: I-I'm actually doing good! [BF_BASKETBALL_NEUTRAL2]
+BF: Hex, your strategy is paying off! [BF_BASKETBALL_AFFIRM]
+HX: Pff, my strategy? You're the one who's actually doing it! [HX_THINK2]
+HX: After all- [HX_EXPLAIN1]
+
+playMusic: none
+blackScreen
+playSound: boom
+wait: 1.4
+loopSound: fire
+playMusic: headbasherInterlude
+
+- Cutscene Mode -
+
+BF: W-What the funk was that?! [CUT15]
+HX: An explosion?! Is everyone alright?!
+BF: Wait, Hex! Look! In the fire! There's someone there!
+... [CUT16]
+SL: Looks like I've arrived between quarters, saves the time. [CUT17]
+SL: Thanks for making this my first trip to the Overworld! [CUT18]
+SL: You two are gonna make a great entry point on my resume.~ [CUT19]
+
+- Sprite Mode - [bg_normal_10]
+
+HX: W-Who is...? Who are...? [HX_STARTLED1]
+SL: Hmph, Overworld doesn't get access to Underworld's gossip does it? [SL_COCKY1]
+SL: Intimidiation, decapitation, other words ending with -ation, I do them all. [SL_FINGERGUN1]
+SL: Slasher, at your service. Currently and always working under IRIS Co. Ltd. [SL_NEUTRAL1]
+BF: IRIS?! These guys again?! Why do they always appear when we're together?! [BF_BASKETBALL_ANGRY]
+HX: I've updated my firewall to get rid of these hacking attacks... [HX_AGITATED1]
+HX: And now they send a killer onto us?! I... I'll never forgive them! [HX_ANGRY1]
+SL: But you know, this is quite a touching moment. [SL_LEAN1]
+SL: I was built off your data, and I was waiting so long for this mission to happen. [SL_COCKY2]
+SL: But now, I'm getting a different kind of reaction. [SL_LEAN2]
+SL: I was ready for a battle of a lifetime, but instead... [SL_NEUTRAL2]
+SL: Looks like it will be a fun, quick session of breaking apart my fragile predecessor.~ [SL_LEAN1]
+HX: F-Fragile?! [HX_STARTLED2]
+HX: I can't imagine the trail of blood that lead you to this moment... [HX_SHY2]
+HX: Now you endangered people with an explosive and are trying to kill me and my friend... [HX_THINK3]
+HX: A pushover I'm not! Boyfriend, I think it's time for one last song. [HX_HIP4]
+HX: This time, as a duo. [HX_COOL2]
+BF: Together? Don't have to ask me again! [BF_BASKETBALL_COOL]
+SL: Pff, is that the moment where you people do your same old song? [SL_FINGERGUN2]
+SL: That's cute. But fine. [SL_COCKY1]
+
+- Cutscene Mode -
+
+SL: You've got some determination left in you after all. [CUT20]
+SL: It will be all the more exciting seeing you try to crawl out of this death pit.
+SL: So tell me, you two ready?
+BF&HX: We're always ready! [CUT21]
+
+startSong

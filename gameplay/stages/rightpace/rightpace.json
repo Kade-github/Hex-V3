@@ -1,0 +1,123 @@
+{
+  "version": "1.0.1",
+  "name": "Right Pace",
+  "cameraZoom": 0.98,
+  "props": [
+    {
+      "zIndex": 9,
+      "position": [
+        -606.3,
+        -514.1
+      ],
+      "scale": [
+        1.0204,
+        1.0204
+      ],
+      "name": "swirl",
+      "assetPath": "gameplay/stages/rightpace/white-man",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -606.3,
+        -514.1
+      ],
+      "scale": [
+        1.0204,
+        1.0204
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/rightpace/RightPaceBG2",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -606.3,
+        -514.1
+      ],
+      "scale": [
+        1.0204,
+        1.0204
+      ],
+      "name": "coolerBG",
+      "assetPath": "gameplay/stages/rightpace/RightPaceBG9",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -278.3,
+        -177.0
+      ],
+      "scale": [
+        1.0204,
+        1.0204
+      ],
+      "name": "richard",
+      "assetPath": "gameplay/stages/rightpace/RightPaceRichard",
+      "danceEvery": 4,
+      "startingAnimation": "idle",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "richardLoop",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 24,
+      "position": [
+        30,
+        200
+      ],
+      "scale": 0.9,
+      "cameraOffsets": [
+        -5,
+        -115
+      ]
+    },
+    "dad": {
+      "zIndex": 24,
+      "position": [
+        0,
+        200
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        0,
+        -200
+      ]
+    },
+    "gf": {
+      "zIndex": 22,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "position": [
+        0,
+        0
+      ]
+    }
+  }
+}

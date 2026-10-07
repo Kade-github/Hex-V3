@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="retry.png">
+	
+	
+	<SubTexture name="retrySelected0000" x="2" y="2" width="723" height="724" frameX="0" frameY="0" frameWidth="723" frameHeight="724" />
+	<SubTexture name="retrySelected0001" x="727" y="2" width="723" height="724" frameX="0" frameY="0" frameWidth="723" frameHeight="724" />
+	<SubTexture name="retrySelected0002" x="2" y="728" width="676" height="674" frameX="-22" frameY="-20" frameWidth="723" frameHeight="724" />
+	<SubTexture name="retrySelected0003" x="680" y="728" width="611" height="612" frameX="-56" frameY="-55" frameWidth="723" frameHeight="724" />
+	<SubTexture name="retrySelected0004" x="1293" y="728" width="87" height="37" frameX="-317" frameY="-343" frameWidth="723" frameHeight="724" />
+	<SubTexture name="retryStatic0000" x="1382" y="728" width="87" height="37" frameX="0" frameY="0" frameWidth="87" frameHeight="37" />
+</TextureAtlas>

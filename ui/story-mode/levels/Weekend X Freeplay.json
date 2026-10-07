@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "(Hex) Weekend X (Freeplay)",
+    "titleAsset": "storymenu/titles/weekX",
+    "background": "#3cfeff",
+    "songs": ["java", "lcd", "glitcher-remix"],
+    "visible": false,
+    "props": [
+
+    ]
+  }

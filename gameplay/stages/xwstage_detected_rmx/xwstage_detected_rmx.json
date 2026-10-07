@@ -1,0 +1,157 @@
+{
+  "version": "1.0.1",
+  "name": "WeekendX Main (Glitcher Remix)",
+  "cameraZoom": 0.9,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexBack",
+      "assetPath": "gameplay/stages/xwstage_detected_rmx/hexBack",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexFront",
+      "assetPath": "gameplay/stages/xwstage_detected_rmx/hexFront",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 10,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "wireBack",
+      "assetPath": "gameplay/stages/xwstage_detected_rmx/au_wire_back",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "wireFront",
+      "assetPath": "gameplay/stages/xwstage_detected_rmx/au_wire_front",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 30,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "topOverlay",
+      "assetPath": "gameplay/stages/xwstage_detected_rmx/topOverlay",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 25,
+      "position": [
+        42,
+        -14
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "crowd",
+      "danceEvery": 4,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstage_detected_rmx/remixCrowd",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 24,
+      "position": [
+        1300,
+        755
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        -150,
+        -150
+      ]
+    },
+    "dad": {
+      "zIndex": 24,
+      "position": [
+        650,
+        760
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        150,
+        -80
+      ]
+    },
+    "gf": {
+      "zIndex": 22,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "position": [
+        950,
+        690
+      ]
+    }
+  }
+}

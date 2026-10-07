@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="windowNotepad.png">
+	
+	
+	<SubTexture name="windowNotepadClosing0000" x="2" y="2" width="968" height="391" frameX="-20" frameY="0" frameWidth="968" frameHeight="391" />
+	<SubTexture name="windowNotepadClosing0001" x="972" y="2" width="978" height="357" frameX="-15" frameY="-17" frameWidth="1009" frameHeight="391" />
+	<SubTexture name="windowNotepadClosing0002" x="982" y="395" width="1008" height="21" frameX="0" frameY="-185" frameWidth="1009" frameHeight="391" />
+	<SubTexture name="windowNotepadClosing0003" x="2002" y="5" width="0" height="0" frameX="-511" frameY="-202" frameWidth="1009" frameHeight="391" />
+	<SubTexture name="windowNotepadOpening0000" x="982" y="395" width="1008" height="21" frameX="0" frameY="-185" frameWidth="1009" frameHeight="391" />
+	<SubTexture name="windowNotepadOpening0001" x="2" y="395" width="978" height="357" frameX="-15" frameY="-17" frameWidth="1009" frameHeight="391" />
+	<SubTexture name="windowNotepadOpening0002" x="2" y="2" width="968" height="391" frameX="-20" frameY="0" frameWidth="968" frameHeight="391" />
+	<SubTexture name="windowNotepadStatic0000" x="2" y="2" width="968" height="391" frameX="0" frameY="0" frameWidth="968" frameHeight="391" />
+</TextureAtlas>

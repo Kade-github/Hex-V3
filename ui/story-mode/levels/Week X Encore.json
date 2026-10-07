@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "(Hex) Week X (Freeplay)",
+    "titleAsset": "storymenu/titles/weekX",
+    "background": "#3cfeff",
+    "songs": ["encore"],
+    "visible": false,
+    "props": [
+      
+    ]
+  }

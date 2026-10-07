@@ -1,0 +1,156 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 1,
+  "scale": 1,
+  "name": "Richard",
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "flipX": false,
+  "singTime": 4,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/rich/rich",
+  "healthIcon": {
+    "offsets": [
+      0,
+      0
+    ],
+    "id": "rich",
+    "flipX": false,
+    "isPixel": false,
+    "scale": 1
+  },
+  "animations": [
+    {
+      "flipY": false,
+      "offsets": [
+        0,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "richguy idle",
+      "flipX": false,
+      "looped": false,
+      "name": "idle"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        0,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "richguy idle",
+      "frameIndices": [
+        11,
+        12
+      ],
+      "flipX": false,
+      "name": "idle-hold",
+      "looped": true
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -79,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "richguy left",
+      "flipX": false,
+      "looped": false,
+      "name": "singLEFT"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -76,
+        0
+      ],
+      "frameRate": 24,
+      "prefix": "richguy left",
+      "flipX": false,
+      "name": "singLEFT-hold",
+      "looped": true
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -91,
+        -58
+      ],
+      "frameRate": 24,
+      "prefix": "richguy down",
+      "flipX": false,
+      "looped": false,
+      "name": "singDOWN"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -98,
+        -56
+      ],
+      "frameRate": 24,
+      "prefix": "richguy down",
+      "flipX": false,
+      "name": "singDOWN-hold",
+      "looped": true
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        54,
+        22
+      ],
+      "frameRate": 24,
+      "prefix": "richguy up",
+      "flipX": false,
+      "looped": false,
+      "name": "singUP"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        54,
+        20
+      ],
+      "frameRate": 24,
+      "prefix": "richguy up",
+      "flipX": false,
+      "name": "singUP-hold",
+      "looped": true
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -127,
+        -3
+      ],
+      "frameRate": 24,
+      "prefix": "richguy right",
+      "flipX": false,
+      "looped": false,
+      "name": "singRIGHT"
+    },
+    {
+      "flipY": false,
+      "offsets": [
+        -126,
+        -2
+      ],
+      "frameRate": 24,
+      "prefix": "richguy right",
+      "flipX": false,
+      "name": "singRIGHT-hold",
+      "looped": true
+    }
+  ]
+}

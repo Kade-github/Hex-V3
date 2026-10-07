@@ -1,0 +1,244 @@
+package kade.hex.songs;
+
+import kade.hex.modules.Hex_Hud;
+import funkin.modding.module.ModuleHandler;
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import funkin.play.character.BaseCharacter;
+import flixel.FlxObject;
+import flixel.math.FlxMath;
+import funkin.modding.events.HitNoteScriptEvent;
+
+import funkin.play.song.Song;
+import funkin.save.Save;
+import funkin.play.PlayState;
+
+import funkin.play.notes.Strumline;
+import kade.hex.notefield.TouchLanes;
+import funkin.util.GRhythmUtil;
+import funkin.modding.events.ScriptEvent;
+
+import flixel.FlxSprite;
+
+import flixel.FlxG;
+import hxvlc.flixel.FlxVideoSprite;
+import funkin.Conductor;
+
+class LAN extends Song {
+	var staticStrumline:Strumline;
+	var staticStrumlineNotes:Array<Dynamic> = null;
+	var stat:BaseCharacter;
+
+	public function new() {
+  	    super("lan");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>
+	{
+		return [];
+	}
+
+	var cameraXOffset:Float = 0;
+	var cameraYOffset:Float = 0;
+	var realCamX:Float = 0;
+	var realCamY:Float = 0;
+
+	var originalFocusPoint:FlxObject;
+
+	public override function onNoteHit(event:HitNoteScriptEvent) {
+		var data = event.note.noteData.data;
+
+		if (data > 3)
+			data -= 4;
+
+		switch(data)
+		{
+			case 0: // left
+				cameraXOffset = -25;
+				cameraYOffset = 0;
+			case 1: // down
+				cameraYOffset = 25;
+				cameraXOffset = 0;
+			case 2: // up
+				cameraYOffset = -25;
+				cameraXOffset = 0;
+			case 3: // right
+				cameraXOffset = 25;
+				cameraYOffset = 0;
+		}
+
+		super.onNoteHit(event);
+	}
+
+	public function onStrumlineNoteIncoming(note)
+	{
+		@:privateAccess
+		PlayState.instance.onStrumlineNoteIncoming(note);
+		dimNote(note);
+	}
+
+	function dimNote(note)
+	{
+		if (note == null)
+			return;
+
+		note.alpha = 0.4;
+
+		if (note.holdNoteSprite != null)
+			note.holdNoteSprite.alpha = 0.4;
+	}
+
+	public override function onCreate() {
+		super.onCreate();
+
+		@:privateAccess PlayState.instance.playerStrumline.background.visible = false;
+		@:privateAccess PlayState.instance.opponentStrumline.background.visible = false;
+
+		originalFocusPoint = new FlxObject();
+		stat = PlayState.instance.currentStage.getGirlfriend();
+
+		var diff = PlayState.instance.currentDifficulty + " (static)";
+		trace(difficulties);
+		var staticDiff = difficulties.get("default").get(diff);
+
+		if (staticDiff == null)
+		{
+			trace("Couldn't find static difficulty data for " + diff);
+			return;
+		}
+		
+		TouchLanes.toggle(true);
+
+		@:privateAccess
+		staticStrumline = new Strumline(PlayState.instance.noteStyle, false, PlayState.instance.currentChart?.scrollSpeed);
+		staticStrumline.isDownscroll = PlayState.instance.opponentStrumline.isDownscroll;
+		staticStrumline.onNoteIncoming.add(onStrumlineNoteIncoming);
+
+		staticStrumline.zIndex = 1001;
+		staticStrumline.cameras = [PlayState.instance.camHUD];
+
+		staticStrumlineNotes = staticDiff.notes;
+		staticStrumline.applyNoteData(staticStrumlineNotes);
+		PlayState.instance.add(staticStrumline);
+
+		applyLayout();
+		layoutOwner = PlayState.instance;
+
+		PlayState.instance.opponentStrumline.onNoteIncoming.add(function(note)
+		{
+			dimNote(note);
+		});
+
+		originalFocusPoint.setPosition(PlayState.instance.cameraFollowPoint.x, PlayState.instance.cameraFollowPoint.y);
+	}
+
+	var layoutOwner:Dynamic = null;
+
+	function applyLayout()
+	{
+		var ps = PlayState.instance;
+		if (ps == null)
+			return;
+
+		ps.playerStrumline.scale.set(0.6, 0.6);
+		ps.opponentStrumline.scale.set(0.6, 0.6);
+
+		ps.playerStrumline.x = 845;
+		ps.opponentStrumline.x = 20;
+
+		ps.playerStrumline.setNoteSpacing(0.90);
+		ps.opponentStrumline.setNoteSpacing(0.90);
+
+		ps.opponentStrumline.alpha = 0.4;
+
+		if (staticStrumline != null)
+		{
+			staticStrumline.scale.set(0.6, 0.6);
+			staticStrumline.y = ps.opponentStrumline.y;
+			staticStrumline.x = 430;
+			staticStrumline.setNoteSpacing(0.90);
+			staticStrumline.alpha = 0.4;
+		}
+	}
+
+	public override function onSongLoaded(event) {
+		super.onSongLoaded(event);
+
+		if (layoutOwner == PlayState.instance)
+			applyLayout();
+	}
+
+	public override function onSongRetry(event) {
+		if (staticStrumline != null && staticStrumlineNotes != null)
+		{
+			staticStrumline.clean();
+			staticStrumline.applyNoteData(staticStrumlineNotes);
+		}
+
+		super.onSongRetry(event);
+	}
+
+	public override function onBeatHit(event) {
+		super.onBeatHit(event);
+
+		if (staticStrumline != null)
+			staticStrumline.onBeatHit();
+	}
+
+
+	public override function onUpdate(event)
+  	{
+		super.onUpdate(event);
+		
+		
+		if (staticStrumline == null)
+			return;
+
+		for (strNotes in PlayState.instance.opponentStrumline.strumlineNotes.members)
+		{
+			if (strNotes == null) continue;
+			strNotes.alpha = 0.4;
+		}
+
+		var songPos:Float = Conductor.instance.songPosition;
+
+		for (note in staticStrumline.notes.members)
+		{
+			if (note == null || !note.alive || note.hasBeenHit || note.hasMissed) continue;
+			if (note.strumTime > songPos) continue;
+
+			var r = GRhythmUtil.processWindow(note, false);
+			if (r.botplayHit)
+			{
+				stat.playSingAnimation(note.noteData.getDirection(), false);
+				stat.holdTimer = 0;
+
+				staticStrumline.hitNote(note);
+				onNoteHit(new HitNoteScriptEvent(note, 0, 0, 'LOL', true, 99999));
+
+				if (note.holdNoteSprite != null)
+					staticStrumline.playNoteHoldCover(note.holdNoteSprite);
+
+			}
+		}
+
+		for (holdNote in staticStrumline.holdNotes.members)
+		{
+			if (holdNote == null || !holdNote.alive) continue;
+			if (!holdNote.hitNote || holdNote.missedNote || holdNote.sustainLength <= 0) continue;
+
+			if (stat != null && stat.isSinging())
+				stat.holdTimer = 0;
+		}
+
+		// Camera movement
+		realCamX = FlxMath.lerp(realCamX, cameraXOffset, 0.06);
+    	realCamY = FlxMath.lerp(realCamY, cameraYOffset, 0.06);
+
+		// slowly reset the camera offset back to 0 so it doesn't get stuck if you miss a note or something
+		cameraXOffset = FlxMath.lerp(cameraXOffset, 0, 0.02);
+		cameraYOffset = FlxMath.lerp(cameraYOffset, 0, 0.02);
+
+		PlayState.instance.cameraFollowPoint.setPosition(originalFocusPoint.x + realCamX, originalFocusPoint.y + realCamY);
+	}
+}

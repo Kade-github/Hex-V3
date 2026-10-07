@@ -1,0 +1,59 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"name": "Hex (Jumpin 1)",
+	"flipX": false,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"assetPath": "gameplay/characters/hex-jumpin1/Jumpin_Hex1",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "hex"
+	},
+	"animations": [
+		{
+			"prefix": "hexIDLE",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				68,
+				-9
+			],
+			"prefix": "hexLEFT",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-55,
+				-55
+			],
+			"prefix": "hexDOWN",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-58,
+				-10
+			],
+			"prefix": "hexUP",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-40,
+				39
+			],
+			"prefix": "hexRIGHT",
+			"name": "singRIGHT"
+		}
+	]
+}

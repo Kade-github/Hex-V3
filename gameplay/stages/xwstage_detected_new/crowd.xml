@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="crowd.png">
+	
+	<SubTexture name="Symbol 10000" x="2" y="2" width="1212" height="532" frameX="0" frameY="-319" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10001" x="2" y="2" width="1212" height="532" frameX="0" frameY="-315" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10002" x="2" y="2" width="1212" height="532" frameX="0" frameY="-311" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10003" x="2" y="2" width="1212" height="532" frameX="0" frameY="-309" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10004" x="2" y="2" width="1212" height="532" frameX="0" frameY="-305" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10005" x="2" y="2" width="1212" height="532" frameX="0" frameY="-301" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10006" x="2" y="2" width="1212" height="532" frameX="0" frameY="-299" frameWidth="1280" frameHeight="866" />
+	<SubTexture name="Symbol 10007" x="2" y="2" width="1212" height="532" frameX="0" frameY="-295" frameWidth="1280" frameHeight="866" />
+</TextureAtlas>

@@ -1,0 +1,662 @@
+package kade.hex.events;
+
+import funkin.play.event.SongEvent;
+import funkin.data.event.SongEventSchema;
+import funkin.data.song.SongData.SongEventData;
+import funkin.data.character.CharacterDataParser;
+import funkin.play.PlayState;
+import funkin.play.character.BaseCharacter;
+import funkin.play.character.CharacterType;
+import flixel.FlxG;
+import flixel.tweens.FlxEase;
+
+class SwitchCharactersSongEvent extends SongEvent
+{
+	static var DEFAULT_TARGET:Int = 0;
+	static var DEFAULT_STAGE_MARK:Bool = false;
+	static var DEFAULT_OFFSET:Float = 0;
+	static var DEFAULT_FADE:Float = 0;
+
+	var readyIds:Array<String> = [];
+	var readyChars:Array<BaseCharacter> = [];
+	var markX:Array<Float> = [];
+	var markY:Array<Float> = [];
+
+	var warming:Array<BaseCharacter> = [];
+
+	var fadeIn:Array<BaseCharacter> = [];
+	var fadeOut:Array<BaseCharacter> = [];
+	var fadeTime:Array<Float> = [];
+	var fadeLength:Array<Float> = [];
+
+	var startingSlots:Array<Int> = [];
+	var startingChars:Array<BaseCharacter> = [];
+
+	public function new()
+	{
+		super("SwitchCharacters", {processOldEvents: true});
+	}
+
+	var warmed:Bool = false;
+	var owner:PlayState = null;
+
+	function sameRun():Bool
+	{
+		var now = PlayState.instance;
+		if (now != owner)
+		{
+			clear();
+			owner = now;
+		}
+
+		return now != null;
+	}
+
+	function gone(who:BaseCharacter):Bool
+	{
+		return who == null || who.scale == null;
+	}
+
+	override public function onCreate(event)
+	{
+		clear();
+		owner = PlayState.instance;
+		warmed = preload();
+	}
+
+	override public function onDestroy(event)
+	{
+		clear();
+		owner = null;
+	}
+
+	override public function onSongLoaded(event)
+	{
+		if (!sameRun() || warmed)
+			return;
+
+		clear();
+		warmed = preload();
+	}
+
+	override public function onSongStart(event)
+	{
+		if (!sameRun() || warmed)
+			return;
+
+		clear();
+		warmed = preload();
+	}
+
+	override public function onSongEnd(event)
+	{
+		clear();
+	}
+
+	override public function onGameOver(event)
+	{
+		settleFades();
+	}
+
+	override public function onSongRetry(event)
+	{
+		if (!sameRun())
+			return;
+
+		settleFades();
+
+		var on = stageNow();
+		if (on == null)
+			return;
+
+		for (i in 0...startingSlots.length)
+		{
+			var target:Int = startingSlots[i];
+			var was:BaseCharacter = startingChars[i];
+			if (gone(was))
+				continue;
+
+			var standing = characterOf(target);
+			if (standing == was)
+				continue;
+
+			claimSlot(was, target);
+			on.add(was);
+			was.visible = true;
+			was.alpha = 1;
+
+			if (standing != null)
+			{
+				standing.visible = false;
+				on.remove(standing);
+			}
+		}
+
+		on.refresh();
+	}
+
+	function clear()
+	{
+		settleFades();
+
+		readyIds = [];
+		readyChars = [];
+		markX = [];
+		markY = [];
+		warming = [];
+		startingSlots = [];
+		startingChars = [];
+		warmed = false;
+	}
+
+	function rememberSlot(target:Int)
+	{
+		if (startingSlots.indexOf(target) >= 0)
+			return;
+
+		var standing = characterOf(target);
+		if (standing == null)
+			return;
+
+		startingSlots.push(target);
+		startingChars.push(standing);
+		keep(standing.characterId, standing);
+	}
+
+	function readyFor(who:String):BaseCharacter
+	{
+		var at:Int = readyIds.indexOf(who);
+		if (at < 0)
+			return null;
+
+		return gone(readyChars[at]) ? null : readyChars[at];
+	}
+
+	function keep(who:String, made:BaseCharacter)
+	{
+		var at:Int = readyIds.indexOf(who);
+		if (at < 0)
+		{
+			readyIds.push(who);
+			readyChars.push(made);
+			markX.push(made == null ? 0 : made.x);
+			markY.push(made == null ? 0 : made.y);
+			return;
+		}
+
+		readyChars[at] = made;
+	}
+
+	function setMark(who:String, made:BaseCharacter)
+	{
+		var at:Int = readyIds.indexOf(who);
+		if (at < 0 || made == null)
+			return;
+
+		markX[at] = made.x;
+		markY[at] = made.y;
+	}
+
+	function toMark(who:String, made:BaseCharacter, offX:Float, offY:Float, target:Int, mark:Bool)
+	{
+		var at:Int = readyIds.indexOf(who);
+		if (at < 0 || made == null)
+			return;
+
+		made.x = markX[at] + offX;
+		made.y = markY[at] + offY;
+		made.originalPosition.set(made.x, made.y);
+		made.resetCameraFocusPoint();
+
+		if (mark)
+			stageFocus(made, target);
+	}
+
+	function stageFocus(made:BaseCharacter, target:Int)
+	{
+		var on = stageNow();
+		if (on == null || made == null)
+			return;
+
+		@:privateAccess
+		var slots = on._data.characters;
+		var slot = target == 1 ? slots.dad : (target == 2 ? slots.gf : slots.bf);
+		if (slot == null || slot.cameraOffsets == null)
+			return;
+
+		made.cameraFocusPoint.x += slot.cameraOffsets[0];
+		made.cameraFocusPoint.y += slot.cameraOffsets[1];
+	}
+
+	function stageNow()
+	{
+		return PlayState.instance == null ? null : PlayState.instance.currentStage;
+	}
+
+	function characterOf(target:Int):BaseCharacter
+	{
+		var on = stageNow();
+		if (on == null)
+			return null;
+
+		if (target == 1)
+			return on.getDad();
+		if (target == 2)
+			return on.getGirlfriend();
+
+		return on.getBoyfriend();
+	}
+
+	function typeOf(target:Int):CharacterType
+	{
+		if (target == 1)
+			return CharacterType.DAD;
+		if (target == 2)
+			return CharacterType.GF;
+
+		return CharacterType.BF;
+	}
+
+	function preload():Bool
+	{
+		var state = PlayState.instance;
+		if (state == null)
+			return false;
+
+		if (state.currentChart == null || state.currentChart.events == null)
+			return false;
+
+		var on = stageNow();
+		if (on == null)
+			return false;
+
+		for (data in state.currentChart.events)
+		{
+			if (data == null || data.eventKind != id || data.value == null)
+				continue;
+
+			var who:String = data.value.id;
+			if (who == null || who == "" || readyFor(who) != null)
+				continue;
+
+			var made = CharacterDataParser.fetchCharacter(who);
+			if (made == null)
+			{
+				trace("SwitchCharacters: no character called " + who);
+				continue;
+			}
+
+			var target:Int = readInt(data.value.target, DEFAULT_TARGET);
+			rememberSlot(target);
+			var standing = characterOf(target);
+
+			var mark:Bool = readBool(data.value.stageMark, DEFAULT_STAGE_MARK);
+
+			dressSlot(made, target);
+
+			if (mark)
+			{
+				on.addCharacter(made, typeOf(target));
+			}
+			else
+			{
+				made.resetCharacter(true);
+				place(made, standing);
+				on.add(made);
+			}
+
+			keep(who, made);
+			setMark(who, made);
+
+			toMark(who, made, readFloat(data.value.offsetX, DEFAULT_OFFSET), readFloat(data.value.offsetY, DEFAULT_OFFSET), target, mark);
+
+			if (standing != null)
+				claimSlot(standing, target);
+
+			made.alpha = 1 / 255;
+			made.visible = true;
+			on.refresh();
+
+			warming.push(made);
+		}
+
+		return true;
+	}
+
+	override public function onUpdate(event)
+	{
+		stepFades(event.elapsed);
+
+		if (warming.length == 0)
+			return;
+
+		for (one in warming)
+		{
+			one.alpha = 0;
+			one.visible = false;
+		}
+
+		warming = [];
+	}
+
+	function stepFades(elapsed:Float)
+	{
+		var i:Int = fadeIn.length - 1;
+		while (i >= 0)
+		{
+			fadeTime[i] += elapsed;
+
+			if (fadeTime[i] >= fadeLength[i])
+			{
+				endFade(i);
+			}
+			else
+			{
+				carryAnimation(fadeIn[i], fadeOut[i]);
+				layerFade(fadeIn[i], fadeOut[i]);
+
+				fadeOut[i].alpha = 1 - FlxEase.sineInOut(fadeTime[i] / fadeLength[i]);
+			}
+
+			i--;
+		}
+	}
+
+	function layerFade(incoming:BaseCharacter, outgoing:BaseCharacter)
+	{
+		var on = stageNow();
+		if (on == null)
+			return;
+
+		var list = on.members;
+		var under:Int = list.indexOf(incoming);
+		var over:Int = list.indexOf(outgoing);
+
+		if (under < 0 || over < 0 || over > under)
+			return;
+
+		list.splice(over, 1);
+		list.insert(under, outgoing);
+	}
+
+	function endFade(i:Int)
+	{
+		var incoming:BaseCharacter = fadeIn[i];
+		var outgoing:BaseCharacter = fadeOut[i];
+
+		fadeIn.splice(i, 1);
+		fadeOut.splice(i, 1);
+		fadeTime.splice(i, 1);
+		fadeLength.splice(i, 1);
+
+		if (incoming != null)
+			incoming.alpha = 1;
+
+		if (outgoing != null)
+		{
+			outgoing.visible = false;
+			outgoing.alpha = 1;
+
+			var on = stageNow();
+			if (on != null)
+				on.remove(outgoing);
+		}
+	}
+
+	function settleFades()
+	{
+		while (fadeIn.length > 0)
+			endFade(fadeIn.length - 1);
+	}
+
+	function settleFadesOf(who:BaseCharacter)
+	{
+		if (who == null)
+			return;
+
+		var i:Int = fadeIn.length - 1;
+		while (i >= 0)
+		{
+			if (fadeIn[i] == who || fadeOut[i] == who)
+				endFade(i);
+			i--;
+		}
+	}
+
+	override public function handleEvent(data:SongEventData):Void
+	{
+		if (!sameRun() || data == null || data.value == null)
+			return;
+
+		var on = stageNow();
+		if (on == null)
+			return;
+
+		var who:String = data.value.id;
+		if (who == null || who == "")
+			return;
+
+		var target:Int = readInt(data.value.target, DEFAULT_TARGET);
+		var mark:Bool = readBool(data.value.stageMark, DEFAULT_STAGE_MARK);
+
+		var made = readyFor(who);
+		var fresh:Bool = made == null;
+
+		if (fresh)
+		{
+			trace("SwitchCharacters: WARNING cold loading " + who + " mid song, the preload missed it");
+
+			made = CharacterDataParser.fetchCharacter(who);
+			if (made == null)
+			{
+				trace("SwitchCharacters: no character called " + who);
+				return;
+			}
+
+			keep(who, made);
+		}
+
+		var standing = characterOf(target);
+		if (standing == made)
+			return;
+
+		settleFadesOf(made);
+		settleFadesOf(standing);
+
+		if (standing != null)
+			keep(standing.characterId, standing);
+
+		if (fresh)
+		{
+			dressSlot(made, target);
+
+			if (mark)
+				on.addCharacter(made, typeOf(target));
+			else
+				place(made, standing);
+
+			setMark(who, made);
+		}
+
+		claimSlot(made, target);
+		on.add(made);
+
+		if (!mark && !fresh)
+			place(made, standing);
+
+		toMark(who, made, readFloat(data.value.offsetX, DEFAULT_OFFSET), readFloat(data.value.offsetY, DEFAULT_OFFSET), target, mark);
+
+		carryAnimation(standing, made);
+
+		var fade:Float = readFloat(data.value.fade, DEFAULT_FADE);
+
+		made.visible = true;
+
+		made.alpha = 1;
+
+		if (fade > 0 && standing != null)
+		{
+			fadeIn.push(made);
+			fadeOut.push(standing);
+			fadeTime.push(0);
+			fadeLength.push(fade);
+		}
+		else if (standing != null)
+		{
+			standing.visible = false;
+			on.remove(standing);
+		}
+
+		on.refresh();
+
+		if (fade > 0 && standing != null)
+			layerFade(made, standing);
+	}
+
+	function carryAnimation(from:BaseCharacter, to:BaseCharacter)
+	{
+		if (from == null || to == null || from.animation == null || to.animation == null)
+			return;
+
+		var was = from.animation.curAnim;
+		if (was == null)
+			return;
+
+		to.playAnimation(was.name, true);
+
+		var now = to.animation.curAnim;
+		if (now == null || now.name != was.name)
+		{
+			to.playAnimation("idle", true);
+			return;
+		}
+
+		now.curFrame = was.curFrame;
+		now.paused = was.paused;
+	}
+
+	function dressSlot(made:BaseCharacter, target:Int)
+	{
+		if (made == null)
+			return;
+
+		made.characterType = typeOf(target);
+
+		if (target == 1)
+			made.flipX = made.getDataFlipX();
+		else if (target == 2)
+			made.flipX = made.getDataFlipX();
+		else
+			made.flipX = !made.getDataFlipX();
+	}
+
+	function claimSlot(made:BaseCharacter, target:Int)
+	{
+		var on = stageNow();
+		if (on == null || made == null)
+			return;
+
+		made.characterType = typeOf(target);
+		made.name = target == 1 ? "dad" : (target == 2 ? "gf" : "bf");
+
+		@:privateAccess
+		on.characters.set(made.name, made);
+
+		if (target != 2)
+			made.initHealthIcon(target == 1);
+	}
+
+	function place(made:BaseCharacter, standing:BaseCharacter)
+	{
+		if (made == null)
+			return;
+
+		if (standing != null)
+		{
+			made.zIndex = standing.zIndex;
+			made.scrollFactor.set(standing.scrollFactor.x, standing.scrollFactor.y);
+			made.setScale(standing.scale.x);
+			made.y = standing.y;
+		}
+
+		made.x = viewCenterX() - made.width * 0.5;
+
+		made.originalPosition.set(made.x, made.y);
+		made.resetCameraFocusPoint();
+	}
+
+	function viewCenterX():Float
+	{
+		var camera = PlayState.instance == null ? null : PlayState.instance.camGame;
+		var scroll:Float = camera == null ? 0 : camera.scroll.x;
+		return scroll + FlxG.width * 0.5;
+	}
+
+	function readInt(v:Dynamic, fallback:Int):Int
+	{
+		return v == null ? fallback : Std.int(v);
+	}
+
+	function readFloat(v:Dynamic, fallback:Float):Float
+	{
+		return v == null ? fallback : v * 1.0;
+	}
+
+	function readBool(v:Dynamic, fallback:Bool):Bool
+	{
+		return v == null ? fallback : v == true;
+	}
+
+	override public function getTitle():String
+	{
+		return "Switch Characters";
+	}
+
+	override public function getEventSchema():SongEventSchema
+	{
+		return new SongEventSchema([
+			{
+				name: "target",
+				title: "Character",
+				defaultValue: DEFAULT_TARGET,
+				type: "enum",
+				keys: ["Player" => 0, "Opponent" => 1, "Girlfriend" => 2]
+			},
+			{
+				name: "id",
+				title: "Switch To",
+				defaultValue: "",
+				type: "string"
+			},
+			{
+				name: "stageMark",
+				title: "Use Stage Position?",
+				defaultValue: DEFAULT_STAGE_MARK,
+				type: "bool"
+			},
+			{
+				name: "offsetX",
+				title: "X Offset",
+				defaultValue: DEFAULT_OFFSET,
+				step: 1,
+				type: "float"
+			},
+			{
+				name: "offsetY",
+				title: "Y Offset",
+				defaultValue: DEFAULT_OFFSET,
+				step: 1,
+				type: "float"
+			},
+			{
+				name: "fade",
+				title: "Crossfade Time",
+				defaultValue: DEFAULT_FADE,
+				min: 0,
+				step: 0.1,
+				type: "float",
+				units: "s"
+			}
+		]);
+	}
+}

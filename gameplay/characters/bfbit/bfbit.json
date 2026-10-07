@@ -1,0 +1,140 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 1,
+  "scale": 1,
+  "name": "Boyfriend (Bit)",
+  "flipX": true,
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "singTime": 8,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/bfbit/bfbit",
+  "healthIcon": {
+    "offsets": [
+      0,
+      0
+    ],
+    "isPixel": false,
+    "scale": 1,
+    "flipX": false,
+    "id": "bf"
+  },
+  "animations": [
+    {
+      "offsets": [
+        0,
+        0
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "idle",
+      "name": "idle",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        38,
+        1
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "left",
+      "name": "singLEFT",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        0,
+        0
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "down",
+      "name": "singDOWN",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        7,
+        10
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "up",
+      "name": "singUP",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -5,
+        -1
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "right",
+      "name": "singRIGHT",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        40,
+        17
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "BFleftMISS",
+      "name": "singLEFTmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        2,
+        18
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "BFdownMISS",
+      "name": "singDOWNmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        5,
+        41
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "BFupMISS",
+      "name": "singUPmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -4,
+        14
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "BFrightMISS",
+      "name": "singRIGHTmiss",
+      "looped": false,
+      "flipX": false
+    }
+  ]
+}

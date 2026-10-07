@@ -1,0 +1,56 @@
+cutscenes: eventX_CUT
+playMusic: givinALittle
+
+- Cutscene Mode -
+
+BF: Alright Boyfriend, gotta calm down... [CUT1]
+BF: It's just a basketball match livestreamed and broadcasted to potentially millions of people...
+BF: It will be fine, right? It has to be!
+BF: I just gotta walk in, and set the mood. One, two... three! [CUT2]
+BF: WHO'S READY FOR SOME MODAFUNKIN B-BALL? [CUT3]
+
+playMusic: none
+
+... [CUT4]
+BF: (I'm so dead. I'm the shortest player here.)
+
+playMusic: bitInterlude
+
+HX: Boyfriend! Over here! [CUT5]
+BF: *gasp* Hex!
+
+- Sprite Mode - [bg_normal_7]
+
+HX: You're here! Oh, I'm so glad you've agreed to this one! [HX_EXCITED]
+HX: A charity match featuring local players and celebrities, that's a rarity! [HX_EXPLAIN1]
+HX: And we're also on the same team! I'm so hyped to play with you! [HX_HIP2]
+BF: Y-Yea! It's... awesome, yea... [BF_DISCOURAGED1]
+HX: Are you okay? You look more pale than usual. [HX_THINK1]
+BF: I'm fine! It's just... I guess I'm a little out of my element. [BF_SHRUG2]
+BF: I agreed to this on a whim to support a good cause, but... [BF_THINK2]
+BF: I'm a little intimidated by being the shortest one here. [BF_THINK3]
+HX: Boyfriend... [HX_HIP1]
+HX: You've been through far worse! You fought a literal bomb that is Whitty. [HX_HIP3]
+HX: You survived Tabi's terrorist attack, and endless waves of horror monsters. [HX_EXPLAIN3]
+HX: A basketball match is nothing compared to that! [HX_EXPLAIN2]
+BF: I know I know, but like... [BF_SHRUG1]
+BF: I feel like if I do bad I'm not only ruining the cause but also... [BF_SWEAT]
+BF: My cred might be in danger. [BF_DISCOURAGED2]
+HX: Then... let's think about it the opposite way. [HX_THINK1]
+HX: How about we turn your weakness into your strength? [HX_EXPLAIN1]
+BF: What do you mean? [BF_NEUTRAL1]
+HX: Well, it's true that... you're not gifted when it comes to height. [HX_SHY4]
+HX: But I've seen you run! You're fast if that is required of you. [HX_HIP3]
+HX: So, instead of using your stature let's use your agility! [HX_THINK2]
+HX: Dash unnoticed by the enemy team and snatch the ball from their grasp. [HX_EXPLAIN1]
+HX: That's a strategy you should utilize! [HX_HIP2]
+BF: Huh, I guess... that gives me a new way to look at this... [BF_WONDER2]
+
+- Cutscene Mode -
+
+HX: If you're still a little nervous, how about a song before we go? [CUT6]
+BF: A song... right! That always gives me a confidence boost! [CUT7]
+BF: Alright Hex! Are you ready?
+HX: Pshh, when has my answer ever been no? [CUT8]
+
+startSong

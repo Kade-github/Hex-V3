@@ -1,0 +1,168 @@
+package kade.hex.modchart.scenes;
+
+import kade.hex.chart.Scene;
+
+class Eye2EyeScene extends Scene
+{
+    public var glitch:Float = 0;
+
+    public var eyeAngle:Array<Float> = [0, 0, 0, 0, 0, 0, 0, 0];
+    public var eyeReach:Array<Float> = [0, 0, 0, 0, 0, 0, 0, 0];
+    public var eyeBecome:Array<Float> = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    var BALL = 1400;
+
+    var idGlitch = -1;
+    #if FEATURE_TOUCH_CONTROLS
+    var GLITCH_TAPS:Float = 8;
+    #else
+    var GLITCH_TAPS:Float = 20;
+    #end
+
+    var idGray = -1;
+    var idInvert = -1;
+    var idTurn = -1;
+    var idFar = -1;
+    var idWhole = -1;
+    var idRadius = -1;
+    var idAngle:Array<Int> = [];
+    var idReach:Array<Int> = [];
+    var idBecome:Array<Int> = [];
+
+
+    public function new()
+    {
+        super("eye2eye_scene", 100);
+    }
+
+    public override function declare()
+    {
+        stage3d();
+
+        shader("ball", "ui/shaders/stage_ball");
+        material("ball", "prop:stage");
+
+        shader("glitch", "ui/shaders/screen_glitch");
+        filter("glitch", "final");
+
+        channel("stage.gray", 0);
+        channel("stage.invert", 0);
+
+        ball("stage", stagePath(), BALL);
+        follow("stage", false);
+
+        channel("stage.radius", BALL);
+
+        channel("screen.glitch", 0);
+
+        channel("eyes.angle", 0);
+        channel("eyes.reach", 0);
+        channel("eyes.become", 0);
+
+        for (i in 1...9)
+        {
+            channel("eye" + i + ".angle", 0);
+            channel("eye" + i + ".reach", 0);
+            channel("eye" + i + ".become", 0);
+        }
+    }
+
+    public override function open()
+    {
+        idAngle = [];
+        glitch = 0;
+        rest();
+    }
+
+    function findIds()
+    {
+        idGlitch = idOf("screen.glitch");
+        idGray = idOf("stage.gray");
+        idInvert = idOf("stage.invert");
+        idTurn = idOf("eyes.angle");
+        idFar = idOf("eyes.reach");
+        idWhole = idOf("eyes.become");
+        idRadius = idOf("stage.radius");
+        idAngle = [];
+        idReach = [];
+        idBecome = [];
+        for (i in 1...9)
+        {
+            idAngle.push(idOf("eye" + i + ".angle"));
+            idReach.push(idOf("eye" + i + ".reach"));
+            idBecome.push(idOf("eye" + i + ".become"));
+        }
+
+        var all:Array<Int> = [idGlitch, idTurn, idFar, idWhole, idRadius];
+        for (i in 0...8) all.push(idAngle[i]);
+        for (i in 0...8) all.push(idReach[i]);
+        for (i in 0...8) all.push(idBecome[i]);
+        all.push(idGray);
+        all.push(idInvert);
+        watch(all);
+    }
+
+    public override function frame(beat:Float)
+    {
+        if (idAngle.length == 0) findIds();
+
+        var v = readWatched();
+
+        glitch = v[0];
+
+        var turn = v[1];
+        var far = v[2];
+        var whole = v[3];
+
+        for (i in 0...8)
+        {
+            eyeAngle[i] = turn + v[5 + i];
+            eyeReach[i] = far + v[13 + i];
+
+            var much = whole + v[21 + i];
+            if (much < 0) much = 0;
+            if (much > 1) much = 1;
+            eyeBecome[i] = much;
+        }
+
+        holdBall(v[4]);
+
+        live("ball.uGray", v[29]);
+        live("ball.uInvert", v[30]);
+        live("glitch.uTaps", GLITCH_TAPS);
+    }
+
+    public function glitchAt(much:Float)
+    {
+        live("glitch.uGlitch", much);
+    }
+
+    function holdBall(radius:Float)
+    {
+        if (radius < 200) radius = 200;
+
+        place("stage", 0, 0, radius);
+        size("stage", radius / BALL);
+
+        roundAt("stage", 0, 0);
+
+    }
+
+    public override function close()
+    {
+        stageDrawn(true);
+
+        glitch = 0;
+        rest();
+    }
+
+    function rest()
+    {
+        for (i in 0...8)
+        {
+            eyeAngle[i] = 0;
+            eyeReach[i] = 0;
+            eyeBecome[i] = 0;
+        }
+    }
+}

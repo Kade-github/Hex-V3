@@ -1,0 +1,157 @@
+{
+  "version": "1.0.0",
+  "renderType": "sparrow",
+  "offsets": [
+    0,
+    0
+  ],
+  "danceEvery": 1,
+  "applyStageMatrix": false,
+  "scale": 0.8,
+  "name": "Hex (BombsNCombs)",
+  "cameraOffsets": [
+    0,
+    0
+  ],
+  "flipX": true,
+  "singTime": 4,
+  "startingAnimation": "idle",
+  "isPixel": false,
+  "assetPath": "gameplay/characters/hex-bombs/hex-bombs",
+  "healthIcon": {
+    "isPixel": false,
+    "offsets": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "id": "hex",
+    "flipX": false
+  },
+  "atlasSettings": {
+    "applyStageMatrix": false,
+    "useRenderTexture": false,
+    "filterQuality": 1,
+    "cacheOnLoad": false,
+    "swfMode": true
+  },
+  "animations": [
+    {
+      "offsets": [
+        -1,
+        0
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexIDLE",
+      "animType": "framelabel",
+      "name": "idle",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        163,
+        4
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexLEFTr",
+      "animType": "framelabel",
+      "name": "singLEFT",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        49,
+        -98
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexDOWNr",
+      "animType": "framelabel",
+      "name": "singDOWN",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        59,
+        -17
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexUPr",
+      "animType": "framelabel",
+      "name": "singUP",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -86,
+        -19
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexRIGHTr",
+      "animType": "framelabel",
+      "name": "singRIGHT",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        132,
+        -53
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexLEFTmiss",
+      "animType": "framelabel",
+      "name": "singLEFTmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        57,
+        -150
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexDOWNmiss",
+      "animType": "framelabel",
+      "name": "singDOWNmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        45,
+        -16
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexUPmiss",
+      "animType": "framelabel",
+      "name": "singUPmiss",
+      "looped": false,
+      "flipX": false
+    },
+    {
+      "offsets": [
+        -104,
+        -72
+      ],
+      "flipY": false,
+      "frameRate": 24,
+      "prefix": "hexRIGHTmiss",
+      "animType": "framelabel",
+      "name": "singRIGHTmiss",
+      "looped": false,
+      "flipX": false
+    }
+  ]
+}

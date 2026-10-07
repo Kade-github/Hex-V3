@@ -1,0 +1,51 @@
+{
+ "version": "2.2.8",
+ "songName": "R.A.M (2026)",
+ "artist": "YingYang48",
+ "charter": "YingYang48",
+ "offsets": {
+  "vocals": {
+   "bf": 9,
+   "hex": 0
+  }
+ },
+ "playData": {
+  "difficulties": [
+   "easy",
+   "normal",
+   "hard"
+  ],
+  "characters": {
+   "player": "bf-old",
+   "girlfriend": "gf-old",
+   "opponent": "hex",
+   "instrumental": "new",
+   "opponentVocals": [
+    "hex"
+   ],
+   "playerVocals": [
+    "bf"
+   ]
+  },
+  "stage": "xstage_sunset_new",
+  "noteStyle": "hex",
+  "ratings": {
+   "easy": 1,
+   "normal": 2,
+   "hard": 4,
+   "erect": 0,
+   "nightmare": 0
+  },
+  "album": "volume1",
+  "previewEnd": 0
+ },
+ "generatedBy": "Friday Night Funkin' - v0.8.5",
+ "timeChanges": [
+  {
+   "t": 0,
+   "b": 0,
+   "bpm": 120,
+   "bt": [4, 4, 4, 4]
+  }
+ ]
+}

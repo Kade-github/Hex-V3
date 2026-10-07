@@ -1,0 +1,19 @@
+{
+    "title": "That Ludacris Song",
+    "description": "Addon for hex",
+    "id": "hex-ludacris",
+    "contributors": [
+      {
+        "name": "Kade"
+      },
+      {
+        "name": "YingYang48"
+      }
+    ],
+    "api_version": "0.9.0",
+    "mod_version": "1.0.0",
+    "license": "Apache-2.0",
+    "dependencies": {
+      "hex": "*.*.*"
+    }
+  }

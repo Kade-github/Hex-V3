@@ -1,0 +1,59 @@
+{
+  "version": "1.0.1",
+  "name": "Retro",
+  "cameraZoom": 1.05,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -250,
+        150
+      ],
+      "scale": [
+        0.75,
+        0.75
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/retro/bg",
+      "scroll": [
+        1,
+        1
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        710,
+        900
+      ],
+      "cameraOffsets": [
+        -135,
+        -50
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        200,
+        900
+      ],
+      "cameraOffsets": [
+        170,
+        -90
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        -90000,
+        -90000
+      ]
+    }
+  }
+}

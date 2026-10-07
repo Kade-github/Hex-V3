@@ -1,0 +1,35 @@
+{
+  "version": "1.1.0",
+  "name": "Hex Mine Regular",
+  "author": "Kade/YingYang48",
+  "fallback": null,
+  "assets": {
+    "note": {
+      "assetPath": "gameplay/notestyles/hex_mine_reg/hex_mine_reg",
+      "scale": 0.7,
+      "animated": true,
+      "data": {
+        "left": {
+          "prefix": "hex_mine_reg",
+          "frameRate": 24,
+          "looped": true
+        },
+        "down": {
+          "prefix": "hex_mine_reg",
+          "frameRate": 24,
+          "looped": true
+        },
+        "up": {
+          "prefix": "hex_mine_reg",
+          "frameRate": 24,
+          "looped": true
+        },
+        "right": {
+          "prefix": "hex_mine_reg",
+          "frameRate": 24,
+          "looped": true
+        }
+      }
+    }
+  }
+}

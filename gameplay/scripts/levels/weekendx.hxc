@@ -1,0 +1,21 @@
+package kade.hex.levels;
+
+import funkin.ui.story.Level;
+
+class WeekendX extends Level
+{
+  function new()
+  {
+    super('Weekend X');
+  }
+
+  override function isUnlocked():Bool
+  {
+    return false;
+  }
+
+  override function getSongDisplayNames(difficultyId:String):Array<String>
+  {
+    return [];
+  }
+}

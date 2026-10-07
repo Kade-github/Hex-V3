@@ -1,0 +1,9 @@
+package kade.hex.notes;
+
+import funkin.play.notes.notestyle.NoteStyle;
+
+class HexMineRegStyle extends NoteStyle {
+    public function new() {
+        super("hex_mine_reg");
+    }
+}

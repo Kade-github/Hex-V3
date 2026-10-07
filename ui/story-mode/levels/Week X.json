@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "(Hex) Week X",
+    "titleAsset": "storymenu/titles/weekX",
+    "background": "#3cfeff",
+    "songs": ["dunk", "ram", "hello-world", "glitcher"],
+    "visible": false,
+    "props": [
+      
+    ]
+  }

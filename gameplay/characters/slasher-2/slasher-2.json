@@ -1,0 +1,76 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"scale": 1.35,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"name": "Slasher (Second)",
+	"assetPath": "gameplay/characters/slasher-2/Headbasher_Slasher2",
+	"healthIcon": {
+		"shouldBop": true,
+		"offsets": [
+			0,
+			0
+		],
+		"id": "slasher"
+	},
+	"animations": [
+		{
+			"prefix": "Idle",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				110,
+				70
+			],
+			"prefix": "Crashout",
+			"name": "crashout"
+		},
+		{
+			"offsets": [
+				270,
+				125
+			],
+			"prefix": "Hit",
+			"name": "hit"
+		},
+		{
+			"offsets": [
+				78,
+				1
+			],
+			"prefix": "Left",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-30,
+				-120
+			],
+			"prefix": "Down",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-13,
+				-20
+			],
+			"prefix": "Up",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				25,
+				-21
+			],
+			"prefix": "Right",
+			"name": "singRIGHT"
+		}
+	]
+}

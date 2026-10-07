@@ -1,0 +1,95 @@
+{
+	"version": "1.0.0",
+	"offsets": [
+		0,
+		0
+	],
+	"flipX": true,
+	"name": "Boyfriend (Headbasher 1 Wireframe)",
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"assetPath": "gameplay/characters/bf-hb-1-w/Headbasher_BF1W",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "bf"
+	},
+	"animations": [
+		{
+			"prefix": "idle0",
+			"name": "idle"
+		},
+		{
+			"prefix": "idle scared",
+			"name": "idle_scared"
+		},
+		{
+			"offsets": [
+				168,
+				11
+			],
+			"prefix": "left0",
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-35,
+				-70
+			],
+			"prefix": "down0",
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-28,
+				95
+			],
+			"prefix": "up0",
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-20,
+				-6
+			],
+			"prefix": "right0",
+			"name": "singRIGHT"
+		},
+		{
+			"offsets": [
+				180,
+				92
+			],
+			"prefix": "left miss",
+			"name": "singLEFTmiss"
+		},
+		{
+			"offsets": [
+				27,
+				-42
+			],
+			"prefix": "down miss",
+			"name": "singDOWNmiss"
+		},
+		{
+			"offsets": [
+				-35,
+				121
+			],
+			"prefix": "up miss",
+			"name": "singUPmiss"
+		},
+		{
+			"offsets": [
+				-14,
+				-6
+			],
+			"prefix": "right miss",
+			"name": "singRIGHTmiss"
+		}
+	]
+}

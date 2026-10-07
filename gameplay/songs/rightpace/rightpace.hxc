@@ -1,0 +1,797 @@
+package kade.hex.songs;
+
+import funkin.play.song.Song;
+import funkin.Conductor;
+import funkin.play.PlayState;
+import funkin.save.Save;
+
+import flixel.util.FlxColor;
+import kade.hex.modules.Hex_Hud;
+import funkin.modding.module.ModuleHandler;
+
+import funkin.play.character.BaseCharacter;
+import funkin.data.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import flixel.FlxSprite;
+import flixel.FlxG;
+import flixel.tweens.FlxEase;
+
+import Array;
+
+import flixel.math.FlxMath;
+
+class RightPaceSong extends Song {
+	var bgShader:FlxRuntimeShader;
+	var bfShader:FlxRuntimeShader;
+	var swirlyShader:FlxRuntimeShader;
+
+	var blackBox:FlxSprite;
+
+	var hud:Hex_Hud;
+
+	// Read live rather than held, since SwitchCharacters puts a different instance in the
+	// bf slot partway through the song.
+	function hex():BaseCharacter {
+		if (PlayState.instance == null || PlayState.instance.currentStage == null)
+			return null;
+		return PlayState.instance.currentStage.getBoyfriend();
+	}
+
+	// Once only. Width follows the animation frame, so centering every tick would walk him
+	// sideways a pixel at a time.
+	var hexCentered:Bool = false;
+
+	// Same sum SwitchCharacters uses, so the swap does not shift him sideways.
+	function centerHex() {
+		var bf = hex();
+		if (hexCentered || bf == null)
+			return;
+		hexCentered = true;
+		bf.x = PlayState.instance.camGame.scroll.x + (FlxG.width - bf.width) * 0.5;
+		bf.originalPosition.set(bf.x, bf.y);
+		bf.resetCameraFocusPoint();
+	}
+
+	var coolBG = null;
+	var richard = null;
+
+	var swirlyColor1Target:Array<Float> = [1.0, 1.0, 1.0];
+	var swirlyColor2Target:Array<Float> = [0.251, 0.965, 0.937];
+
+	var swirlyColor1Lerp:Array<Float> = [1.0, 1.0, 1.0];
+	var swirlyColor2Lerp:Array<Float> = [0.655, 0.659, 0.655];
+
+	var swirlyPalette1Color1:Array<Float> = [1.0, 1.0, 1.0];
+	var swirlyPalette1Color2:Array<Float> = [0.655, 0.659, 0.655];
+
+	var swirlyPalette2Color1:Array<Float> = [1.0, 1.0, 1.0];
+	var swirlyPalette2Color2:Array<Float> = [0.357, 0.969, 0.980];
+
+	var swirlyPalette3Color1:Array<Float> = [.988, 0.718, 0.561];
+	var swirlyPalette3Color2:Array<Float> = [0.969, 0.878, 0.737];
+
+	var swirlyPalette4Color1:Array<Float> = [0.008, 0.008, 0.212];
+	var swirlyPalette4Color2:Array<Float> = [0.004, 0.008, 0.024];
+
+	var swirlyPalette5Color1:Array<Float> = [0.133, 0.098, 1.0];
+	var swirlyPalette5Color2:Array<Float> = [0.012, 0.008, 0.239];
+
+	var swirlyPalette6Color1:Array<Float> = [0.616, 0.012, 0.004];
+	var swirlyPalette6Color2:Array<Float> = [0.0, 0.0, 0.0];
+
+	var swirlyPalette7Color1:Array<Float> = [0.310, 0.008, 0.255];
+	var swirlyPalette7Color2:Array<Float> = [0.580, 0.031, 0.40];
+
+	var swirlyPalette8Color1:Array<Float> = [1.0, 1.0, 1.0];
+	var swirlyPalette8Color2:Array<Float> = [0.0, 0.0, 0.0];
+
+	var timeElapsed:Float = 0;
+
+	// These were generated from a script that extracts prominent colors from the background images.
+
+	var paletteBF1:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.972549, 0.972549, 0.972549],
+		[0.6313726, 0.6313726, 0.6313726],
+		[0.5058824, 0.5058824, 0.5058824],
+		[1, 1, 1],
+		[0.96862745, 0.96862745, 0.96862745]];
+
+	var paletteBF2:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.98039216, 0.95686275, 0.98039216],
+		[0.9529412, 0.43137255, 0.3019608],
+		[0.43137255, 0.4745098, 0.5764706],
+		[1, 1, 1],
+		[0.3137255, 0.96862745, 0.98039216]];
+
+	var paletteBF3:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.99215686, 0.96862745, 0.7372549],
+		[0.96862745, 0.36862746, 0.19607843],
+		[0.7137255, 0.3372549, 0.31764707],
+		[1, 1, 1],
+		[0.69411767, 0.80784315, 0.52156866]];
+
+	var paletteBF4:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.07, 0.13, 0.43],
+		[0.10, 0.40, 0.87],
+		[0.48, 0.59, 0.93],
+		[1, 1, 1],
+		[0.19, 0.13, 0.24]];
+
+	var paletteBF5:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.48235294, 0.5882353, 0.93333334],
+		[0.19215687, 0.12941177, 0.23529412],
+		[0.07450981, 0.1254902, 0.43137255],
+		[1, 1, 1],
+		[0.101960786, 0.39607844, 0.87058824]];
+
+	var paletteBF6:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.8862745, 0.5176471, 0.5294118],
+		[0.9764706, 0.23529412, 0.16470589],
+		[0.69411767, 0.25490198, 0.3137255],
+		[1, 1, 1],
+		[0.35686275, 0.5254902, 0.5294118]];
+
+	var paletteBF7:Array<Array<Float>> = [
+		[0, 0, 0],
+		[0.7411765, 0.3764706, 0.57254905],
+		[0.9647059, 0.14901961, 0.16078432],
+		[0.40784314, 0.16862746, 0.35686275],
+		[1, 1, 1],
+		[0.25882354, 0.4, 0.6156863]];
+
+	var paletteBF8:Array<Array<Float>> = [
+		[0, 0, 0],
+		[1, 1, 1],
+		[0.30980393, 0.30980393, 0.30980393],
+		[0.6784314, 0.6784314, 0.6784314],
+		[0.30588236, 0.30588236, 0.30588236],
+		[0.99607843, 0.99607843, 0.99607843]];
+
+
+	var palette1:Array<Array<Float>> = [
+		[0.32941177, 0.32941177, 0.32941177],
+		[0.54509807, 0.54509807, 0.54509807],
+		[0.44705883, 0.44705883, 0.44705883],
+		[0.65882355, 0.65882355, 0.65882355],
+		[0.34509805, 0.34509805, 0.34509805],
+		[0.54901963, 0.54901963, 0.54901963]];
+
+	var palette2:Array<Array<Float>> = [
+		[0.23529412, 0.41960785, 0.34901962],
+		[0.8352941, 0.4, 0.24705882],
+		[0.7764706, 0.22352941, 0.10980392],
+		[0.8901961, 0.6156863, 0.42352942],
+		[0.20784314, 0.47843137, 0.42745098],
+		[0.8784314, 0.73333335, 0.21176471]];
+
+	var palette3:Array<Array<Float>> = [
+		[0.22745098, 0.12941177, 0.14509805],
+		[0.7607843, 0.4, 0.3764706],
+		[0.8235294, 0.21176471, 0.14509805],
+		[0.8666667, 0.6784314, 0.5647059],
+		[0.28235295, 0.17254902, 0.1764706],
+		[1, 0.6392157, 0.12156863]];
+
+	var palette4:Array<Array<Float>> = [
+		[0.09411765, 0.15686275, 0.2],
+		[0.09019608, 0.10980392, 0.3019608],
+		[0, 0.003921569, 0.14117648],
+		[0.22745098, 0.30588236, 0.4509804],
+		[0.13725491, 0.24313726, 0.30980393],
+		[0.15294118, 0.5254902, 0.68235296]];
+
+	var palette5:Array<Array<Float>> = [
+		[0.050980393, 0.09411765, 0.14117648],
+		[0.050980393, 0.0627451, 0.22352941],
+		[0.003921569, 0.003921569, 0.08627451],
+		[0.14117648, 0.20784314, 0.54901963],
+		[0.078431375, 0.15686275, 0.28235295],
+		[0, 0.16078432, 1]];
+
+	var palette6:Array<Array<Float>> = [
+		[0.5254902, 0.20784314, 0.37254903],
+		[0.70980394, 0.13333334, 0.21960784],
+		[0.94509804, 0.14901961, 0.21960784],
+		[0.60784316, 0.15294118, 0.24705882],
+		[0.63529414, 0.31764707, 0.45882353],
+		[0, 0, 0]];
+
+	var palette7:Array<Array<Float>> = [
+		[0.06666667, 0.07058824, 0.105882354],
+		[0.078431375, 0.03529412, 0.15294118],
+		[0.07450981, 0.02745098, 0.08235294],
+		[0.09803922, 0.05490196, 0.28235295],
+		[0.101960786, 0.101960786, 0.16078432],
+		[0.42745098, 1, 0.74509805]];
+
+	var palette8:Array<Array<Float>> = [
+		[0.09803922, 0.09803922, 0.09803922],
+		[0.54901963, 0.54901963, 0.54901963],
+		[0.14117648, 0.14117648, 0.14117648],
+		[1, 1, 1],
+		[0.1764706, 0.1764706, 0.1764706],
+		[0.16862746, 0.16862746, 0.16862746]];
+
+
+	var targetColors:Array<Array<Float>> = new Array();
+
+	var targetColorsBF:Array<Array<Float>> = new Array();
+
+	var targetColorsLerp:Array<Array<Float>> = new Array();
+	var targetColorsBFLerp:Array<Array<Float>> = new Array();
+
+	public function new() {
+  	    super("rightpace");
+	}
+
+	public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String> {
+		return [];
+	}
+
+	public function pushPaletteColors(newColors:Array<Array<Float>>) {
+		for (i in 0...newColors.length)
+			bgShader.setFloatArray("tColor" + (i + 1), newColors[i]);
+	}
+
+	public function pushSourcePaletteColors(newColors:Array<Array<Float>>) {
+		trace(bgShader);
+		for (i in 0...newColors.length)
+			bgShader.setFloatArray("color" + (i + 1), newColors[i]);
+	}
+
+	public function pushBfPaletteColors(newColors:Array<Array<Float>>) {
+		for (i in 0...newColors.length)
+			bfShader.setFloatArray("tColor" + (i + 1), newColors[i]);
+	}
+	
+	public function pushBfSourcePaletteColors(newColors:Array<Array<Float>>) {
+		for (i in 0...newColors.length)
+			bfShader.setFloatArray("color" + (i + 1), newColors[i]);
+	}
+
+	var toGoBeat:Float = 0;
+	var beatLength:Float = 0;
+
+	var startColorLerp:Array<Array<Float>> = [];
+	var startColorBFLerp:Array<Array<Float>> = [];
+
+	var startSwirlyColor1Lerp:Array<Float> = [];
+	var startSwirlyColor2Lerp:Array<Float> = [];
+
+	// The module outlives PlayState, so a sprite it held onto from a previous run has already
+	// been destroyed and its controllers are gone. Rebuild rather than reuse.
+	function dead(sprite:FlxSprite):Bool {
+		return sprite == null || sprite.animation == null;
+	}
+
+	// The notefield and HEX-HUD both swap parts of the HUD out, so any one of these is missing
+	// on some runs and the fade must not take the whole update with it.
+	function fade(sprite:Dynamic, by:Float) {
+		if (sprite == null)
+			return;
+		sprite.alpha -= by;
+		if (sprite.alpha < 0.0)
+			sprite.alpha = 0.0;
+	}
+
+	function setAlpha(sprite:Dynamic, to:Float) {
+		if (sprite != null)
+			sprite.alpha = to;
+	}
+
+	function deepCopyArray(arr:Array<Array<Float>>):Array<Array<Float>> {
+		var newArr:Array<Array<Float>> = [];
+		for (subArr in arr) {
+			var newSubArr:Array<Float> = [];
+			for (value in 0...subArr.length) {
+				newSubArr.push(subArr[value]);
+			}
+			newArr.push(newSubArr);
+		}
+		return newArr;
+	}
+
+	function getCurrentBeat():Float
+	{
+		if (FlxG.sound.music == null || Conductor.instance == null)
+			return 0;
+		return Conductor.instance.currentBeatTime;
+	}
+
+	var transitionActive:Bool = false;
+
+	public function pushPalette(number:Int)
+	{
+		beatLength = 1;
+		toGoBeat = getCurrentBeat() + beatLength;
+		transitionActive = true;
+		switch(number)
+		{
+			case 1:
+				swirlyColor1Target = swirlyPalette1Color1.copy();
+				swirlyColor2Target = swirlyPalette1Color2.copy();
+				targetColors = deepCopyArray(palette1);
+				targetColorsBF = deepCopyArray(paletteBF1);
+			case 2:
+				trace("Palette 1: " + palette1);
+				swirlyColor1Target = swirlyPalette2Color1.copy();
+				swirlyColor2Target = swirlyPalette2Color2.copy();
+				targetColors = deepCopyArray(palette2);
+				targetColorsBF = deepCopyArray(paletteBF2);
+			case 3:
+				swirlyColor1Target = swirlyPalette3Color1.copy();
+				swirlyColor2Target = swirlyPalette3Color2.copy();
+				targetColors = deepCopyArray(palette3);
+				targetColorsBF = deepCopyArray(paletteBF3);
+			case 4:
+				swirlyColor1Target = swirlyPalette4Color1.copy();
+				swirlyColor2Target = swirlyPalette4Color2.copy();
+				targetColors = deepCopyArray(palette4);
+				targetColorsBF = deepCopyArray(paletteBF4);
+			case 5:
+				swirlyColor1Target = swirlyPalette5Color1.copy();
+				swirlyColor2Target = swirlyPalette5Color2.copy();
+				targetColors = deepCopyArray(palette5);
+				targetColorsBF = deepCopyArray(paletteBF5);
+			case 6:
+				swirlyColor1Target = swirlyPalette6Color1.copy();
+				swirlyColor2Target = swirlyPalette6Color2.copy();
+				targetColors = deepCopyArray(palette6);
+				targetColorsBF = deepCopyArray(paletteBF6);
+			case 7:
+				swirlyColor1Target = swirlyPalette7Color1.copy();
+				swirlyColor2Target = swirlyPalette7Color2.copy();
+				targetColors = deepCopyArray(palette7);
+				targetColorsBF = deepCopyArray(paletteBF7);
+			case 8:
+				swirlyColor1Target = swirlyPalette8Color1.copy();
+				swirlyColor2Target = swirlyPalette8Color2.copy();
+				targetColors = deepCopyArray(palette8);
+				targetColorsBF = deepCopyArray(paletteBF8);
+		}
+
+		startColorLerp = deepCopyArray(targetColorsLerp);
+		startColorBFLerp = deepCopyArray(targetColorsBFLerp);
+		startSwirlyColor1Lerp = swirlyColor1Lerp.copy();
+		startSwirlyColor2Lerp = swirlyColor2Lerp.copy();
+
+		trace("Pushed Palette " + number);
+		trace("Beat length: " + beatLength + " toGoBeat: " + toGoBeat);
+	}
+
+	public function forcePalette(number:Int)
+	{
+		pushPalette(number);
+		currentPalette = number;
+		transitionActive = false;
+		targetColorsLerp = deepCopyArray(targetColors);
+		targetColorsBFLerp = deepCopyArray(targetColorsBF);
+		swirlyColor1Lerp = swirlyColor1Target.copy();
+		swirlyColor2Lerp = swirlyColor2Target.copy();
+
+		startColorLerp = deepCopyArray(targetColorsLerp);
+		startColorBFLerp = deepCopyArray(targetColorsBFLerp);
+		startSwirlyColor1Lerp = swirlyColor1Lerp.copy();
+		startSwirlyColor2Lerp = swirlyColor2Lerp.copy();
+
+		
+		swirlyShader.setFloatArray("uColor1", swirlyColor1Lerp);
+		swirlyShader.setFloatArray("uColor2", swirlyColor2Lerp);
+
+		pushPaletteColors(targetColorsLerp);
+		pushBfPaletteColors(targetColorsBFLerp);
+
+		trace("Forced Palette " + number);
+	}
+
+	public override function onSongRetry(event) {
+		super.onSongRetry(event);
+
+		loadModchart();
+
+		p2IconHidden = false;
+		hexCentered = false;
+		hideP2Icon();
+
+		hex().offset.y = 40;
+
+		var bf = hex();
+		if (bf != null)
+		{
+			bf.y = -270;
+			hexCentered = false;
+			centerHex();
+		}
+
+		if (blackBox != null)
+			blackBox.alpha = 0.0;
+
+		var keQOL = ModuleHandler.getModule("KE-QOL");
+
+		setAlpha(keQOL.scoreText, 1.0);
+
+		PlayState.instance.comboPopUps.visible = true;
+		setAlpha(PlayState.instance.iconP1, 1.0);
+		setAlpha(PlayState.instance.iconP2, 1.0);
+
+		setAlpha(keQOL.healthBar, 1.0);
+		setAlpha(keQOL.healthBarBG, 1.0);
+
+		setAlpha(hud.leftCircle, 1.0);
+		setAlpha(hud.rightCircle, 1.0);
+		setAlpha(hud.timer, 1.0);
+
+		blackBox.alpha = 0.0;
+ 
+		forcePalette(1);
+	}
+
+	/*
+		0:04-0:22 - 1
+		0:23-0:28 - 2
+		0:28-0:32 - 3
+		0:32-0:37 - 4
+		0:37-0:42 - 5
+		0:42-1:01 - 1
+		1:01-1:19 - 2
+		1:19-1:29 - 3
+		1:29-1:38 - 4
+		1:38-1:43 - 2
+		1:43-1:48 - 3
+		1:48-1:52 - 4
+		1:52-1:57 - 5
+		1:57-2:06 - 8
+		2:06-2:25 - 2
+		2:25-2:44 - 7
+		2:44-3:03 - 6
+		3:03-3:05 - 1
+		3:05-3:07 - 2
+		3:07-3:10 - 3
+		3:10-3:12 - 4
+		3:12-3:15 - 5
+		3:15-3:17 - 6
+		3:17-3:19 - 7
+		3:19-3:21 - 8
+		3:22-3:48 - 9 
+	*/
+
+	var paletteSwaps:Map<Int,Int> = 
+		[
+			7 => 1,
+			39 => 2,
+			47 => 3,
+			55 => 4,
+			63 => 5,
+			71 => 1,
+			103 => 2,
+			135 => 3,
+			151 => 4,
+			167 => 2,
+			175 => 3,
+			183 => 4,
+			191 => 5,
+			199 => 8,
+			215 => 2,
+			247 => 7,
+			279 => 6,
+			311 => 1,
+			315 => 2,
+			319 => 3,
+			323 => 4,
+			327 => 5,
+			331 => 6,
+			335 => 7,
+			339 => 8,
+			343 => 9
+		];
+
+	function createPls()
+	{
+		if (bgShader == null)
+		{
+			bgShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/palette_converter")));
+			bfShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/palette_converter")));
+			swirlyShader = new FlxRuntimeShader(Assets.getText(Paths.frag("ui/shaders/swirl")));
+		}
+
+		hud = ModuleHandler.getModule("HEX-HUD");
+
+		targetColors = deepCopyArray(palette1);
+		targetColorsBF = deepCopyArray(paletteBF1);
+
+        swirlyShader.setFloat("uTime", 0);
+        swirlyShader.setFloat("uMix", 1);
+        swirlyShader.setFloatArray("uColor1", [1.0, 1.0, 1.0]);
+        swirlyShader.setFloatArray("uColor2", [0.251, 0.965, 0.937]);
+        swirlyShader.setFloat("uIntensity", 25.0);
+
+		pushSourcePaletteColors(palette2);
+		pushBfSourcePaletteColors(paletteBF2);
+
+		forcePalette(1);
+	}
+
+	public override function onCreate(event) {
+		super.onCreate(event);
+
+		createPls();
+	}
+
+	function loadModchart() {
+		var modchart = ModuleHandler.getModule("rightpace_modchart");
+		if (modchart == null) {
+			trace("rightpace: no rightpace_modchart module, the notefield will not come up");
+			return;
+		}
+
+		modchart.load(PlayState.instance.currentDifficulty);
+
+		// scriptCall lands on the script's own functions, and load lives on the compiled Chart
+		// it extends, so the flag is set here rather than trusted to the call.
+		modchart.armed = true;
+	}
+
+	// PlayState builds the icons after the song loads on some paths, so this keeps trying
+	// from onUpdate until there is something to hide.
+	var p2IconHidden:Bool = false;
+
+	function hideP2Icon() {
+		if (p2IconHidden || PlayState.instance == null || PlayState.instance.iconP2 == null)
+			return;
+		PlayState.instance.iconP2.visible = false;
+		p2IconHidden = true;
+	}
+
+	public override function onSongLoaded(event) {
+		createPls();
+
+		loadModchart();
+
+		p2IconHidden = false;
+		hexCentered = false;
+		hideP2Icon();
+
+		var swirlBG = PlayState.instance.currentStage.getNamedProp("swirl");
+		swirlBG.shader = swirlyShader;
+		
+		var bg = PlayState.instance.currentStage.getNamedProp("bg");
+		bg.shader = bgShader;
+
+		swirlBG.x = bg.x;
+		swirlBG.y = bg.y - 20;
+		viewBG = bg;
+		lockCamera();
+
+		// hide dad/gf
+		var dad = PlayState.instance.currentStage.getDad();
+		var gf = PlayState.instance.currentStage.getGirlfriend();
+
+		PlayState.instance.camHUD.followLerp = 0;
+		PlayState.instance.camGame.followLerp = 0;
+
+		var bf = hex();
+		if (bf == null || bf.scale == null)
+		{
+			trace("rightpace: no live boyfriend on song load");
+			return;
+		}
+		bf.shader = bfShader;
+		// The stage mark shrinks him to 0.9, and this song wants him at his own size.
+		bf.setScale(bf.getBaseScale());
+		bf.y = -270;
+		hexCentered = false;
+		centerHex();
+
+		dad.visible = false;
+		gf.visible = false;
+
+		coolBG = PlayState.instance.currentStage.getNamedProp("coolerBG");
+		coolBG.visible = false;
+		coolBG.alpha = 0.0;
+
+		richard = PlayState.instance.currentStage.getNamedProp("richard");
+		richard.visible = false;
+		richard.alpha = 0.0;
+		
+		bf.animation.play("idle");
+
+		if (dead(blackBox))
+		{
+			blackBox = new FlxSprite(coolBG.x, coolBG.y);
+			blackBox.makeGraphic(coolBG.width, coolBG.height, FlxColor.BLACK);
+
+			blackBox.zIndex = 1000;
+			PlayState.instance.currentStage.add(blackBox);
+			blackBox.alpha = 0.0;
+		}
+
+		PlayState.instance.currentStage.refresh();
+	}
+
+	var currentPalette:Int = 1;
+
+	var viewBG:FlxSprite = null;
+
+	function lockCamera()
+	{
+		if (viewBG == null || PlayState.instance == null)
+			return;
+
+		var cam = PlayState.instance.camGame;
+		cam.scroll.set(viewBG.x + viewBG.width / 2 - FlxG.width / 2, viewBG.y + viewBG.height / 2 - FlxG.height / 2);
+		PlayState.instance.cameraFollowPoint.setPosition(viewBG.x + viewBG.width / 2, viewBG.y + viewBG.height / 2);
+	}
+
+	var redBarFor:Dynamic = null;
+
+	var iconBop:Float = 0;
+	var iconBopTime:Float = 0.175;
+
+	public override function onStepHit(event)
+	{
+		super.onStepHit(event);
+
+		if (event.step % 4 == 0)
+		{
+			iconBop = 1;
+			iconBopTime = Math.min(Conductor.instance.stepLengthMs * 0.002, 0.175);
+		}
+	}
+
+	function centerIconOnBar(elapsed:Float)
+	{
+		var icon = PlayState.instance.iconP1;
+		var keQOL = ModuleHandler.getModule("KE-QOL");
+		if (icon == null || keQOL == null || keQOL.healthBar == null) return;
+		var bar = keQOL.healthBar;
+		if (redBarFor != bar)
+		{
+			redBarFor = bar;
+			bar.createColoredEmptyBar(FlxColor.fromRGB(239, 58, 45));
+		}
+
+		icon.autoUpdate = false;
+		icon.bopEvery = 0;
+		@:privateAccess
+		icon.updateHealthIcon(PlayState.instance.health);
+
+		if (iconBop > 0)
+		{
+			iconBop -= elapsed / iconBopTime;
+			if (iconBop < 0)
+				iconBop = 0;
+		}
+		icon.setGraphicSize(Std.int(150 * icon.size.x * (1 + 0.2 * iconBop)), 0);
+		icon.updateHitbox();
+		var divider:Float = bar.x + bar.width * (1 - bar.percent / 100);
+		icon.x = divider - icon.width / 2;
+		icon.y = PlayState.instance.healthBar.y - icon.height / 2;
+	}
+
+	public override function onUpdate(event) {
+		timeElapsed += event.elapsed;
+
+		hideP2Icon();
+		centerIconOnBar(event.elapsed);
+		lockCamera();
+
+		swirlyShader.setFloat("uTime", timeElapsed * 0.2);
+
+		var songTime = (FlxG.sound.music != null && Conductor.instance != null) ? Conductor.instance.songPosition : 0;
+
+		var currentBeat:Float = getCurrentBeat();
+
+		if (Std.int(currentBeat) >= 308 && Std.int(currentBeat) < 312) // Fill black screen
+		{
+			blackBox.alpha += event.elapsed;
+			if (blackBox.alpha > 1.0)
+				blackBox.alpha = 1.0;
+		}
+
+		if (Std.int(currentBeat) >= 312 && blackBox.alpha > 0 && Std.int(currentBeat) < 342)
+		{
+			hex().y = -180;
+			centerHex();
+			hud.hideBars();
+			hud.hideHealth();
+			blackBox.alpha -= event.elapsed * 8.45;
+			if (blackBox.alpha < 0.0)
+				blackBox.alpha = 0.0;
+			
+		}
+
+		if (Std.int(currentBeat) >= 342 && Std.int(currentBeat) < 344) // Fill black screen again
+		{
+			var keQOL = ModuleHandler.getModule("KE-QOL");
+
+			var by = event.elapsed * 3.45;
+
+			fade(keQOL.scoreText, by);
+
+			@:privateAccess
+        	PlayState.instance.comboPopUps.visible = false;
+
+			fade(PlayState.instance.iconP1, by);
+			fade(PlayState.instance.iconP2, by);
+
+			fade(keQOL.healthBarBG, by);
+			fade(keQOL.healthBar, by);
+
+			fade(hud.leftCircle, by);
+			fade(hud.rightCircle, by);
+
+			fade(hud.timer, by);
+
+			blackBox.alpha += event.elapsed * 3.45;
+			if (blackBox.alpha > 1.0)
+				blackBox.alpha = 1.0;
+		}
+
+		if (Std.int(currentBeat) >= 344)
+		{
+			blackBox.alpha -= event.elapsed * 8.45;
+			if (blackBox.alpha < 0.0)
+				blackBox.alpha = 0.0;
+		}
+
+		if (paletteSwaps.exists(Std.int(currentBeat)))
+		{
+			var newPalette = paletteSwaps.get(Std.int(currentBeat));
+			if (newPalette != currentPalette)
+			{
+				currentPalette = newPalette;
+				pushPalette(currentPalette);
+			}
+		}
+		if (transitionActive)
+		{
+			var t:Float = (currentBeat - (toGoBeat - beatLength)) / beatLength;
+			if (t < 0)
+				t = 0;
+			if (t >= 1)
+			{
+				t = 1;
+				transitionActive = false;
+			}
+
+			var rt = FlxEase.cubeInOut(t);
+
+			for (i in 0...targetColorsLerp.length) {
+				for (j in 0...3) {
+					targetColorsLerp[i][j] = FlxMath.lerp(startColorLerp[i][j], targetColors[i][j], rt);
+					targetColorsBFLerp[i][j] = FlxMath.lerp(startColorBFLerp[i][j], targetColorsBF[i][j], rt);
+
+					swirlyColor1Lerp[j] = FlxMath.lerp(startSwirlyColor1Lerp[j], swirlyColor1Target[j], rt);
+					swirlyColor2Lerp[j] = FlxMath.lerp(startSwirlyColor2Lerp[j], swirlyColor2Target[j], rt);
+
+					if (currentPalette == 9)
+					{
+						coolBG.visible = true;
+						richard.visible = true;
+						if (coolBG.alpha < 1.0)
+						{
+							coolBG.alpha = FlxMath.lerp(0.0, 1, rt);
+							richard.alpha = FlxMath.lerp(0.0, 1, rt);
+						}
+					}
+				}
+			}
+		
+
+			swirlyShader.setFloatArray("uColor1", swirlyColor1Lerp);
+			swirlyShader.setFloatArray("uColor2", swirlyColor2Lerp);
+
+			pushPaletteColors(targetColorsLerp);
+			pushBfPaletteColors(targetColorsBFLerp);
+		}
+	}
+}

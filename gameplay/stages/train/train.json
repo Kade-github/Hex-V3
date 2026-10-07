@@ -1,0 +1,105 @@
+{
+  "version": "1.0.1",
+  "name": "Train",
+  "cameraZoom": 1.0,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -250,
+        150
+      ],
+      "scale": [
+        0.75,
+        0.75
+      ],
+      "name": "bg",
+      "assetPath": "gameplay/stages/train/BIT_BG",
+      "scroll": [
+        1,
+        1
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -225,
+        425
+      ],
+      "name": "guy1",
+      "assetPath": "gameplay/stages/train/BIT_GUY1",
+      "scroll": [
+        1,
+        1
+      ],
+      "danceEvery": 8,
+      "startingAnimation": "idle",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "guy1_idle",
+          "frameRate": 24
+        }
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        955,
+        425
+      ],
+      "name": "guy2",
+      "assetPath": "gameplay/stages/train/BIT_GUY2",
+      "scroll": [
+        1,
+        1
+      ],
+      "danceEvery": 8,
+      "startingAnimation": "idle",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "guy2_idle",
+          "frameRate": 24
+        }
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        710,
+        900
+      ],
+      "cameraOffsets": [
+        -325,
+        -225
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        300,
+        860
+      ],
+      "cameraOffsets": [
+        75,
+        -100
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "position": [
+        -90000,
+        -90000
+      ]
+    }
+  }
+}

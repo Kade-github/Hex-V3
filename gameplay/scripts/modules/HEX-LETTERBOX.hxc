@@ -1,0 +1,124 @@
+package kade.hex.modules;
+
+import funkin.modding.module.Module;
+import funkin.ui.FullScreenScaleMode;
+import flixel.FlxG;
+import flixel.system.scaleModes.RatioScaleMode;
+import openfl.geom.Rectangle;
+import Math;
+import Std;
+
+class HexLetterbox extends Module
+{
+	var gaveUp:Bool = false;
+	var maskW:Int = 0;
+	var maskH:Int = 0;
+	var lastStageW:Int = -1;
+	var lastStageH:Int = -1;
+	var lastGameW:Int = -1;
+	var lastGameH:Int = -1;
+	var lastScaleMode = null;
+
+	public function new()
+	{
+		super("HEX-LETTERBOX");
+	}
+
+	public override function onCreate(event)
+	{
+		super.onCreate(event);
+		letterbox();
+	}
+
+	public override function onUpdate(event)
+	{
+		super.onUpdate(event);
+
+		if (!letterboxDirty())
+			return;
+
+		letterbox();
+		cacheLetterboxState();
+	}
+
+	function letterboxDirty():Bool
+	{
+		if (FlxG.stage == null)
+			return true;
+
+		if (FullScreenScaleMode.instance != null)
+			return true;
+
+		return FlxG.stage.stageWidth != lastStageW
+			|| FlxG.stage.stageHeight != lastStageH
+			|| FlxG.width != lastGameW
+			|| FlxG.height != lastGameH
+			|| FlxG.scaleMode != lastScaleMode;
+	}
+
+	function cacheLetterboxState():Void
+	{
+		if (FlxG.stage == null)
+			return;
+
+		lastStageW = FlxG.stage.stageWidth;
+		lastStageH = FlxG.stage.stageHeight;
+		lastGameW = FlxG.width;
+		lastGameH = FlxG.height;
+		lastScaleMode = FlxG.scaleMode;
+	}
+
+	function letterbox():Void
+	{
+		if (FlxG.scaleMode == null)
+			return;
+
+		var swapped:Bool = !Std.isOfType(FlxG.scaleMode, RatioScaleMode);
+		var widened:Bool = isWidened() && !gaveUp;
+
+		if (FullScreenScaleMode.instance != null || widened)
+		{
+			if (FullScreenScaleMode.instance == null)
+				new FullScreenScaleMode(false);
+			else
+				FullScreenScaleMode.enabled = false;
+
+			FullScreenScaleMode.instance = null;
+			FullScreenScaleMode.cutoutSize.set(0, 0);
+			FullScreenScaleMode.gameCutoutSize.set(0, 0);
+			FullScreenScaleMode.wideScale.set(1, 1);
+
+			if (isWidened())
+				gaveUp = true;
+
+			if (!swapped)
+				FlxG.resizeGame(FlxG.stage.stageWidth, FlxG.stage.stageHeight);
+		}
+
+		if (swapped)
+			FlxG.scaleMode = new RatioScaleMode(false);
+
+		maskGame();
+	}
+
+	function maskGame():Void
+	{
+		if (FlxG.game == null)
+			return;
+
+		var w:Int = Math.ceil(FlxG.scaleMode.gameSize.x);
+		var h:Int = Math.ceil(FlxG.scaleMode.gameSize.y);
+
+		if (w == maskW && h == maskH)
+			return;
+
+		maskW = w;
+		maskH = h;
+		FlxG.game.scrollRect = new Rectangle(0, 0, w, h);
+	}
+
+	function isWidened():Bool
+	{
+		return FlxG.width != FlxG.initialWidth || FlxG.height != FlxG.initialHeight;
+	}
+}

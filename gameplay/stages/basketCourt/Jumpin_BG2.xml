@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="Jumpin_BG2.png">
+	
+	
+	<SubTexture name="Jumpin_BG20000" x="2" y="2" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20001" x="2" y="2" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20002" x="2" y="2" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20003" x="1284" y="2" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20004" x="1284" y="2" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20005" x="1284" y="2" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20006" x="2" y="1444" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20007" x="2" y="1444" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20008" x="2" y="1444" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20009" x="1284" y="1444" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20010" x="1284" y="1444" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+	<SubTexture name="Jumpin_BG20011" x="1284" y="1444" width="1280" height="1440" frameX="0" frameY="0" frameWidth="1280" frameHeight="1440" />
+</TextureAtlas>

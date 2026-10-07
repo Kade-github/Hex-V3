@@ -1,0 +1,50 @@
+{
+  "version": "2.2.4",
+  "songName": "LAN",
+  "artist": "YingYang48",
+  "charter": "YingYang48",
+  "divisions": 96,
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {    },
+    "vocals": {    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": [    ],
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "hex-lan",
+      "girlfriend": "static",
+      "opponent": "cyrix",
+      "instrumental": "",
+      "altInstrumentals": [      ]
+    },
+    "stage": "lan",
+    "noteStyle": "hex",
+    "ratings": {
+      "normal": 5,
+      "easy": 4,
+      "hard": 7
+    },
+    "album": "Stepmania",
+    "previewStart": 0,
+    "previewEnd": 15000
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 140,
+      "n": 4,
+      "d": 4
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "version": "1.0.1",
+  "name": "WeekendX Main (Detected, 2026)",
+  "cameraZoom": 0.87,
+  "props": [
+    {
+      "zIndex": 10,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexBack",
+      "assetPath": "gameplay/stages/xwstage_detected_new/hexBack",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "hexFront",
+      "assetPath": "gameplay/stages/xwstage_detected_new/hexFront",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 30,
+      "position": [
+        -24,
+        -24
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "topOverlay",
+      "assetPath": "gameplay/stages/xwstage_detected_new/topOverlay",
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "zIndex": 25,
+      "position": [
+        42,
+        -150
+      ],
+      "scale": [
+        1.5,
+        1.5
+      ],
+      "name": "crowd",
+      "danceEvery": 4,
+      "startingAnimation": "idle",
+      "assetPath": "gameplay/stages/xwstage_detected_new/crowd",
+      "animType": "sparrow",
+      "animations": [
+        {
+          "name": "idle",
+          "prefix": "Symbol",
+          "frameRate": 24
+        }
+      ],
+      "scroll": [
+        0.9,
+        0.9
+      ]
+    }
+  ],
+  "characters": {
+    "bf": {
+      "zIndex": 24,
+      "position": [
+        1300,
+        750
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        -185,
+        -150
+      ]
+    },
+    "dad": {
+      "zIndex": 24,
+      "position": [
+        650,
+        740
+      ],
+      "scale": 0.8,
+      "cameraOffsets": [
+        200,
+        -100
+      ]
+    },
+    "gf": {
+      "zIndex": 22,
+      "cameraOffsets": [
+        0,
+        0
+      ],
+      "scale": 0.8,
+      "position": [
+        950,
+        675
+      ]
+    }
+  }
+}

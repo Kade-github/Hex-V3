@@ -1,0 +1,55 @@
+import funkin.play.character.SparrowCharacter;
+import funkin.graphics.FunkinSprite;
+
+import StringTools;
+
+class BfJumpin2Character extends SparrowCharacter
+{
+    public function new(id:String)
+    {
+        super('bf-jumpin2', 'sparrow');
+    }
+
+    public var legs:FunkinSprite;
+    var showLegs:Bool = true;
+
+    function onFrameChange(animationName:String, frameNumber:Int, frameIndex:Int):Void {
+        // If we have a miss, hide legs, otherwise show them
+        if (StringTools.contains(animationName, "miss")) {
+            showLegs = false;
+        } else {
+            showLegs = true;
+        }
+    }
+
+    override function onCreate(event:ScriptEvent):Void {
+        super.onCreate(event);
+
+        animation.onFrameChange.add(onFrameChange);
+
+        legs = FunkinSprite.createTextureAtlas(0,0, "gameplay/characters/bf-jumpin2/legs");
+        legs.anim.addBySymbol("loop","LegsLOOP", 24, true);
+
+        legs.zIndex = zIndex + 35;
+        legs.anim.play("loop");
+    }
+
+    override function onAdd(event:ScriptEvent):Void {
+        super.onAdd(event);
+        currentStage.add(legs);
+        currentStage.refresh();
+    }
+
+    override function onUpdate(event:ScriptEvent):Void {
+        super.onUpdate(event);
+        if (!visible) {
+            legs.visible = false;
+            return;
+        }
+
+        legs.x = x - 45;
+        legs.y = y + 380;
+        legs.flipX = flipX;
+        legs.visible = showLegs;
+    }
+}

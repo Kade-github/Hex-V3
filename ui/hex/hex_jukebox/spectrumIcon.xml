@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="spectrumIcon.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="spectrumIcon0000" x="3" y="3" width="52" height="52" frameX="0" frameY="-1" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0001" x="3" y="3" width="52" height="52" frameX="0" frameY="-1" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0002" x="58" y="3" width="52" height="52" frameX="0" frameY="-1" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0003" x="58" y="3" width="52" height="52" frameX="0" frameY="-1" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0004" x="113" y="3" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0005" x="113" y="3" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0006" x="168" y="3" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0007" x="168" y="3" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0008" x="3" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0009" x="3" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0010" x="58" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0011" x="58" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0012" x="113" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0013" x="113" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0014" x="168" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0015" x="168" y="58" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0016" x="3" y="113" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0017" x="3" y="113" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0018" x="58" y="113" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0019" x="58" y="113" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0020" x="113" y="113" width="52" height="52" frameX="0" frameY="-2" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0021" x="113" y="113" width="52" height="52" frameX="0" frameY="-2" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0022" x="168" y="113" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+	<SubTexture name="spectrumIcon0023" x="168" y="113" width="52" height="52" frameX="0" frameY="0" frameWidth="52" frameHeight="54"/>
+</TextureAtlas>
