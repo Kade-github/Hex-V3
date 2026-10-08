@@ -18,7 +18,7 @@ if (-not (Test-Path $encoder)) {
 }
 
 $skipDirs = @('.git', 'cppia-src', 'cppia-charts', 'concept-or-unused')
-$skipFiles = @('build.ps1', 'build-mobile.ps1', 'build.log', '.gitignore')
+$skipFiles = @('build.ps1', 'build-mobile.ps1', 'build-desktop.ps1', 'make-dds.py', 'build.log', '.gitignore')
 
 $compress = @('hex')
 $copy = @('hex', 'modchart-engine')
@@ -68,6 +68,7 @@ foreach ($mod in $copy) {
             if ($skipDirs -contains $part) { $skip = $true }
         }
         if ($skip -or ($parts.Length -eq 1 -and $skipFiles -contains $parts[0])) { continue }
+        if ($file.Extension -ieq '.dds') { continue }
 
         $target = Join-Path (Join-Path $stage $mod) $rel
         New-Item -ItemType Directory -Force (Split-Path -Parent $target) | Out-Null
