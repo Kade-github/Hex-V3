@@ -223,9 +223,6 @@ class KE_QOL extends Module
       scoreCooldown = 0.05;
       applyScoreText();
     }
-
-    var state = PlayState.instance;
-    if (FlxG.keys.justPressed.ONE && state != null && FlxG.state == state && state.subState == null && !state.isSongEnd) state.endSong(true);
   }
 
   function updateHealthBar():Void

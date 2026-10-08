@@ -94,15 +94,6 @@ class GlitcherRemixSong extends Song {
 		FlxG.camera.flash(0xFFFF0000, 0.85);
 	}
 
-	public override function onUpdate(event) {
-		super.onUpdate(event);
-
-		if (FlxG.keys.justPressed.SPACE)
-		{
-			switchEm();
-		}
-	}
-
 	// BF and GF are the old sheets in the LCD red look (the detected sheets were the same art).
 	function rimOn() {
 		var rim = ModuleHandler.getModule("CharacterRim");

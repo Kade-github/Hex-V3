@@ -984,17 +984,6 @@ class HexFreeplay extends MusicBeatState
     if (FlxG.keys.justPressed.UP || HexTouch.justSwipedDown) stepSong(-1);
     else if (FlxG.keys.justPressed.DOWN || HexTouch.justSwipedUp) stepSong(1);
 
-    if (FlxG.keys.justPressed.W) logo.offset.y += 4;
-    else if (FlxG.keys.justPressed.S) logo.offset.y -= 4;
-
-    if (FlxG.keys.justPressed.A) logo.offset.x += 4;
-    else if (FlxG.keys.justPressed.D) logo.offset.x -= 4;
-
-    if (FlxG.keys.justPressed.Q && song != null)
-    {
-      trace("Logo Offset: '" + song.id + "' => [" + logo.offset.x + ", " + logo.offset.y + "],");
-    }
-
     var tapped:Bool = HexTouch.tapped();
     var sort:HexSort = capsuleRight.allSort;
     var tappedSortLeft:Bool = tapped && (HexTouch.overlaps(sort.leftArrow) || HexTouch.overlaps(sort.leftSort));

@@ -13,7 +13,7 @@ Image.MAX_IMAGE_PIXELS = None
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-SKIP_DIRS = {".git", "looks", "fonts", "concept-or-unused"}
+SKIP_DIRS = {".git", "looks", "fonts", "mods", "concept-or-unused"}
 
 HEADER = 128
 

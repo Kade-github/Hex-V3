@@ -208,34 +208,6 @@ class HexcriptSong extends Song {
       }
     }
 
-    // original creation code
-    /*var mouseX = FlxG.mouse.x;
-    var mouseY = FlxG.mouse.y;
-    cursorProp.x = mouseX;
-    cursorProp.y = mouseY;
-
-    if (FlxG.mouse.justPressed) {
-      nextFrameShouldClick = true;
-    }
-    frameCount++;
-    if (frameCount % 5 == 0 && Conductor.instance.songPosition > 0) {
-      mouseFollowFrames.push({time: Conductor.instance.songPosition, x: mouseX, y: mouseY, click: nextFrameShouldClick ? 1 : 0});
-      nextFrameShouldClick = false;
-    }
-
-    if (FlxG.keys.justPressed.S)
-    {
-      // save mouseFollowFrames to a txt file in the same directory as the song
-      var data = "";
-      for (frame in mouseFollowFrames)
-      {
-        data += frame.time + "," + frame.x + "," + frame.y + "," + frame.click + "\n";
-      }
-
-      FileUtil.writeStringToPath("/output-frames/mouse-frames.txt",data, 2);
-      trace("Saved mouse follow frames to output-frames/mouse-frames.txt");
-
-    }*/
   }
 
   public function listDifficulties(variationId:String, variationIds:Array<String>, showLocked:Bool):Array<String>

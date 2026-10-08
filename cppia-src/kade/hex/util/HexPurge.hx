@@ -5,7 +5,7 @@ import funkin.assets.FunkinAssetCache;
 
 class HexPurge
 {
-  public static function next(collect:Bool = false):Void
+  public static function next(collect:Bool = true):Void
   {
     FunkinAssetCache.instance.preparePurgeCache();
 
