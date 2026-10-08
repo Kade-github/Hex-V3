@@ -1073,6 +1073,7 @@ class HexOptions extends MusicBeatState
 
       c.replaceBinding(c.getControlFromName(rebindingItem.controlName), c.getDeviceFromName("KEYS"), pressed, oldInt);
       PlayerSettings.player1.saveControls();
+      Save.instance.flush();
 
       isRebinding = false;
       rebindingItem = null;
