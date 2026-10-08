@@ -1,5 +1,6 @@
 package kade.hex.states;
 
+import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
@@ -1131,6 +1132,7 @@ class HexFreeplay extends MusicBeatState
       var mm:HexMainMenu = new HexMainMenu();
       mm.skipTitle();
       mm.selectionIndex = 1;
+      HexPurge.next();
       FlxG.switchState(function() return mm);
     };
   }

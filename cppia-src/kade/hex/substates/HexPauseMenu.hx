@@ -1,5 +1,6 @@
 package kade.hex.substates;
 
+import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxRuntimeShader;
@@ -207,6 +208,7 @@ class HexPauseMenu extends MusicBeatSubState
         {
           trans.onComplete = function(out:Bool)
           {
+            HexPurge.next(true);
             var story:HexStoryMenu = new HexStoryMenu();
             FlxG.switchState(function() return story);
           };
@@ -234,6 +236,7 @@ class HexPauseMenu extends MusicBeatSubState
             freeplay.select_song_by_id(PlayState.instance.currentSong.id);
             freeplay.savedDiff = diffId;
             freeplay.useNewVariation = PlayState.instance.currentVariation == "new";
+            HexPurge.next(true);
             FlxG.switchState(function() return freeplay);
           };
         }

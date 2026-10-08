@@ -1,5 +1,6 @@
 package kade.hex.states;
 
+import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxRuntimeShader;
@@ -124,6 +125,7 @@ class HexMainMenu extends MusicBeatState
     {
       booted = true;
       hopping = true;
+      HexPurge.next();
       FlxG.switchState(function() return new HexMainMenu());
       return;
     }
@@ -423,21 +425,27 @@ class HexMainMenu extends MusicBeatState
           switch (selectionIndex)
           {
             case 0:
+              HexPurge.next();
               var story:HexStoryMenu = new HexStoryMenu();
               FlxG.switchState(function() return story);
             case 1:
+              HexPurge.next();
               var freeplay:HexFreeplay = new HexFreeplay();
               FlxG.switchState(function() return freeplay);
             case 2:
+              HexPurge.next();
               var gallery:HexGallery = new HexGallery();
               FlxG.switchState(function() return gallery);
             case 3:
+              HexPurge.next();
               var jukebox:HexJukebox = new HexJukebox();
               FlxG.switchState(function() return jukebox);
             case 4:
+              HexPurge.next();
               var options:HexOptions = new HexOptions();
               FlxG.switchState(function() return options);
             case 5:
+              HexPurge.next();
               var credits:HexCredits = new HexCredits();
               FlxG.switchState(function() return credits);
             default:

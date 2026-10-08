@@ -1,5 +1,6 @@
 package kade.hex.states;
 
+import kade.hex.util.HexPurge;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -514,6 +515,7 @@ class HexGallery extends MusicBeatState
       var mm:HexMainMenu = new HexMainMenu();
       mm.skipTitle();
       mm.selectionIndex = 2;
+      HexPurge.next();
       FlxG.switchState(function() return mm);
     };
   }

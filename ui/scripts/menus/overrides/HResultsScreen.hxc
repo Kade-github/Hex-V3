@@ -23,6 +23,7 @@ import funkin.data.story.level.LevelRegistry;
 import kade.hex.states.HexStoryMenu;
 import kade.hex.objects.HexTransitional;
 import kade.hex.states.HexFreeplay;
+import kade.hex.util.HexPurge;
 
 import StringTools;
 
@@ -362,6 +363,8 @@ class HResultsScreen extends Module
             FlxG.sound.music.stop();
 
         ownSwitch = true;
+
+        HexPurge.next(true);
 
         if (PlayStatePlaylist.isStoryMode)
             FlxG.switchState(new HexStoryMenu());
