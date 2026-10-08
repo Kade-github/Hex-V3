@@ -14,6 +14,7 @@ import funkin.PlayerSettings;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.input.Controls;
+import funkin.input.PreciseInputManager;
 import funkin.mobile.input.ControlsHandler;
 import funkin.Preferences;
 import funkin.save.Save;
@@ -1074,6 +1075,8 @@ class HexOptions extends MusicBeatState
       c.replaceBinding(c.getControlFromName(rebindingItem.controlName), c.getDeviceFromName("KEYS"), pressed, oldInt);
       PlayerSettings.player1.saveControls();
       Save.instance.flush();
+
+      PreciseInputManager.instance.initializeKeys(c);
 
       isRebinding = false;
       rebindingItem = null;
