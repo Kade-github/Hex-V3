@@ -191,6 +191,7 @@ class MineReg extends NoteKind
 	{
 		for (note in members)
 		{
+			// Pooled sprites that have not been handed out yet carry no note data.
 			if (note == null || note.noteData == null || !note.visible) continue;
 
 			if (note.noteData.kind == this.noteKind) mineBuffer.push(note);
@@ -208,16 +209,21 @@ class MineReg extends NoteKind
 
 		var boom:FunkinSprite = explosionPool.pop();
 
+		// get rid of bullshit
+		while (boom != null && boom.animation == null)
+			boom = explosionPool.pop();
+
 		if (boom == null)
 		{
 			boom = FunkinSprite.createSparrow(0, 0, "ui/hex/hex_mine_explosion");
 			boom.animation.addByPrefix("explode", "mineBoom", 24, false);
-			boom.cameras = [PlayState.instance.camHUD];
 		}
 		else
 		{
 			boom.revive();
 		}
+
+		boom.cameras = [PlayState.instance.camHUD];
 
 		boom.x = mine.x + (mine.width - boom.width) * 0.5;
 		boom.y = mine.y + (mine.height - boom.height) * 0.5;
@@ -245,7 +251,7 @@ class MineReg extends NoteKind
 		{
 			var boom:FunkinSprite = explosions[i];
 
-			if (boom == null)
+			if (boom == null || boom.animation == null)
 			{
 				explosions.splice(i, 1);
 				continue;

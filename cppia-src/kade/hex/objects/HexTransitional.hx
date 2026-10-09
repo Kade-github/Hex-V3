@@ -106,7 +106,8 @@ class HexTransitional extends FlxSpriteGroup
     if (complete) return;
 
     var half:Float = FlxG.height / 2;
-    var t:Float = 0.12 * FlxG.elapsed * 80;
+    // show the transition - even if the frame before hand took awhile.
+    var t:Float = Math.min(0.12 * Math.min(FlxG.elapsed, 1 / 30) * 80, 1);
 
     if (_inTween)
     {
