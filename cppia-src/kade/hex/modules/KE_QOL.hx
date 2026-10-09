@@ -253,9 +253,7 @@ class KE_QOL extends Module
 
   function barLow():Bool
   {
-    var state = PlayState.instance;
-    var keepLow:Bool = state.currentSong != null && state.currentSong.id == "headbasher";
-    return keepLow || !state.playerStrumline.isDownscroll;
+    return !PlayState.instance.playerStrumline.isDownscroll;
   }
 
   function placeBar():Void

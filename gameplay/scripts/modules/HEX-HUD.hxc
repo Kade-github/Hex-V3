@@ -496,8 +496,7 @@ class Hex_Hud extends Module
     function timerY():Float
     {
         var state = PlayState.instance;
-        var keepHigh:Bool = state.currentSong != null && state.currentSong.id == "headbasher";
-        var low:Bool = state.playerStrumline != null && state.playerStrumline.isDownscroll && !keepHigh;
+        var low:Bool = state.playerStrumline != null && state.playerStrumline.isDownscroll;
         return low ? FlxG.height - 57 : 10;
     }
 
@@ -739,8 +738,7 @@ class Hex_Hud extends Module
         TouchLanes.afterLayout(placeJudgements);
 
         healthBarBaseY = PlayState.instance.healthBar.y;
-        var keepLow:Bool = PlayState.instance.currentSong != null && PlayState.instance.currentSong.id == "headbasher";
-        var low:Bool = keepLow || !PlayState.instance.playerStrumline.isDownscroll;
+        var low:Bool = !PlayState.instance.playerStrumline.isDownscroll;
         PlayState.instance.healthBar.y = low ? FlxG.height * 0.9 + 4 : FlxG.height * 0.1 + 24;
 
         sizeIcons();

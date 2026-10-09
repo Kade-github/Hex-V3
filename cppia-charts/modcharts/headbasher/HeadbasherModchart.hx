@@ -11,6 +11,7 @@ class HeadbasherModchart extends Chart
 	public function new()
 	{
 		super("headbasher_modchart");
+		forceUpscroll = false;
 	}
 
 	override function setup():Void

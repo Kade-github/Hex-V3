@@ -9,6 +9,7 @@ class RightPaceModchart extends Chart
 	public function new()
 	{
 		super("rightpace_modchart", 100);
+		forceUpscroll = false;
 	}
 
 	override function setup():Void
