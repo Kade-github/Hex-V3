@@ -152,7 +152,7 @@ def main():
         print("Removed %d .dds files." % gone)
         return 0
 
-    print("%d PNGs of %g MB and up under %s" % (len(items), args.min_mb, args.root))
+    print("%d PNGs of %g MB and up under %s" % (len(items), args.min_mb, args.root), flush=True)
 
     failed = 0
     raw_total = 0
@@ -160,7 +160,7 @@ def main():
     worst = None
 
     with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
-        for rel, what, size, raw, quality in pool.map(lambda i: convert(i, args.force, not args.no_verify, args.out), items):
+        for done, (rel, what, size, raw, quality) in enumerate(pool.map(lambda i: convert(i, args.force, not args.no_verify, args.out), items), 1):
             if what.startswith("FAILED"):
                 failed += 1
             else:
@@ -171,9 +171,9 @@ def main():
             if quality is not None and (worst is None or quality < worst[0]):
                 worst = (quality, rel)
 
-            print("%-6s %7.1f MB -> %6.1f MB%s  %s" % (what[:6], raw / 1048576, size / 1048576, note, rel))
+            print("[%d/%d] %-6s %7.1f MB -> %6.1f MB%s  %s" % (done, len(items), what[:6], raw / 1048576, size / 1048576, note, rel), flush=True)
             if what.startswith("FAILED"):
-                print("       " + what)
+                print("       " + what, flush=True)
 
     print()
     print("Texture memory for these files: %.0f MB as PNG, %.0f MB as DDS." % (raw_total / 1048576, dds_total / 1048576))

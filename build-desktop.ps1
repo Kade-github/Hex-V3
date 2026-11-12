@@ -37,11 +37,25 @@ $oggSmaller = 0
 $oggBefore = 0
 $oggAfter = 0
 
+Write-Host "Scanning $($copy -join ', ')..."
+$lists = @{}
+$total = 0
+foreach ($mod in $copy) {
+    $lists[$mod] = @(Get-ChildItem -Path (Join-Path $mods $mod) -Recurse -File -Force)
+    $total += $lists[$mod].Count
+}
+$seen = 0
+Write-Host "Staging $total files to $stage"
+
 foreach ($mod in $copy) {
     $root = Join-Path $mods $mod
-    $files = Get-ChildItem -Path $root -Recurse -File -Force
+    $files = $lists[$mod]
 
     foreach ($file in $files) {
+        $seen++
+        if ($seen % 25 -eq 0 -or $seen -eq $total) {
+            Write-Progress -Activity "Staging mods" -Status "$seen / $total  ($mod)" -PercentComplete ([int]($seen * 100 / $total))
+        }
         $rel = $file.FullName.Substring($root.Length + 1).Replace('\', '/')
         $parts = $rel.Split('/')
 
@@ -64,6 +78,7 @@ foreach ($mod in $copy) {
             $fresh = (Test-Path $cached) -and (Test-Path $stampFile) -and ((Get-Content $stampFile -Raw).Trim() -eq $stamp)
             if (-not $fresh) {
                 New-Item -ItemType Directory -Force (Split-Path -Parent $cached) | Out-Null
+                Write-Host "[$seen/$total] ogg $mod/$rel"
                 & ffmpeg -v error -y -i $file.FullName -map 0:a:0 -map_metadata 0 -c:a libvorbis -q:a $AudioQuality $cached
                 if ($LASTEXITCODE -ne 0 -or -not (Test-Path $cached)) {
                     Write-Error "ffmpeg failed on $mod/$rel"
@@ -92,6 +107,9 @@ foreach ($mod in $copy) {
     }
 }
 
+Write-Progress -Activity "Staging mods" -Completed
+Write-Host "Staged $copied files."
+
 $ddsCount = 0
 $ddsBytes = 0
 $pngBytes = 0
@@ -99,6 +117,7 @@ $pngBytes = 0
 foreach ($mod in $compress) {
     $root = Join-Path $mods $mod
     $made = Join-Path $cache $mod
+    Write-Host "Making dds for $mod..."
 
     & python $maker --root $root --out $made --min-mb $MinMb
     if ($LASTEXITCODE -ne 0) { Write-Error "make-dds failed on $mod" }

@@ -55,11 +55,25 @@ $kept = 0
 $pngBytes = 0
 $astcBytes = 0
 
+Write-Host "Scanning $($copy -join ', ')..."
+$lists = @{}
+$total = 0
+foreach ($mod in $copy) {
+    $lists[$mod] = @(Get-ChildItem -Path (Join-Path $mods $mod) -Recurse -File -Force)
+    $total += $lists[$mod].Count
+}
+$seen = 0
+Write-Host "Staging $total files to $stage"
+
 foreach ($mod in $copy) {
     $root = Join-Path $mods $mod
-    $files = Get-ChildItem -Path $root -Recurse -File -Force
+    $files = $lists[$mod]
 
     foreach ($file in $files) {
+        $seen++
+        if ($seen % 25 -eq 0 -or $seen -eq $total) {
+            Write-Progress -Activity "Staging mods" -Status "$seen / $total  ($mod)" -PercentComplete ([int]($seen * 100 / $total))
+        }
         $rel = $file.FullName.Substring($root.Length + 1).Replace('\', '/')
         $parts = $rel.Split('/')
 
@@ -93,7 +107,7 @@ foreach ($mod in $copy) {
             }
             [System.IO.File]::WriteAllText($stampFile, $stamp)
             $made++
-            Write-Host "astc $mod/$rel"
+            Write-Host "[$seen/$total] astc $mod/$rel"
         }
         else {
             $reused++
@@ -105,6 +119,7 @@ foreach ($mod in $copy) {
     }
 }
 
+Write-Progress -Activity "Staging mods" -Completed
 Write-Host ("Compressed {0}, reused {1}, kept {2} as png. {3:N1} MB of png became {4:N1} MB of astc." -f $made, $reused, $kept, ($pngBytes / 1MB), ($astcBytes / 1MB))
 Write-Host "Staged $stage"
 
