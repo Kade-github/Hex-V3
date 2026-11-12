@@ -6,7 +6,7 @@ import funkin.modding.module.ModuleHandler;
 import funkin.play.PlayStatePlaylist;
 import funkin.play.character.BaseCharacter;
 import funkin.modding.base.ScriptedFlxSpriteGroup;
-import openfl.utils.Assets;
+import funkin.Assets;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.video.FunkinVideoSprite;
 import StringTools;

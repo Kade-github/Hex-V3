@@ -3,6 +3,7 @@ package kade.hex.modules;
 import funkin.modding.module.Module;
 import funkin.play.PlayState;
 import flixel.FlxG;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
 import flixel.util.FlxColor;
@@ -13,7 +14,7 @@ import StringTools;
 import Std;
 import funkin.util.Constants;
 import funkin.modding.module.ModuleHandler;
-import openfl.utils.Assets;
+import funkin.Assets;
 
 import funkin.audio.FunkinSound;
 
@@ -228,6 +229,8 @@ class Hex_Hud extends Module
         PlayState.instance.persistentDraw = false;
         PlayState.instance.shouldSubstatePause = true;
         PlayState.instance.openSubState(scene);
+        FlxTransitionableState.skipNextTransIn = true;
+        FlxTransitionableState.skipNextTransOut = true;
     }
 
     var holdingEnd:Bool = false;
@@ -472,6 +475,8 @@ class Hex_Hud extends Module
         gameOverSub.trans = transitional;
         gameOverSub.camera = PlayState.instance.camPause;
         PlayState.instance.openSubState(gameOverSub);
+        FlxTransitionableState.skipNextTransIn = true;
+        FlxTransitionableState.skipNextTransOut = true;
     }
 
     public function evilDeathScreen()
@@ -528,6 +533,8 @@ class Hex_Hud extends Module
         pauseSubState.camera = PlayState.instance.camPause;
         PlayState.instance.shouldSubstatePause = true;
         PlayState.instance.openSubState(pauseSubState);
+        FlxTransitionableState.skipNextTransIn = true;
+        FlxTransitionableState.skipNextTransOut = true;
     }
 
     public function hideBars()

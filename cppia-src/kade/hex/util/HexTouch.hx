@@ -10,8 +10,8 @@ import flixel.util.FlxColor;
 import funkin.Assets;
 import funkin.Paths;
 import funkin.graphics.FunkinCamera;
-import funkin.mobile.input.ControlsHandler;
-import funkin.mobile.ui.FunkinBackButton;
+import funkin.touch.input.ControlsHandler;
+import funkin.touch.ui.FunkinBackButton;
 import funkin.ui.MusicBeatState;
 import funkin.util.ReflectUtil;
 

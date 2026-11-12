@@ -9,7 +9,7 @@ import funkin.Paths;
 import flixel.addons.display.FlxRuntimeShader;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
-import openfl.utils.Assets;
+import funkin.Assets;
 import funkin.modding.module.ModuleHandler;
 import StringTools;
 

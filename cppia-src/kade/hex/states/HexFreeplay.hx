@@ -23,7 +23,7 @@ import funkin.save.Save;
 import funkin.save.Save.SaveScoreData;
 import funkin.ui.MusicBeatState;
 import funkin.ui.story.Level;
-import funkin.ui.transition.LoadingState;
+import funkin.ui.transition.Transition;
 import kade.hex.menus.Anim;
 import kade.hex.objects.HexTransitional;
 import kade.hex.objects.freeplay.CapsuleLeft;
@@ -746,7 +746,7 @@ class HexFreeplay extends MusicBeatState
     if (useNew) targetVariation = "new";
     else if (get_diff_variation() != "default") targetVariation = get_diff_variation();
 
-    LoadingState.loadPlayState(
+    Transition.openPlayState(
       {
         targetSong: currentSong,
         targetDifficulty: diffId,
@@ -754,7 +754,10 @@ class HexFreeplay extends MusicBeatState
         targetInstrumental: useNew ? "new" : "",
         practiceMode: false,
         minimalMode: false
-      }, true);
+      }, {
+        transition: LoadingScreen(None, Fade(South)),
+        shouldStopMusic: true
+      }, false);
   }
 
   function startSong():Void

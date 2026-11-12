@@ -12,7 +12,7 @@ import funkin.play.song.Song;
 import funkin.save.Save;
 import funkin.save.Save.SaveScoreData;
 import funkin.ui.story.Level;
-import funkin.ui.transition.LoadingState;
+import funkin.ui.transition.Transition;
 import funkin.util.Constants;
 import kade.hex.objects.BetterAtlasText;
 import kade.hex.objects.HexTransitional;
@@ -270,13 +270,16 @@ class StoryPopUp extends FlxSpriteGroup
     transitional.transitionIn();
     transitional.onComplete = function(out:Bool)
     {
-      LoadingState.loadPlayState(
+      Transition.openPlayState(
         {
           targetSong: song,
           targetDifficulty: PlayStatePlaylist.campaignDifficulty,
           targetVariation: targetVariation,
           targetInstrumental: useNew ? "new" : ""
-        }, true);
+        }, {
+          transition: LoadingScreen(None, Fade(South)),
+          shouldStopMusic: true
+        }, false);
     };
   }
 

@@ -12,7 +12,7 @@ import funkin.group.FunkinGroup;
 import funkin.play.PlayState;
 import funkin.util.tools.FloatTools;
 import openfl.display.BlendMode;
-import openfl.utils.Assets;
+import funkin.Assets;
 import funkin.play.song.Song.SongDifficulty;
 
 class ReactiveSpotlights extends FunkinGroup

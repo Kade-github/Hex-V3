@@ -8,7 +8,7 @@ import funkin.PlayerSettings;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.input.PreciseInputManager;
-import funkin.mobile.ui.FunkinHitbox;
+import funkin.touch.ui.FunkinHitbox;
 import funkin.modding.events.ScriptEvent.NoteScriptEvent;
 import funkin.modding.events.ScriptEvent.HitNoteScriptEvent;
 import funkin.modding.events.ScriptEvent.UpdateScriptEvent;

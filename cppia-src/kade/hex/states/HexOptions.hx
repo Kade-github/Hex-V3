@@ -16,7 +16,7 @@ import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.input.Controls;
 import funkin.input.PreciseInputManager;
-import funkin.mobile.input.ControlsHandler;
+import funkin.touch.input.ControlsHandler;
 import funkin.Preferences;
 import funkin.save.Save;
 import funkin.ui.MusicBeatState;
