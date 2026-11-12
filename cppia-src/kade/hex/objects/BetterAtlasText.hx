@@ -105,6 +105,16 @@ class BetterAtlasText extends FunkinGroup<FlxSprite>
     text = initial;
   }
 
+  override public function update(elapsed:Float):Void
+  {
+    if (_dirty)
+    {
+      _rebuild();
+      _dirty = false;
+    }
+    super.update(elapsed);
+  }
+
   override public function draw():Void
   {
     if (_dirty)
@@ -393,7 +403,7 @@ class BetterAtlasText extends FunkinGroup<FlxSprite>
     children = [];
 
     if (text == null || text.length == 0) return;
-    
+
     // Fetched again rather than reusing _atlas: clearing the old glyphs can leave the font image
     // unused for a moment, and flixel frees it, so a held atlas would point at a freed image.
     var frames:FlxAtlasFrames = FlxAtlasFrames.fromSparrow(_imagePath, _xmlPath);

@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxRuntimeShader;
 import flixel.math.FlxMath;
+import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import funkin.Assets;
 import funkin.Paths;
@@ -15,6 +16,7 @@ import kade.hex.objects.PersonaSelection;
 import kade.hex.objects.mainmenu.CityScape;
 import kade.hex.objects.mainmenu.HexTitle;
 import kade.hex.util.HexTouch;
+import funkin.modding.PolymodHandler;
 
 /**
  * The main menu state for the VS Hex mod.
@@ -41,6 +43,7 @@ class HexMainMenu extends MusicBeatState
 
   var topBar:FlxSprite;
   var bottomBar:FlxSprite;
+  var versionText:FlxText;
 
   var controlsText:FlxSprite;
 
@@ -170,6 +173,12 @@ class HexMainMenu extends MusicBeatState
     topBar.makeGraphic(FlxG.width, 50, 0xFF000000);
     topBar.scrollFactor.set();
     add(topBar);
+
+    versionText = new FlxText(0, 0, 0, versionLabel());
+    versionText.setFormat(Paths.font("ui/fonts/Arista.ttf"), 26, 0xFFFFFFFF, "right");
+    versionText.scrollFactor.set();
+    add(versionText);
+    placeVersion();
 
     bottomBar = new FlxSprite(0, FlxG.height);
     bottomBar.makeGraphic(FlxG.width, 50, 0xFF000000);
@@ -334,6 +343,7 @@ class HexMainMenu extends MusicBeatState
       var ease:Float = FlxEase.circOut(Math.min(1, diff * 1.25));
 
       topBar.y = FlxMath.lerp(-50, 0, ease);
+      placeVersion();
       bottomBar.y = FlxMath.lerp(FlxG.height, FlxG.height - 50, ease);
 
       topCircle.y = FlxMath.lerp(-topCircle.height, -topCircle.height * 0.13, ease);
@@ -462,5 +472,28 @@ class HexMainMenu extends MusicBeatState
         };
       }
     }
+  }
+
+  function versionLabel():String
+  {
+    var handler:Dynamic = PolymodHandler;
+    var all:Array<Dynamic> = handler.getAllMods();
+    for (mod in all)
+    {
+      if (mod.id != "hex") continue;
+      var parts:Array<Int> = mod.modVersion.version;
+      if (parts == null || parts.length == 0) return "";
+      var shown:Array<Int> = parts.copy();
+      if (shown.length > 2 && shown[2] == 0) shown.pop();
+      return "v" + shown.join(".");
+    }
+    return "";
+  }
+
+  function placeVersion():Void
+  {
+    if (versionText == null) return;
+    versionText.x = topBar.x + topBar.width - versionText.width - 12;
+    versionText.y = topBar.y + (topBar.height - versionText.height) / 2;
   }
 }

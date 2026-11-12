@@ -662,7 +662,6 @@ class HexJukebox extends MusicBeatState
       if (row.clipRect == null) row.clipRect = FlxRect.get();
       row.clipRect.set(left, row.y - 20, width, spotOf(PAGE_MUSIC, row)[2] + 40);
       row.clipRect = row.clipRect;
-      row.updateClipRects();
 
       fadeRowEdges(row, i);
     }

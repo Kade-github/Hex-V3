@@ -116,7 +116,7 @@ class JumpinSong extends Song {
 
 				switchToCharacter(originalHex, CharacterType.DAD);
 				switchToCharacter(originalBf, CharacterType.BF);
-				
+
 				originalHex.visible = true;
 				originalBf.visible = true;
 
@@ -168,7 +168,7 @@ class JumpinSong extends Song {
 
 				hex3.scale.set(1.0,1.0);
 				bf3.scale.set(1.0,1.0);
-				PlayState.instance.tweenCameraZoom(1.06 * framingScale(), 0);
+				PlayState.instance.tweenCameraZoom(1.06 / framingScale(), 0);
 				hex2.visible = false;
 				hex2.legs.visible = false;
 				bf2.visible = false;
@@ -237,7 +237,7 @@ class JumpinSong extends Song {
 				// White
 				FlxG.camera.fade(0xFFFFFFFF, 0.2);
 			case 84:
-				// Back to normal 
+				// Back to normal
 				FlxG.camera.stopFade();
 				FlxG.camera.flash(0xFFFFFFFF, 0.2);
 				hex2.visible = true;
@@ -250,7 +250,7 @@ class JumpinSong extends Song {
 				// White
 				FlxG.camera.fade(0xFFFFFFFF, 0.2);
 			case 116:
-				// Back to normal 
+				// Back to normal
 				FlxG.camera.stopFade();
 				FlxG.camera.flash(0xFFFFFFFF, 0.2);
 
@@ -322,10 +322,16 @@ class JumpinSong extends Song {
 		prop.anim.play("", true, false, 0);
 	}
 
+	function placePopups():Void
+	{
+		var down:Bool = PlayState.instance.playerStrumline != null && PlayState.instance.playerStrumline.isDownscroll;
+		PlayState.instance.comboPopUps.offsets = [FlxG.width * .2, FlxG.height * (down ? .27 - .5 : .5)];
+	}
+
 	public override function onCreate(event) {
 		super.onCreate(event);
 
-		PlayState.instance.comboPopUps.offsets = [FlxG.width * .2, FlxG.height * .5];
+		placePopups();
 
 		originalHex = PlayState.instance.currentStage.getDad();
 		originalBf = PlayState.instance.currentStage.getBoyfriend();
@@ -378,7 +384,7 @@ class JumpinSong extends Song {
 	public override function onSongStart(event) {
 		super.onSongStart(event);
 
-		PlayState.instance.comboPopUps.offsets = [FlxG.width * .2, FlxG.height * .5];
+		placePopups();
 	}
 
 	public override function onSongRetry(event) {
@@ -415,7 +421,7 @@ class JumpinSong extends Song {
 
 	public override function onUpdate(event) {
 		super.onUpdate(event);
-		
+
 		if (sweep != null && sweepDuration > 0) {
 			var elapsed = Conductor.instance.songPosition - sweepStart;
 			var t = Math.min(elapsed / sweepDuration, 2.0);

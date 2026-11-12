@@ -13,9 +13,11 @@ class BitSong extends Song {
 	var intensity:Float = 0; // How intense the jitter is
 	var panAmount:Float = 0; // How much to pan the camera
 
-	var appliedX:Float = 0;
-	var appliedY:Float = 0;
-	var appliedCam = null;
+	var shakeX:Float = 0;
+	var shakeY:Float = 0;
+	var shakeCam = null;
+	var addShake = null;
+	var takeShake = null;
 
 	public function new() {
   	    super("bit");
@@ -29,11 +31,49 @@ class BitSong extends Song {
 	public override function onCreate() {
 		super.onCreate();
 
-		PlayState.instance.camGame.width = FlxG.width * 1.2;
-		PlayState.instance.camGame.height = FlxG.height * 1.2;
+		hookShake();
+	}
 
-		PlayState.instance.camGame.x -= FlxG.width * 0.1;
-		PlayState.instance.camGame.y -= FlxG.height * 0.1;
+	public override function onDestroy(event)
+	{
+		super.onDestroy(event);
+
+		unhookShake();
+	}
+
+	function hookShake():Void
+	{
+		if (addShake != null) return;
+
+		addShake = function()
+		{
+			var state = PlayState.instance;
+			if (state == null || state.currentSong == null || state.currentSong.id != "bit") return;
+			shakeCam = state.camGame;
+			if (shakeCam == null) return;
+			shakeCam.scroll.x += shakeX;
+			shakeCam.scroll.y += shakeY;
+		};
+		takeShake = function()
+		{
+			if (shakeCam == null) return;
+			shakeCam.scroll.x -= shakeX;
+			shakeCam.scroll.y -= shakeY;
+			shakeCam = null;
+		};
+
+		FlxG.signals.preDraw.add(addShake);
+		FlxG.signals.postDraw.add(takeShake);
+	}
+
+	function unhookShake():Void
+	{
+		if (addShake == null) return;
+
+		FlxG.signals.preDraw.remove(addShake);
+		FlxG.signals.postDraw.remove(takeShake);
+		addShake = null;
+		takeShake = null;
 	}
 
 	public override function onUpdate(event)
@@ -80,40 +120,15 @@ class BitSong extends Song {
 			var ox:Float = Math.sin(time * 0.05) * jitter + Math.sin(time * 0.01) * pan;
 			var oy:Float = Math.cos(time * 0.05) * jitter + Math.cos(time * 0.01) * pan;
 
-			applyOffset(cam, ox, oy);
+			shakeX = ox;
+			shakeY = oy;
 		}
 		else
 		{
 			intensity = 0;
 			panAmount = 0;
-			clearOffset();
+			shakeX = 0;
+			shakeY = 0;
 		}
-	}
-
-	function applyOffset(cam, ox:Float, oy:Float):Void
-	{
-		if (appliedCam != cam)
-		{
-			appliedCam = cam;
-			appliedX = 0;
-			appliedY = 0;
-		}
-
-		cam.x += ox - appliedX;
-		cam.y += oy - appliedY;
-		appliedX = ox;
-		appliedY = oy;
-	}
-
-	function clearOffset():Void
-	{
-		if (appliedCam != null)
-		{
-			appliedCam.x -= appliedX;
-			appliedCam.y -= appliedY;
-		}
-
-		appliedX = 0;
-		appliedY = 0;
 	}
 }

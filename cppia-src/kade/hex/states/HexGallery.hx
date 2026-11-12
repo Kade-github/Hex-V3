@@ -299,7 +299,7 @@ class HexGallery extends MusicBeatState
     add(bottomCircle);
 
     bottomCircle.x = FlxG.width - bottomCircle.width;
-    bottomCircle.y = FlxG.height - bottomCircle.height;
+    bottomCircle.y = FlxG.height - bottomCircle.height * 0.82;
 
     controlsText = new FlxSprite(15, FlxG.height - 40);
     controlsText.loadGraphic(Paths.image("ui/hex/hex_gallery/controlsTextUnselected"));
