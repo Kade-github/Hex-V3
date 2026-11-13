@@ -1,5 +1,9 @@
 package kade.hex.states;
 
+import funkin.assets.Assets.AssetType;
+import funkin.assets.Paths.AssetPath;
+import kade.hex.util.HexAssets;
+
 import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -23,6 +27,11 @@ import kade.hex.util.HexTouch;
  */
 class HexJukebox extends MusicBeatState
 {
+  public static function queryAssets(type:AssetType):Array<AssetPath>
+  {
+    return HexAssets.inFolders(type, ["ui/hex/hex_jukebox/"]);
+  }
+
   static inline var PAGE_MUSIC:Int = 0;
   static inline var PAGE_PLAYER:Int = 1;
 
@@ -53,7 +62,6 @@ class HexJukebox extends MusicBeatState
       "Results (Perfect)", "Results (Excellent)", "Results (Good)", "Results (Shit)"
     ]
   ];
-
 
   // Audio for each song, lined up with ALBUM_SONGS: "instrumental|vocal,vocal|artist" as paths
   static var ALBUM_TRACKS:Array<Array<String>> = [
@@ -1479,8 +1487,7 @@ class HexJukebox extends MusicBeatState
       var mm:HexMainMenu = new HexMainMenu();
       mm.skipTitle();
       mm.selectionIndex = 3;
-      HexPurge.next();
-      FlxG.switchState(function() return mm);
+      HexAssets.go(function() return mm, HexMainMenu.queryAssets);
     };
   }
 

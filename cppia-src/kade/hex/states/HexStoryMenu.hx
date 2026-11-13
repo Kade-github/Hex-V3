@@ -1,5 +1,9 @@
 package kade.hex.states;
 
+import funkin.assets.Assets.AssetType;
+import funkin.assets.Paths.AssetPath;
+import kade.hex.util.HexAssets;
+
 import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -22,6 +26,11 @@ import openfl.filters.ShaderFilter;
  */
 class HexStoryMenu extends MusicBeatState
 {
+  public static function queryAssets(type:AssetType):Array<AssetPath>
+  {
+    return HexAssets.inFolders(type, ["ui/hex/story-menu/", "ui/hex/music/title-theme/"]);
+  }
+
   var storyMenuItems:Array<StoryMenuItem>;
 
   var blurShader:FlxRuntimeShader;
@@ -336,8 +345,7 @@ class HexStoryMenu extends MusicBeatState
       var mm:HexMainMenu = new HexMainMenu();
       mm.skipTitle();
       mm.selectionIndex = 0;
-      HexPurge.next();
-      FlxG.switchState(function() return mm);
+      HexAssets.go(function() return mm, HexMainMenu.queryAssets);
     };
   }
 

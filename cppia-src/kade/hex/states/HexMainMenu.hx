@@ -1,5 +1,9 @@
 package kade.hex.states;
 
+import funkin.assets.Assets.AssetType;
+import funkin.assets.Paths.AssetPath;
+import kade.hex.util.HexAssets;
+
 import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -23,6 +27,11 @@ import funkin.modding.PolymodHandler;
  */
 class HexMainMenu extends MusicBeatState
 {
+  public static function queryAssets(type:AssetType):Array<AssetPath>
+  {
+    return HexAssets.inFolders(type, ["ui/hex/main-menu/", "ui/hex/music/title-theme/", "ui/hex/music/title-ambi/"]);
+  }
+
   var bg:FlxSprite;
 
   var shouldSkip:Bool = false;
@@ -435,29 +444,23 @@ class HexMainMenu extends MusicBeatState
           switch (selectionIndex)
           {
             case 0:
-              HexPurge.next();
               var story:HexStoryMenu = new HexStoryMenu();
-              FlxG.switchState(function() return story);
+              HexAssets.go(function() return story, HexStoryMenu.queryAssets);
             case 1:
-              HexPurge.next();
               var freeplay:HexFreeplay = new HexFreeplay();
-              FlxG.switchState(function() return freeplay);
+              HexAssets.go(function() return freeplay, HexFreeplay.queryAssets);
             case 2:
-              HexPurge.next();
               var gallery:HexGallery = new HexGallery();
-              FlxG.switchState(function() return gallery);
+              HexAssets.go(function() return gallery, HexGallery.queryAssets);
             case 3:
-              HexPurge.next();
               var jukebox:HexJukebox = new HexJukebox();
-              FlxG.switchState(function() return jukebox);
+              HexAssets.go(function() return jukebox, HexJukebox.queryAssets);
             case 4:
-              HexPurge.next();
               var options:HexOptions = new HexOptions();
-              FlxG.switchState(function() return options);
+              HexAssets.go(function() return options, HexOptions.queryAssets);
             case 5:
-              HexPurge.next();
               var credits:HexCredits = new HexCredits();
-              FlxG.switchState(function() return credits);
+              HexAssets.go(function() return credits, HexCredits.queryAssets);
             default:
               var image:FlxSprite = selectionImages[selectionIndex];
               image.shader = null;

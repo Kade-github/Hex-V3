@@ -24,6 +24,7 @@ import kade.hex.states.HexStoryMenu;
 import kade.hex.objects.HexTransitional;
 import kade.hex.states.HexFreeplay;
 import kade.hex.util.HexPurge;
+import kade.hex.util.HexAssets;
 
 import StringTools;
 
@@ -184,7 +185,7 @@ class HResultsScreen extends Module
     public override function onSubStateOpenEnd(event:SubStateScriptEvent):Void {
         super.onSubStateOpenEnd(event);
 
-        var state = FlxG.state.subState;
+        var state = event.targetState;
 
         if (!Std.is(state, ResultState))
             return;
@@ -239,6 +240,18 @@ class HResultsScreen extends Module
         return false;
     }
 
+    function findResults():Dynamic
+    {
+        var current = FlxG.state.subState;
+        while (current != null)
+        {
+            if (Std.is(current, ResultState))
+                return current;
+            current = current.subState;
+        }
+        return null;
+    }
+
     var isLeaving:Bool = false;
 
     var hexResultsOpen:Bool = false;
@@ -265,8 +278,8 @@ class HResultsScreen extends Module
         if (exiting || !FlxG.keys.justPressed.ESCAPE)
             return;
 
-        var state = FlxG.state.subState;
-        if (!Std.is(state, ResultState))
+        var state = findResults();
+        if (state == null)
             return;
 
         @:privateAccess
@@ -288,13 +301,15 @@ class HResultsScreen extends Module
     {
         super.onSubStateOpenBegin(event);
 
-        var state = FlxG.state.subState;
-        if (!Std.is(state, ResultState))
+        var state = findResults();
+        if (state == null)
             return;
 
         if (exiting)
         {
-            event.cancelEvent();
+            // Our own switch opens the loading screen on top, let that one through.
+            if (!ownSwitch)
+                event.cancelEvent();
             return;
         }
 
@@ -348,9 +363,9 @@ class HResultsScreen extends Module
     {
         hexResultsOpen = false;
 
-        var state = FlxG.state.subState;
+        var state = findResults();
 
-        if (state != null && Std.is(state, ResultState))
+        if (state != null)
         {
             @:privateAccess
             {
@@ -364,18 +379,19 @@ class HResultsScreen extends Module
 
         ownSwitch = true;
 
-        HexPurge.next(true);
-
         if (PlayStatePlaylist.isStoryMode)
-            FlxG.switchState(new HexStoryMenu());
+            HexAssets.go(function() return new HexStoryMenu(), function(type) return HexStoryMenu.queryAssets(type));
         else
-            FlxG.switchState(new HexFreeplay());
+            HexAssets.go(function() return new HexFreeplay(), function(type) return HexFreeplay.queryAssets(type));
     }
 
     public override function onStateChangeBegin(event:StateChangeScriptEvent):Void {
 
-        var state = FlxG.state.subState;
-        var onResults:Bool = state != null && Std.is(state, ResultState);
+        var state = findResults();
+        var onResults:Bool = state != null;
+
+        if (onResults && !hexResultsOpen)
+            hexResultsOpen = PlayState.instance != null && isHexSong();
 
         // The event carries no target here, so any switch that is not ours is the stock exit.
         if (ownSwitch || !hexResultsOpen || !(exiting || onResults))

@@ -1,5 +1,9 @@
 package kade.hex.states;
 
+import funkin.assets.Assets.AssetType;
+import funkin.assets.Paths.AssetPath;
+import kade.hex.util.HexAssets;
+
 import kade.hex.util.HexPurge;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -34,6 +38,11 @@ import kade.hex.util.HexTouch;
 
 class HexFreeplay extends MusicBeatState
 {
+  public static function queryAssets(type:AssetType):Array<AssetPath>
+  {
+    return HexAssets.inFolders(type, ["ui/hex/hex_freeplay/"]);
+  }
+
   var bg:FlxSprite;
   var scaryBG:FlxSprite;
   var transition:HexTransitional;
@@ -1124,8 +1133,7 @@ class HexFreeplay extends MusicBeatState
       var mm:HexMainMenu = new HexMainMenu();
       mm.skipTitle();
       mm.selectionIndex = 1;
-      HexPurge.next();
-      FlxG.switchState(function() return mm);
+      HexAssets.go(function() return mm, HexMainMenu.queryAssets);
     };
   }
 

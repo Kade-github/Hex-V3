@@ -78,8 +78,8 @@ class Hex_Hud extends Module
 
         if (!titleState)
         {
-            var hmm = new HexMainMenu();
-            InitState.customTitleState = hmm;
+            InitState.customTitleState = function() return new HexMainMenu();
+            InitState.customTitleStateAssetsQuery = function(type) return HexMainMenu.queryAssets(type);
             titleState = true;
         }
     }

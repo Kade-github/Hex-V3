@@ -1,5 +1,9 @@
 package kade.hex.states;
 
+import funkin.assets.Assets.AssetType;
+import funkin.assets.Paths.AssetPath;
+import kade.hex.util.HexAssets;
+
 import kade.hex.util.HexPurge;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
@@ -28,6 +32,11 @@ import openfl.filters.ShaderFilter;
  */
 class HexGallery extends MusicBeatState
 {
+  public static function queryAssets(type:AssetType):Array<AssetPath>
+  {
+    return HexAssets.inFolders(type, ["ui/hex/hex_gallery/"], ["FullScreen"]);
+  }
+
   var bg:FlxSprite;
 
   var swirly:FlxRuntimeShader;
@@ -515,8 +524,7 @@ class HexGallery extends MusicBeatState
       var mm:HexMainMenu = new HexMainMenu();
       mm.skipTitle();
       mm.selectionIndex = 2;
-      HexPurge.next();
-      FlxG.switchState(function() return mm);
+      HexAssets.go(function() return mm, HexMainMenu.queryAssets);
     };
   }
 
